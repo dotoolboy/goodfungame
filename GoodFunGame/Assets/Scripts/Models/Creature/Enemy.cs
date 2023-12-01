@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,9 +43,9 @@ public class Enemy : Creature {
     protected override void OnStateEntered_Dead() {
         base.OnStateEntered_Dead();
 
-        // TODO:: PlayerÀÇ KillCount Áõ°¡.
+        // TODO:: Playerì˜ KillCount ì¦ê°€.
 
-        // TODO:: ¿ÀºêÁ§Æ® µğ½ºÆù
+        // TODO:: ì˜¤ë¸Œì íŠ¸ ë””ìŠ¤í°
     }
 
     #endregion
