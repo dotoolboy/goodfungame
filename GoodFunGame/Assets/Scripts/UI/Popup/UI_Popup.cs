@@ -2,11 +2,11 @@ public class UI_Popup : UI_Base
 {
     public override void Init()
     {
-        Managers.UI.SetCanvas(gameObject, true);
+        Main.UI.SetCanvas(gameObject, true);
     }
 
-    public virtual void ClosePopupUI()  // ÆË¾÷ÀÌ´Ï±î °íÁ¤ Äµ¹ö½º(Scene)°ú ´Ù¸£°Ô ´İ´Â°Ô ÇÊ¿ä
+    public virtual void ClosePopupUI()  // íŒì—…ì´ë‹ˆê¹Œ ê³ ì • ìº”ë²„ìŠ¤(Scene)ê³¼ ë‹¤ë¥´ê²Œ ë‹«ëŠ”ê²Œ í•„ìš”
     {
-        Managers.UI.ClosePopupUI(this);
+        Main.UI.ClosePopupUI(this);
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UIManager
 {
-    int _order = 10; // ÇöÀç±îÁö ÃÖ±Ù¿¡ »ç¿ëÇÑ ¿À´õ
+    int _order = 10; // í˜„ì¬ê¹Œì§€ ìµœê·¼ì— ì‚¬ìš©í•œ ì˜¤ë”
 
-    Stack<UI_Popup> _popupStack = new Stack<UI_Popup>(); // ¿ÀºêÁ§Æ® ¸»°í ÄÄÆ÷³ÍÆ®¸¦ ´ãÀ½. ÆË¾÷ Äµ¹ö½º UI µéÀ» ´ã´Â´Ù.
-    UI_Scene _sceneUI = null; // ÇöÀçÀÇ °íÁ¤ Äµ¹ö½º UI
+    Stack<UI_Popup> _popupStack = new Stack<UI_Popup>(); // ì˜¤ë¸Œì íŠ¸ ë§ê³  ì»´í¬ë„ŒíŠ¸ë¥¼ ë‹´ìŒ. íŒì—… ìº”ë²„ìŠ¤ UI ë“¤ì„ ë‹´ëŠ”ë‹¤.
+    UI_Scene _sceneUI = null; // í˜„ì¬ì˜ ê³ ì • ìº”ë²„ìŠ¤ UI
 
 
 
@@ -25,10 +25,10 @@ public class UIManager
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
-        if (string.IsNullOrEmpty(name)) // ÀÌ¸§À» ¾È¹Ş¾Ò´Ù¸é T·Î ¤¡¤¡
+        if (string.IsNullOrEmpty(name)) // ì´ë¦„ì„ ì•ˆë°›ì•˜ë‹¤ë©´ Të¡œ ã„±ã„±
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
+        GameObject go = Main.Resource.InstantiatePrefab($"{name}.prefab");
         T popup = Util.GetOrAddComponent<T>(go);
         _popupStack.Push(popup);
 
@@ -37,14 +37,14 @@ public class UIManager
         return popup;
     }
 
-    public void ClosePopupUI(UI_Popup popup) // ¾ÈÀü Â÷¿ø
+    public void ClosePopupUI(UI_Popup popup) // ì•ˆì „ ì°¨ì›
     {
-        if (_popupStack.Count == 0) // ºñ¾îÀÖ´Â ½ºÅÃÀÌ¶ó¸é »èÁ¦ ºÒ°¡
+        if (_popupStack.Count == 0) // ë¹„ì–´ìˆëŠ” ìŠ¤íƒì´ë¼ë©´ ì‚­ì œ ë¶ˆê°€
             return;
 
         if (_popupStack.Peek() != popup)
         {
-            Debug.Log("Close Popup Failed!"); // ½ºÅÃÀÇ °¡Àå À§¿¡ÀÖ´Â Peek() °Í¸¸ »èÁ¦ÇÒ ¼ö ÀÕ±â ¶§¹®¿¡ popupÀÌ Peek()°¡ ¾Æ´Ï¸é »èÁ¦ ¸øÇÔ
+            Debug.Log("Close Popup Failed!"); // ìŠ¤íƒì˜ ê°€ì¥ ìœ„ì—ìˆëŠ” Peek() ê²ƒë§Œ ì‚­ì œí•  ìˆ˜ ì‡ê¸° ë•Œë¬¸ì— popupì´ Peek()ê°€ ì•„ë‹ˆë©´ ì‚­ì œ ëª»í•¨
             return;
         }
 
@@ -57,9 +57,9 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        Managers.Resource.Destroy(popup.gameObject);
+        Main.Resource.Destroy(popup.gameObject);
         popup = null;
-        _order--; // order ÁÙÀÌ±â
+        _order--; // order ì¤„ì´ê¸°
     }
 
     public void CloseAllPopupUI()
@@ -72,14 +72,14 @@ public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.overrideSorting = true; // Äµ¹ö½º ¾È¿¡ Äµ¹ö½º ÁßÃ¸ °æ¿ì (ºÎ¸ğ Äµ¹ö½º°¡ ¾î¶² °ªÀ» °¡Áö´ø ³ª´Â ³» ¿À´õ°ªÀ» °¡Áö·Á ÇÒ¶§)
+        canvas.overrideSorting = true; // ìº”ë²„ìŠ¤ ì•ˆì— ìº”ë²„ìŠ¤ ì¤‘ì²© ê²½ìš° (ë¶€ëª¨ ìº”ë²„ìŠ¤ê°€ ì–´ë–¤ ê°’ì„ ê°€ì§€ë˜ ë‚˜ëŠ” ë‚´ ì˜¤ë”ê°’ì„ ê°€ì§€ë ¤ í• ë•Œ)
 
         if (sort)
         {
             canvas.sortingOrder = _order;
             _order++;
         }
-        else // soring ¿äÃ» X ¶ó´Â ¼Ò¸®´Â ÆË¾÷ÀÌ ¾Æ´Ñ ÀÏ¹İ °íÁ¤ UI
+        else // soring ìš”ì²­ X ë¼ëŠ” ì†Œë¦¬ëŠ” íŒì—…ì´ ì•„ë‹Œ ì¼ë°˜ ê³ ì • UI
         {
             canvas.sortingOrder = 0;
         }
@@ -90,7 +90,7 @@ public void SetCanvas(GameObject go, bool sort = true)
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        GameObject go = Main.Resource.InstantiatePrefab($"{name}.prefab");
         T sceneUI = Util.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
