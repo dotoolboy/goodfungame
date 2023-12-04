@@ -9,8 +9,6 @@ using UnityEngine.AddressableAssets;
 public class ResourceManager : MonoBehaviour
 {
     public bool Loaded { get; private set; }
-
-
     private Dictionary<string, UnityEngine.Object> _resources = new();
 
 

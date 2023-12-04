@@ -17,8 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 820cdc3aa932ff64ca2f4a536a4082f9
   m_SerializeEntries:
-  - m_GUID: da2a5c902e40e934f96457229a0fa7b8
-    m_Address: UI_Popup_Tooltip.prefab
+  - m_GUID: 91eeae33840f2af489d3f6685e567cbd
+    m_Address: Projectile_TEMP.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af670837677d8f64997c189678a17d17
+    m_Address: TempCharacter.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
