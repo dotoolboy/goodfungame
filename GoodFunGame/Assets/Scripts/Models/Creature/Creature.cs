@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -101,9 +101,13 @@ public class Creature : Thing {
 
     protected virtual void SetStatus(bool isFullHp = false) 
     {
-        HpMax = Data.hpMax;
-        Damage = Data.damage;
-        MoveSpeed = Data.moveSpeed;
+        //HpMax = Data.hpMax;
+        //Damage = Data.damage;
+        //MoveSpeed = Data.moveSpeed;
+
+        HpMax = 100;
+        Damage = 10;
+        MoveSpeed = 5;
 
         if (isFullHp) Hp = HpMax;
     }
