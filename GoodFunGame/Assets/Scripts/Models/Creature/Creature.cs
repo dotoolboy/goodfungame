@@ -92,12 +92,15 @@ public class Creature : Thing {
     public virtual void SetInfo(string key) {
         Initialize();
 
+
         Data = null;    // TODO:: key를 통해 해당 크리쳐의 Data를 받아온다. ex) Main.Data.Creatures[key];
+
 
         SetStatus();
     }
 
-    protected virtual void SetStatus(bool isFullHp = false) {
+    protected virtual void SetStatus(bool isFullHp = false) 
+    {
         HpMax = Data.hpMax;
         Damage = Data.damage;
         MoveSpeed = Data.moveSpeed;

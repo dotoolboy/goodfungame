@@ -8,9 +8,10 @@ using UnityEngine;
 public class Thing : MonoBehaviour {
 
     private bool _initialized;
-
+    protected DataManager DataManager;
     protected virtual void Awake() {
         Initialize();
+        DataManager = ServiceLocator.GetService<DataManager>();
     }
 
     public virtual bool Initialize() {
