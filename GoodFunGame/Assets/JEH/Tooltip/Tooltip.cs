@@ -49,7 +49,7 @@ public class Tooltip : MonoBehaviour
 
         _position = Input.mousePosition;
 
-        _pivotX = _position.x / Screen.width; //È­¸éÀ» (0,0) (1,1)ÀÌ¶ó°í ÇßÀ»¶§ À§Ä¡¸¦ Áı¾î³ÖÀ½ 
+        _pivotX = _position.x / Screen.width; //í™”ë©´ì„ (0,0) (1,1)ì´ë¼ê³  í–ˆì„ë•Œ ìœ„ì¹˜ë¥¼ ì§‘ì–´ë„£ìŒ 
         _pivotY = _position.y / Screen.height;
 
         _rectTransform.pivot = new Vector2(_pivotX, _pivotY);
@@ -77,7 +77,7 @@ public class Tooltip : MonoBehaviour
         headerField.gameObject.SetActive(false);
 
         contentField.text = content;
-        _layoutElement.enabled = (headerField.preferredWidth > _characterWrapLimit || contentField.preferredWidth > _characterWrapLimit);   // ÅØ½ºÆ® ±æ¸é LayoutElement È°¼ºÈ­ÇØ¼­ ±Û¿¡ ÀÚµ¿À¸·Î ¿£ÅÍ³Ö±â
+        _layoutElement.enabled = (headerField.preferredWidth > _characterWrapLimit || contentField.preferredWidth > _characterWrapLimit);   // í…ìŠ¤íŠ¸ ê¸¸ë©´ LayoutElement í™œì„±í™”í•´ì„œ ê¸€ì— ìë™ìœ¼ë¡œ ì—”í„°ë„£ê¸°
     }
 
     public void SetText(string content, string header)
@@ -96,4 +96,4 @@ public class Tooltip : MonoBehaviour
 // headerLength = headerField.text.Length;
 // contentLength = contentField.text.Length;
 // layoutElement.enabled = (headerLength > characterWrapLimit || contentLength > characterWrapLimit);
-// ÇÑ±ÛÀº ±ÛÀÚ¼ö·ÎÇÏ¸é Á¤È®ÇÏÁö ¾ÊÀºµí? ¿ø·¡ lenght·Î °Ô»êÇÑ°Å preferredWidth·Î ¹Ù²ã¹ö¸²
+// í•œê¸€ì€ ê¸€ììˆ˜ë¡œí•˜ë©´ ì •í™•í•˜ì§€ ì•Šì€ë“¯? ì›ë˜ lenghtë¡œ ê²Œì‚°í•œê±° preferredWidthë¡œ ë°”ê¿”ë²„ë¦¼

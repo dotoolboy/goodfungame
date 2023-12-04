@@ -16,7 +16,7 @@ public class Option_AudioVolume : MonoBehaviour
     public Toggle toggle_BGM;
     public Toggle toggle_SFX;
 
-    public TMP_Text bgmVolumeText; //º¼·ı Å©±â ¼ıÀÚ. ¾È¾µ°Å¸é ÀÌº¯¼ö ¾²´Â°Å ´Ù Áö¿ì¸éµÊ
+    public TMP_Text bgmVolumeText; //ë³¼ë¥¨ í¬ê¸° ìˆ«ì. ì•ˆì“¸ê±°ë©´ ì´ë³€ìˆ˜ ì“°ëŠ”ê±° ë‹¤ ì§€ìš°ë©´ë¨
     public TMP_Text sfxVolumeText;
 
     string bgm = "BGM";
@@ -33,7 +33,7 @@ public class Option_AudioVolume : MonoBehaviour
     {
 
         if (!toggle_BGM.isOn) 
-            audioMixer.SetFloat(bgm, Mathf.Log10(value) * 20); // audioMixer.SetFloat("SFX", i); ±âº» ¹Í¼­¿¡ ¼³Á¤³Ö´Â¹ı
+            audioMixer.SetFloat(bgm, Mathf.Log10(value) * 20); // audioMixer.SetFloat("SFX", i); ê¸°ë³¸ ë¯¹ì„œì— ì„¤ì •ë„£ëŠ”ë²•
 
         bgmVolumeText.text = (slider_BGM.value * 100).ToString("N0");
     }
@@ -51,7 +51,7 @@ public class Option_AudioVolume : MonoBehaviour
 
     public void Mute_BGM(bool isMute)
     {
-        toggle_BGM.isOn = isMute; //¿ÂÅ¬¸¯¸»°í ÇÔ¼ö·Î ½ÇÇà½ÃÅ°´Â°æ¿ìµµÀÖÀ¸´Ï±î Åä±Û ¿Â¿ÀÇÁ ÇÑ¹ø´õ ¹Ù²ãÁÜ
+        toggle_BGM.isOn = isMute; //ì˜¨í´ë¦­ë§ê³  í•¨ìˆ˜ë¡œ ì‹¤í–‰ì‹œí‚¤ëŠ”ê²½ìš°ë„ìˆìœ¼ë‹ˆê¹Œ í† ê¸€ ì˜¨ì˜¤í”„ í•œë²ˆë” ë°”ê¿”ì¤Œ
 
         if (isMute)
             audioMixer.SetFloat(bgm, -80f);
@@ -73,19 +73,19 @@ public class Option_AudioVolume : MonoBehaviour
     void Save()
     {
 
-        // ºê±İÅ©±â = slider_BGM.value;
-        // ºê±İÀ½¼Ò°Å =  muteToggle_BGM.isOn;
+        // ë¸Œê¸ˆí¬ê¸° = slider_BGM.value;
+        // ë¸Œê¸ˆìŒì†Œê±° =  muteToggle_BGM.isOn;
 
         //  sfxVolume = slider_SFX.value;
         //   sfxMute = muteToggle_SFX.isOn;
 
-        // µ¥ÀÌÅÍÀúÀå
+        // ë°ì´í„°ì €ì¥
 
     }
     void Load()
     {
 
-     //   slider_BGM.value = SaveManager.Instance.userData.bgmVolume; // ´ÙÀÌ³ª¹ÍÀ¸·Î ¿¬°áÇØµµ °× Ã³À½¿£ ¼öµ¿À¸·Î ½½¶óÀÌ´õ ¿Å°ÜÁà¾ßµÈ´Ù ¤Ñ¤Ñ
+     //   slider_BGM.value = SaveManager.Instance.userData.bgmVolume; // ë‹¤ì´ë‚˜ë¯¹ìœ¼ë¡œ ì—°ê²°í•´ë„ ê²œ ì²˜ìŒì—” ìˆ˜ë™ìœ¼ë¡œ ìŠ¬ë¼ì´ë” ì˜®ê²¨ì¤˜ì•¼ëœë‹¤ ã…¡ã…¡
      //   slider_SFX.value = SaveManager.Instance.userData.sfxVolume;
 
       //  Volume_BGM(SaveManager.Instance.userData.bgmVolume);

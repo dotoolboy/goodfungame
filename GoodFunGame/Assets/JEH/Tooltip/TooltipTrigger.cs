@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
-    // ¸¶¿ì½º¿Ã·ÈÀ»¶§ ±Û¾¾ ¶ç¿ï³ğµéÇÑÅ× ´Ş¾Æ¾ßÇÒ ½ºÅ©¸³Æ®.
+    // ë§ˆìš°ìŠ¤ì˜¬ë ¸ì„ë•Œ ê¸€ì”¨ ë„ìš¸ë†ˆë“¤í•œí…Œ ë‹¬ì•„ì•¼í•  ìŠ¤í¬ë¦½íŠ¸.
 
 
     public string header;
     public string content;
 
-    public void OnPointerEnter(PointerEventData eventData) //ÀÌ°Íµµ Äİ¶óÀÌ´õ ¾øÀ¸¸é ÀÎ½Ä¾ÈÇÏ³×
+    public void OnPointerEnter(PointerEventData eventData) //ì´ê²ƒë„ ì½œë¼ì´ë” ì—†ìœ¼ë©´ ì¸ì‹ì•ˆí•˜ë„¤
     {
         TooltipSystem.Show(content, header);
     }

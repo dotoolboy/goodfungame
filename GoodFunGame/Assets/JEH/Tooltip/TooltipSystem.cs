@@ -11,7 +11,7 @@ public class TooltipSystem : MonoBehaviour
     {
         current = this;
         _tooltip = transform.GetChild(0).GetComponent<Tooltip>();
-        _tooltip.gameObject.SetActive(true); // ÃÊ±âÈ­¿ë
+        _tooltip.gameObject.SetActive(true); // ì´ˆê¸°í™”ìš©
         _tooltip.gameObject.SetActive(false);
     }
 

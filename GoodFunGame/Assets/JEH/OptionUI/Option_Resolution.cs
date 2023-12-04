@@ -13,17 +13,17 @@ public class Option_Resolution : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullScreenToggle;
 
-    private List<Resolution> resolutions; //ÇØ»óµµ ¸ñ·Ï
+    private List<Resolution> resolutions; //í•´ìƒë„ ëª©ë¡
 
     private int resolutionNumSet;
-    private int resolutionNum; //ÇØ»óµµ °í¸£°í Ãë¼ÒÇÒ¶§ °è»êÇÏ´Â¿ë
+    private int resolutionNum; //í•´ìƒë„ ê³ ë¥´ê³  ì·¨ì†Œí• ë•Œ ê³„ì‚°í•˜ëŠ”ìš©
 
-    private FullScreenMode screenMode; //Screen.fullScreenMode´Â ¾Æ¿¹ °Á ÀÌ ÇÁ·Î±×·¥ÀÇ °ÔÀÓÃ¢À» ¸»ÇÏ´Â°Å°°¾Æ¼­ ¿À·ù ¸¹ÀÌ³². º¯¼öÃ³·³¾²·Á¸é ÀúÀåÇØ³õ°í ½á¾ßÇÒµí.
+    private FullScreenMode screenMode; //Screen.fullScreenModeëŠ” ì•„ì˜ˆ ê± ì´ í”„ë¡œê·¸ë¨ì˜ ê²Œì„ì°½ì„ ë§í•˜ëŠ”ê±°ê°™ì•„ì„œ ì˜¤ë¥˜ ë§ì´ë‚¨. ë³€ìˆ˜ì²˜ëŸ¼ì“°ë ¤ë©´ ì €ì¥í•´ë†“ê³  ì¨ì•¼í• ë“¯.
 
 
-    // ---------¾Æ·¡´Â ÇØ»óµµ Àû¿ë È®ÀÎÃ¢ ¿ë
+    // ---------ì•„ë˜ëŠ” í•´ìƒë„ ì ìš© í™•ì¸ì°½ ìš©
 
-    public GameObject ResolutionQestion; // ÇØ»óµµ Àû¿ëÇÒ°ÇÁö È®ÀÎÃ¢
+    public GameObject ResolutionQestion; // í•´ìƒë„ ì ìš©í• ê±´ì§€ í™•ì¸ì°½
     public TMP_Text countdownTxt;
     private float countdown;
     private WaitForSeconds oneSec;
@@ -44,10 +44,10 @@ public class Option_Resolution : MonoBehaviour
     }
 
 
-    int Gcd(int n, int m) // a¿Í bÀÇ ÃÖ´ë°ø¾à¼ö °è»ê. ÇØ»óµµ ºñÀ²°è»ê
+    int Gcd(int n, int m) // aì™€ bì˜ ìµœëŒ€ê³µì•½ìˆ˜ ê³„ì‚°. í•´ìƒë„ ë¹„ìœ¨ê³„ì‚°
     {
-        //µÎ ¼ö n, m ÀÌ ÀÖÀ» ¶§ ¾î´À ÇÑ ¼ö°¡ 0ÀÌ µÉ ¶§ ±îÁö
-        //gcd(m, n%m) ÀÇ Àç±ÍÇÔ¼ö ¹İº¹
+        //ë‘ ìˆ˜ n, m ì´ ìˆì„ ë•Œ ì–´ëŠ í•œ ìˆ˜ê°€ 0ì´ ë  ë•Œ ê¹Œì§€
+        //gcd(m, n%m) ì˜ ì¬ê·€í•¨ìˆ˜ ë°˜ë³µ
         if (m == 0) return n;
         else return Gcd(m, n % m);
     }
@@ -55,7 +55,7 @@ public class Option_Resolution : MonoBehaviour
     //=======================================================================
 
 
-    void Init() // ÇØ»óµµ¸ñ·Ï ¸¸µé¾î¼­ µå·Ó¹Ú½º¿¡ Ãß°¡
+    void Init() // í•´ìƒë„ëª©ë¡ ë§Œë“¤ì–´ì„œ ë“œë¡­ë°•ìŠ¤ì— ì¶”ê°€
     {
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
@@ -69,12 +69,12 @@ public class Option_Resolution : MonoBehaviour
         {
             TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
 
-            //ÇØ»óµµ ºñÀ²°è»ê
+            //í•´ìƒë„ ë¹„ìœ¨ê³„ì‚°
             option.text = resolutions[i].width + "x" + resolutions[i].height + " " +
                 resolutions[i].width / Gcd(resolutions[i].width, resolutions[i].height) + ":" + resolutions[i].height / Gcd(resolutions[i].width, resolutions[i].height) + " " +
                 resolutions[i].refreshRateRatio.value.ToString("F0") + "hz";
 
-            //refreshRate¸»°í refreshRateRatio ¾²¶ó°í ºñÁê¾ó½ºÆ©µğ¿À°¡ ±×·¯´Âµ¥ Àú°Å¾²¸é 59.213123123ÀÌ·± ÁÖÆÄ¼öµµ ³ª¿Í¼­ ³­°¨ÇÔ. ±×·¡¼­ ¼Ò¼öÁ¡Â¥¸§
+            //refreshRateë§ê³  refreshRateRatio ì“°ë¼ê³  ë¹„ì¥¬ì–¼ìŠ¤íŠœë””ì˜¤ê°€ ê·¸ëŸ¬ëŠ”ë° ì €ê±°ì“°ë©´ 59.213123123ì´ëŸ° ì£¼íŒŒìˆ˜ë„ ë‚˜ì™€ì„œ ë‚œê°í•¨. ê·¸ë˜ì„œ ì†Œìˆ˜ì ì§œë¦„
 
             resolutionDropdown.options.Add(option);
             resolutionDropdown.value = i;
@@ -88,10 +88,10 @@ public class Option_Resolution : MonoBehaviour
 
 
 
-    public void Resolution_Dropbox(int num) // ÇØ»óµµ µå·Ó¹Ú½º¿¡ ´ÙÀÌ³ª¹Í ¿¬°á3+1  / ÇØ»óµµ ¸ñ·Ï¿¡¼­ ¼±ÅÃ¸¸ ÇÏ´Â°Å°í ¾Æ·¡ Resolution_Preview() ¿¡¼­ Àû¿ë ´©¸¥ ÈÄ¿¡ Á¦´ë·Î ÇØ»óµµ º¯°æµÊ. µå·Ó¹Ú½º ¿ÂÅ¬¸¯¿¡ ÀÌ°Å¶û ÇÁ¸®ºä µÑ´Ù ´Ş·ÁÀÖÀ½
+    public void Resolution_Dropbox(int num) // í•´ìƒë„ ë“œë¡­ë°•ìŠ¤ì— ë‹¤ì´ë‚˜ë¯¹ ì—°ê²°3+1  / í•´ìƒë„ ëª©ë¡ì—ì„œ ì„ íƒë§Œ í•˜ëŠ”ê±°ê³  ì•„ë˜ Resolution_Preview() ì—ì„œ ì ìš© ëˆ„ë¥¸ í›„ì— ì œëŒ€ë¡œ í•´ìƒë„ ë³€ê²½ë¨. ë“œë¡­ë°•ìŠ¤ ì˜¨í´ë¦­ì— ì´ê±°ë‘ í”„ë¦¬ë·° ë‘˜ë‹¤ ë‹¬ë ¤ìˆìŒ
     {
         resolutionNumSet = num;
-        resolutionDropdown.value = num; // ÇØ»óµµ¸ñ·Ï¿¡ Ã¼Å©¸¶Å©µµ °»½Å
+        resolutionDropdown.value = num; // í•´ìƒë„ëª©ë¡ì— ì²´í¬ë§ˆí¬ë„ ê°±ì‹ 
 
     }
 
@@ -110,14 +110,14 @@ public class Option_Resolution : MonoBehaviour
     {
         /*
 
-        if (SaveManager.Instance.userData.gameScreenSizeNumber >= resolutions.Count + 10) // ÇØ»óµµ¼ıÀÚ°¡ ÇØ»óµµ¸ñ·Ï °¹¼öº¸´Ù Å©¸é ±âº»ÇØ»óµµ
+        if (SaveManager.Instance.userData.gameScreenSizeNumber >= resolutions.Count + 10) // í•´ìƒë„ìˆ«ìê°€ í•´ìƒë„ëª©ë¡ ê°¯ìˆ˜ë³´ë‹¤ í¬ë©´ ê¸°ë³¸í•´ìƒë„
         {
             resolutionNum = resolutions.Count - 1;
-            Resolution_Dropbox(resolutions.Count - 1); //¼¼ÀÌºê¿¡ ÇØ»óµµ ±âº»°ªÀÌ¸é Á© Å« È­¸éÀ¸·Î
+            Resolution_Dropbox(resolutions.Count - 1); //ì„¸ì´ë¸Œì— í•´ìƒë„ ê¸°ë³¸ê°’ì´ë©´ ì ¤ í° í™”ë©´ìœ¼ë¡œ
         }
         else
         {
-            resolutionNum = SaveManager.Instance.userData.gameScreenSizeNumber; //°è»ê¿ë º¯¼öµµ °»½ÅÇØÁÖ±â
+            resolutionNum = SaveManager.Instance.userData.gameScreenSizeNumber; //ê³„ì‚°ìš© ë³€ìˆ˜ë„ ê°±ì‹ í•´ì£¼ê¸°
             Resolution_Dropbox(SaveManager.Instance.userData.gameScreenSizeNumber);
         }
 
@@ -127,9 +127,9 @@ public class Option_Resolution : MonoBehaviour
 
 
 
-    //---------------------ÇØ»óµµ Àû¿ë È®ÀÎÃ¢ -----------------------
+    //---------------------í•´ìƒë„ ì ìš© í™•ì¸ì°½ -----------------------
 
-    public void Resolution_Preview() // ÇØ»óµµ ¸ñ·Ï ¿·¿¡ Àû¿ë ¹öÆ°¿¡ ´Ş°Í
+    public void Resolution_Preview() // í•´ìƒë„ ëª©ë¡ ì˜†ì— ì ìš© ë²„íŠ¼ì— ë‹¬ê²ƒ
     {
         Screen.SetResolution(resolutions[resolutionNumSet].width, resolutions[resolutionNumSet].height, screenMode);
 
@@ -145,7 +145,7 @@ public class Option_Resolution : MonoBehaviour
 
         while (true)
         {
-            if (countdown <= 0) //0ÃÊµÇ¸é ÇØ»óµµº¯°æÃë¼Ò
+            if (countdown <= 0) //0ì´ˆë˜ë©´ í•´ìƒë„ë³€ê²½ì·¨ì†Œ
             {
                 Resolution_NOPE();
                 break;
@@ -158,7 +158,7 @@ public class Option_Resolution : MonoBehaviour
 
         }
     }
-    public void Resolution_OK() // ÇØ»óµµ ¸¾¿¡µå³Ä Ã¢¿¡¼­ "³×" ÇØ»óµµ Àû¿ëÇÏ°í ÀúÀå
+    public void Resolution_OK() // í•´ìƒë„ ë§˜ì—ë“œëƒ ì°½ì—ì„œ "ë„¤" í•´ìƒë„ ì ìš©í•˜ê³  ì €ì¥
     {
         StopAllCoroutines();
         Save();
@@ -166,7 +166,7 @@ public class Option_Resolution : MonoBehaviour
         ResolutionQestion.SetActive(false);
     }
 
-    public void Resolution_NOPE() // ÇØ»óµµ ¸¾¿¡µå³Ä Ã¢¿¡¼­ "¾Æ´Ï¿ä"
+    public void Resolution_NOPE() // í•´ìƒë„ ë§˜ì—ë“œëƒ ì°½ì—ì„œ "ì•„ë‹ˆìš”"
     {
         StopAllCoroutines();
 
@@ -176,7 +176,7 @@ public class Option_Resolution : MonoBehaviour
         ResolutionQestion.SetActive(false);
     }
 
-    public void FullScreenToggle(bool On) // ÀüÃ¼È­¸é Åä±Û¿¡ ´ÙÀÌ³ª¹Í ¿¬°á
+    public void FullScreenToggle(bool On) // ì „ì²´í™”ë©´ í† ê¸€ì— ë‹¤ì´ë‚˜ë¯¹ ì—°ê²°
     {
         fullScreenToggle.isOn = On;
         screenMode = On ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
@@ -195,7 +195,7 @@ public class Option_Resolution : MonoBehaviour
 
         resolutionDropdown.value = resolutions.Count - 1;
 
-        Resolution_Dropbox(resolutions.Count - 1); //¼¼ÀÌºê¿¡ ÇØ»óµµ ±âº»°ªÀÌ¸é Á© Å« È­¸éÀ¸·Î
+        Resolution_Dropbox(resolutions.Count - 1); //ì„¸ì´ë¸Œì— í•´ìƒë„ ê¸°ë³¸ê°’ì´ë©´ ì ¤ í° í™”ë©´ìœ¼ë¡œ
 
         Save();
 
