@@ -1,0 +1,164 @@
+{
+  "enemies": [
+    {
+      "enemyType": 0,
+      "keyName": "BOSS_MWJ",
+      "speed": 1.0,
+      "hp": 100,
+      "damage": 1,
+      "fireType": "BOSS"
+    },
+    {
+      "enemyType": 1,
+      "keyName": "SOLDIER1_MWJ",
+      "speed": 1.0,
+      "hp": 20,
+      "damage": 1,
+      "fireType": "STRAIGHT"
+    },
+    {
+      "enemyType": 2,
+      "keyName": "SOLDIER2_MWJ",
+      "speed": 1.3,
+      "hp": 15,
+      "damage": 1,
+      "fireType": "CIRCLE"
+    },
+    {
+      "enemyType": 3,
+      "keyName": "SOLDIER3_MWJ",
+      "speed": 1.7,
+      "hp": 10,
+      "damage": 1,
+      "fireType": "SECTORGORM"
+    },
+    {
+      "enemyType": 4,
+      "keyName": "BOSS_CHH",
+      "speed": 1.0,
+      "hp": 100,
+      "damage": 1,
+      "fireType": "BOSS"
+    },
+    {
+      "enemyType": 5,
+      "keyName": "SOLDIER1_CHH",
+      "speed": 1.0,
+      "hp": 20,
+      "damage": 1,
+      "fireType": "STRAIGHT"
+    },
+    {
+      "enemyType": 6,
+      "keyName": "SOLDIER2_CHH",
+      "speed": 1.3,
+      "hp": 15,
+      "damage": 1,
+      "fireType": "CIRCLE"
+    },
+    {
+      "enemyType": 7,
+      "keyName": "SOLDIER3_CHH",
+      "speed": 1.7,
+      "hp": 10,
+      "damage": 1,
+      "fireType": "SECTORGORM"
+    },
+    {
+      "enemyType": 8,
+      "keyName": "BOSS_LJS",
+      "speed": 1.0,
+      "hp": 100,
+      "damage": 1,
+      "fireType": "BOSS"
+    },
+    {
+      "enemyType": 9,
+      "keyName": "SOLDIER1_LJH",
+      "speed": 1.0,
+      "hp": 20,
+      "damage": 1,
+      "fireType": "STRAIGHT"
+    },
+    {
+      "enemyType": 10,
+      "keyName": "SOLDIER2_LJH",
+      "speed": 1.3,
+      "hp": 15,
+      "damage": 1,
+      "fireType": "CIRCLE"
+    },
+    {
+      "enemyType": 11,
+      "keyName": "SOLDIER3_LJH",
+      "speed": 1.7,
+      "hp": 10,
+      "damage": 1,
+      "fireType": "SECTORGORM"
+    },
+    {
+      "enemyType": 12,
+      "keyName": "BOSS_JEH",
+      "speed": 1.0,
+      "hp": 100,
+      "damage": 1,
+      "fireType": "BOSS"
+    },
+    {
+      "enemyType": 13,
+      "keyName": "SOLDIER1_JEH",
+      "speed": 1.0,
+      "hp": 20,
+      "damage": 1,
+      "fireType": "STRAIGHT"
+    },
+    {
+      "enemyType": 14,
+      "keyName": "SOLDIER2_JEH",
+      "speed": 1.3,
+      "hp": 15,
+      "damage": 1,
+      "fireType": "CIRCLE"
+    },
+    {
+      "enemyType": 15,
+      "keyName": "SOLDIER3_JEH",
+      "speed": 1.7,
+      "hp": 10,
+      "damage": 1,
+      "fireType": "SECTORGORM"
+    },
+    {
+      "enemyType": 16,
+      "keyName": "BOSS_KSJ",
+      "speed": 1.0,
+      "hp": 100,
+      "damage": 1,
+      "fireType": "BOSS"
+    },
+    {
+      "enemyType": 17,
+      "keyName": "SOLDIER1_KSJ",
+      "speed": 1.0,
+      "hp": 20,
+      "damage": 1,
+      "fireType": "STRAIGHT"
+    },
+    {
+      "enemyType": 18,
+      "keyName": "SOLDIER2_KSJ",
+      "speed": 1.3,
+      "hp": 15,
+      "damage": 1,
+      "fireType": "CIRCLE"
+    },
+    {
+      "enemyType": 19,
+      "keyName": "SOLDIER3_KSJ",
+      "speed": 1.7,
+      "hp": 10,
+      "damage": 1,
+      "fireType": "SECTORGORM"
+    }
+  ]
+}
