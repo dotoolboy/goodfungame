@@ -10,10 +10,10 @@ public class UI_Scene_Shop : UI_Scene
     {
         SkillCollectText,
         PercentText,
+        GoldText,
     }
     enum Images
     {
-        Background,
         ShopNpc,
     }
     enum Buttons
@@ -48,6 +48,9 @@ public class UI_Scene_Shop : UI_Scene
 
 
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(OnButtonClicked);
+
+
+        GetText((int)Texts.GoldText).text = "나의 소지금 얼마";
 
         GetText((int)Texts.SkillCollectText).text = "스킬 해금율 :";
         GetText((int)Texts.PercentText).text = "100%"; // 스킬 해금율 퍼센트
