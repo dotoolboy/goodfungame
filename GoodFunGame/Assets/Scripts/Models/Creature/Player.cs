@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +9,7 @@ public class Player : Creature {
 
     // Inputs.
     public Vector2 Input { get; protected set; }
-    public Vector2 Velocity { get; protected set; }
+   // public Vector2 Velocity { get; protected set; }
 
     // Status.
     public float ExpMultiplier { get; protected set; }

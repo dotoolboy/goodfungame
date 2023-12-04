@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static Define;
+
 public abstract class UI_Base : MonoBehaviour
 {
     public abstract void Init();
@@ -20,7 +22,7 @@ public abstract class UI_Base : MonoBehaviour
 
         _objects.Add(typeof(T), objects);
 
-        for (int i = 0; i < names.Length; i++)  // T ø° º”«œ¥¬ ø¿∫Í¡ß∆ÆµÈ¿ª Dictionary¿« Value¿Œ objects πËø≠¿« ø¯º“µÈø° «œ≥™«œ≥™ √ﬂ∞°
+        for (int i = 0; i < names.Length; i++)  // T Ïóê ÏÜçÌïòÎäî Ïò§Î∏åÏ†ùÌä∏Îì§ÏùÑ DictionaryÏùò ValueÏù∏ objects Î∞∞Ïó¥Ïùò ÏõêÏÜåÎì§Ïóê ÌïòÎÇòÌïòÎÇò Ï∂îÍ∞Ä
         {
             if (typeof(T) == typeof(GameObject))
                 objects[i] = Util.FindChild(gameObject, names[i], true);
@@ -32,6 +34,13 @@ public abstract class UI_Base : MonoBehaviour
         }
     }
 
+
+    protected void BindObject(Type type) => Bind<GameObject>(type);
+    protected void BindText(Type type) => Bind<TextMeshProUGUI>(type);
+    protected void BindButton(Type type) => Bind<Button>(type);
+    protected void BindImage(Type type) => Bind<Image>(type);
+
+
     protected T Get<T>(int idx) where T : UnityEngine.Object
     {
         UnityEngine.Object[] objects = null;
@@ -42,26 +51,46 @@ public abstract class UI_Base : MonoBehaviour
         return objects[idx] as T;
     }
 
-    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); } // ø¿∫Í¡ß∆Æ∑Œº≠ ∞°¡Æø¿±‚
-    protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); } // TextMeshProUGUI //Text∑Œº≠ ∞°¡Æø¿±‚
-    protected Button GetButton(int idx) { return Get<Button>(idx); } // Button∑Œº≠ ∞°¡Æø¿±‚
-    protected Image GetImage(int idx) { return Get<Image>(idx); } // Image∑Œº≠ ∞°¡Æø¿±‚
+    protected GameObject GetObject(int idx) { return Get<GameObject>(idx); } // Ïò§Î∏åÏ†ùÌä∏Î°úÏÑú Í∞ÄÏ†∏Ïò§Í∏∞
+    protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); } // TextMeshProUGUI //TextÎ°úÏÑú Í∞ÄÏ†∏Ïò§Í∏∞
+    protected Button GetButton(int idx) { return Get<Button>(idx); } // ButtonÎ°úÏÑú Í∞ÄÏ†∏Ïò§Í∏∞
+    protected Image GetImage(int idx) { return Get<Image>(idx); } // ImageÎ°úÏÑú Í∞ÄÏ†∏Ïò§Í∏∞
 
 
 
-    public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
+    public static void BindEvent(GameObject go, Action<PointerEventData> action = null,  Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
 
         switch (type)
         {
-            case Define.UIEvent.Click:
-                evt.OnClickHandler -= action; // »§Ω√≥™ ¿ÃπÃ ¿÷¿ª±Ó∫¡ ª©¡‹
+            case UIEvent.Click:
+                evt.OnClickHandler -= action;
                 evt.OnClickHandler += action;
                 break;
-            case Define.UIEvent.Drag:
-                evt.OnDragHandler -= action; // »§Ω√≥™ ¿ÃπÃ ¿÷¿ª±Ó∫¡ ª©¡‹
+            case UIEvent.Press:
+                evt.OnPressedHandler -= action;
+                evt.OnPressedHandler += action;
+                break;
+            case UIEvent.PointerDown:
+                evt.OnPointerDownHandler -= action;
+                evt.OnPointerDownHandler += action;
+                break;
+            case UIEvent.PointerUp:
+                evt.OnPointerUpHandler -= action;
+                evt.OnPointerUpHandler += action;
+                break;
+            case UIEvent.Drag:
+                evt.OnDragHandler -= action;
                 evt.OnDragHandler += action;
+                break;
+            case UIEvent.BeginDrag:
+                evt.OnBeginDragHandler -= action;
+                evt.OnBeginDragHandler += action;
+                break;
+            case UIEvent.EndDrag:
+                evt.OnEndDragHandler -= action;
+                evt.OnEndDragHandler += action;
                 break;
         }
     }

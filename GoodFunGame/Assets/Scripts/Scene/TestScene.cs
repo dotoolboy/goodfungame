@@ -31,6 +31,9 @@ public class TestScene : MonoBehaviour
 
         GameObject newObj = Main.Resource.InstantiatePrefab("TempCharacter.prefab");
 
+
+
+
         // =======================
     }
 
