@@ -10,25 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Built In Data
+  m_Name: Prefabs
   m_EditorClassIdentifier: 
-  m_GroupName: Built In Data
+  m_GroupName: Prefabs
   m_Data:
     m_SerializedData: []
-  m_GUID: 8e9c0311a11db544db02819165fff409
-  m_SerializeEntries:
-  - m_GUID: Resources
-    m_Address: Resources
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: EditorSceneList
-    m_Address: EditorSceneList
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  m_ReadOnly: 1
+  m_GUID: 820cdc3aa932ff64ca2f4a536a4082f9
+  m_SerializeEntries: []
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f7f40e266c9013249863863d4dabd85c, type: 2}
+    - {fileID: 11400000, guid: 81ae0df4477de944c8c80d33c5c1d1c0, type: 2}
+    - {fileID: 11400000, guid: c55a176a343fc3b49a3c087f0e5c5291, type: 2}
