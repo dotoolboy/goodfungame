@@ -11,7 +11,6 @@ public class Thing : MonoBehaviour {
     protected DataManager DataManager;
     protected virtual void Awake() {
         Initialize();
-        DataManager = ServiceLocator.GetService<DataManager>();
     }
 
     public virtual bool Initialize() {
