@@ -46,6 +46,11 @@ public class TestScene : MonoBehaviour
         Main.Object.Spawn<Player>("Player", Vector2.zero);
         for (int i = 0; i < 5; i++)
             Main.Object.Spawn<Enemy>("BOSS_MWJ", new Vector2(Random.Range(-5f, 5f), 5f));
+
+
+
+
+
         // =======================
     }
 
