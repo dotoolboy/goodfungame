@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// °ÔÀÓ¿¡¼­ µîÀåÇÏ´Â ´ëºÎºÐÀÇ ¿ÀºêÁ§Æ®ÀÇ º£ÀÌ½º°¡ µÇ´Â Å¬·¡½º.
+/// ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½.
 /// </summary>
 public class Thing : MonoBehaviour {
 
     private bool _initialized;
-
+    protected DataManager DataManager;
     protected virtual void Awake() {
         Initialize();
+        DataManager = ServiceLocator.GetService<DataManager>();
     }
 
     public virtual bool Initialize() {
