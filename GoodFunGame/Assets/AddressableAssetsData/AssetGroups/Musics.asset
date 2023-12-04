@@ -10,25 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Built In Data
+  m_Name: Musics
   m_EditorClassIdentifier: 
-  m_GroupName: Built In Data
+  m_GroupName: Musics
   m_Data:
     m_SerializedData: []
-  m_GUID: 8e9c0311a11db544db02819165fff409
+  m_GUID: da6be7e1f2539fc42ab35e6ebfe0fabd
   m_SerializeEntries:
-  - m_GUID: Resources
-    m_Address: Resources
-    m_ReadOnly: 1
-    m_SerializedLabels: []
+  - m_GUID: dfda67db575815245b75c89c668556f1
+    m_Address: MWJ_BGM_1.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MWJ_Stage
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: EditorSceneList
-    m_Address: EditorSceneList
-    m_ReadOnly: 1
-    m_SerializedLabels: []
+  - m_GUID: 397e9e0d5d63cfa46ab09a1eade28808
+    m_Address: MWJ_BGM_2.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MWJ_Stage
     FlaggedDuringContentUpdateRestriction: 0
-  m_ReadOnly: 1
+  m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f7f40e266c9013249863863d4dabd85c, type: 2}
+    - {fileID: 11400000, guid: 27f15519d9a32a44f802458b5fc1536f, type: 2}
+    - {fileID: 11400000, guid: c6c9b6dcc5c207149baf39b8b980d875, type: 2}
