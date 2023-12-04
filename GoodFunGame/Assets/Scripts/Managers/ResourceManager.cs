@@ -103,4 +103,14 @@ public class ResourceManager : MonoBehaviour
         obj.name = prefab.name;
         return obj;
     }
+
+    // 해당 오브젝트를 풀에 돌려놓거나 파괴한다.
+    public void Destroy(GameObject obj)
+    {
+        if (obj == null) return;
+
+        if (Main.Pool.Push(obj)) return;
+
+        UnityEngine.Object.Destroy(obj);
+    }
 }
