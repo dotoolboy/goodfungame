@@ -30,10 +30,12 @@ public class Main : MonoBehaviour
     private ResourceManager resource = new();
     private ObjectManager objects = new();
     private DataManager data = new();
+    private UIManager ui = new();
 
     public static PoolManager Pool => Instance?.pool;
     public static ResourceManager Resource => Instance?.resource;
     public static ObjectManager Object => Instance?.objects;
     public static DataManager Data => Instance?.data;
+    public static UIManager UI => Instance?.ui;
 
 }
