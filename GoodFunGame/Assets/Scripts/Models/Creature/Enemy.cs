@@ -29,7 +29,7 @@ public class Enemy : Creature
 
     private void Start()
     {
-        _dataManager = ServiceLocator.GetService<DataManager>();
+
     }
     #endregion
 
@@ -37,7 +37,7 @@ public class Enemy : Creature
     public override bool Initialize() 
     {
         if (base.Initialize() == false) return false;
-        foreach (var enemy in _dataManager.Enemies)
+        foreach (var enemy in Main.Data.Enemies)
         {
             SetInfo(enemy.Key);
         }
