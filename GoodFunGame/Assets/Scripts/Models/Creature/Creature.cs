@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,7 +92,9 @@ public class Creature : Thing {
     public virtual void SetInfo(string key) {
         Initialize();
 
-        Data = null;    // TODO:: key�� ���� �ش� ũ������ Data�� �޾ƿ´�. ex) Main.Data.Creatures[key];
+
+        Data = null;    // TODO:: key를 통해 해당 크리쳐의 Data를 받아온다. ex) Main.Data.Creatures[key];
+
 
         SetStatus();
     }
