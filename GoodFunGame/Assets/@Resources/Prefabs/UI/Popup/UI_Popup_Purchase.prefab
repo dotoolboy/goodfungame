@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 4545036224223740666}
   - component: {fileID: 2541661969598930642}
   m_Layer: 5
-  m_Name: Button
+  m_Name: OkBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 3378473068627918109}
   - component: {fileID: 908952505948539451}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: NoBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -625,7 +625,7 @@ RectTransform:
   - {fileID: 5385913829314337046}
   - {fileID: 5952551303478819597}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

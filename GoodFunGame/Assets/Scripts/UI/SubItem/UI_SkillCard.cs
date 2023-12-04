@@ -53,7 +53,9 @@ public class UI_SkillCard : UI_Base
     void Buy(PointerEventData data)
     {
         Debug.Log("구매버튼 눌렀습니다");
-        
+        Main.UI.ShowPopupUI<UI_Popup_Purchase>();
+
+
     }
 
     // 구매버튼 누르면 구매 확인창뜨고 ok 눌러야 구매됨

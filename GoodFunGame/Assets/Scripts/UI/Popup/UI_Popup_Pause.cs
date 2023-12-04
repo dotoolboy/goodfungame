@@ -48,6 +48,7 @@ public class UI_Popup_Pause : UI_Popup
     public void Options(PointerEventData data)
     {
         Debug.Log("옵션");
+       
     }
     public void Continue(PointerEventData data)
     {

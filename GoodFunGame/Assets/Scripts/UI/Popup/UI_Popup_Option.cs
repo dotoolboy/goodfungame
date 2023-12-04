@@ -16,7 +16,6 @@ public class UI_Popup_Option : UI_Popup
         BGM_PercentText,
         SFX_NameText,
         SFX_PercentText,
-
     }
 
     enum GameObjects

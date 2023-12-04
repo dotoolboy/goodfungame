@@ -48,7 +48,8 @@ public class UI_Scene_Intro : UI_Scene
 
     public void OnButtonClicked(PointerEventData data)
     {
-        Debug.Log("씬 로드 넣어주세요!");
+        Debug.Log("씬 로드 넣어주세요! 임시로 상점 연결중");
+        Main.UI.ShowSceneUI<UI_Scene_Shop>();
 
 
     }
