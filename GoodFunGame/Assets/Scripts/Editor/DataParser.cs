@@ -10,6 +10,14 @@ using UnityEngine;
 public class DataParser : EditorWindow
 {
 #if UNITY_EDITOR
+    [MenuItem("Tools/DeleteGameData")]
+    public static void DeleteGameData()
+    {
+        PlayerPrefs.DeleteAll();
+        string path = Application.persistentDataPath + "/SaveData.json";
+        if (File.Exists(path)) File.Delete(path);
+    }
+
     [MenuItem("Tools/ParseCSV")]
     public static void ParseCsv()
     {
