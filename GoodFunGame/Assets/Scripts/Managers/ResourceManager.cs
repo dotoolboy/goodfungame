@@ -8,21 +8,9 @@ using UnityEngine.AddressableAssets;
 
 public class ResourceManager : MonoBehaviour
 {
-    private static ResourceManager _instance;
     public bool Loaded { get; private set; }
     private Dictionary<string, UnityEngine.Object> _resources;
 
-    public static ResourceManager Instance
-    {
-        get {
-            if (_instance == null)
-            {
-                _instance = new();
-                //DontDestroyOnLoad(_instance);
-            }
-            return _instance;
-        }
-    }
 
     public void LoadAsync<T>(string key, Action<T> callback = null)
         where T : UnityEngine.Object
