@@ -40,8 +40,7 @@ public class Enemy : Creature
         if (base.Initialize() == false) return false;
         foreach (var enemy in DataManager.Enemies)
         {
-            Debug.Log(enemy.Key);
-            // SetInfo(enemy.Key);
+            SetInfo(enemy.Key);
         }
 
         return true;
