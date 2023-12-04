@@ -6,11 +6,13 @@ public class DataManager
 {
     public Dictionary<string, EnemyData> Enemies = new();
     public Dictionary<string, SkillData> Skills = new();
+    public Dictionary<string, StageData> Stages = new();
 
     public void Initialize()
     {
         Enemies = LoadJson<EnemyDataLoader, string, EnemyData>("EnemyData").MakeData();
         Skills = LoadJson<SkillDataLoader, string, SkillData>("SkillData").MakeData();
+        Stages = LoadJson<StageDataLoader, string, StageData>("Stage").MakeData();
     }
 
     private TLoader LoadJson<TLoader, TKey, TValue>(string path) where TLoader : ILoadData<TKey, TValue>

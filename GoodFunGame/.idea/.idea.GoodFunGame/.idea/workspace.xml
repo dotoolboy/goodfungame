@@ -116,10 +116,10 @@
           <line>54</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Datas/SkillData.cs" initialLine="54" containingFunctionPresentation="Method 'MakeData'">
             <startOffsets>
-              <option value="1312" />
+              <option value="1296" />
             </startOffsets>
             <endOffsets>
-              <option value="1313" />
+              <option value="1297" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
