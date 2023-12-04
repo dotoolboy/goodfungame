@@ -4,42 +4,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IBeginDragHandler, IEndDragHandler,IPointerEnterHandler
+
 {
     public Action<PointerEventData> OnClickHandler = null;
+    public Action<PointerEventData> OnPressedHandler = null;
+    public Action<PointerEventData> OnPointerDownHandler = null;
+    public Action<PointerEventData> OnPointerUpHandler = null;
+    public Action<PointerEventData> OnEndDragHandler = null;
     public Action<PointerEventData> OnDragHandler = null;
+    public Action<PointerEventData> OnBeginDragHandler = null;
+    public Action<PointerEventData> OnPointerEnterHandler = null;
 
-
-    public void OnPointerClick(PointerEventData eventData) // 클릭 이벤트 오버라이딩
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (OnClickHandler != null)
-            OnClickHandler.Invoke(eventData); // 클릭와 관련된 액션 실행
-    }
-
-    public void OnDrag(PointerEventData eventData) // 드래그 이벤트 오버라이딩
-    {
-        if (OnDragHandler != null)
-            OnDragHandler.Invoke(eventData); // 드래그와 관련된 액션 실행
-    }
-
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        Debug.Log("드래그시작");
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("드래그끝");
+        OnClickHandler?.Invoke(eventData);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("누름?");
+        OnPointerDownHandler?.Invoke(eventData);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("클릭 uㅔ");
+        OnPointerUpHandler?.Invoke(eventData);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        OnDragHandler?.Invoke(eventData);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        OnBeginDragHandler?.Invoke(eventData);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        OnEndDragHandler?.Invoke(eventData);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnPointerEnterHandler?.Invoke(eventData);
     }
 }
