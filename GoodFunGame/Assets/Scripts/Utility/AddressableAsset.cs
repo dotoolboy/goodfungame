@@ -21,7 +21,7 @@ public class AddressableAsset : MonoBehaviour
 
         LoadAllAsync<Object>("PreLoad", (s, i, arg3) =>
         {
-            _dataManager.InitializeData();
+            _dataManager.Initialize();
         });
     }
 
