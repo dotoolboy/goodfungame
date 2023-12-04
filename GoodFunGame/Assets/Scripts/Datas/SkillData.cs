@@ -47,7 +47,7 @@ public class SkillData
 [Serializable]
 public class SkillDataLoader : ILoadData<string, SkillData>
 {
-    public List<SkillData> skills = new List<SkillData>();
+    public List<SkillData> skills = new();
 
     public Dictionary<string, SkillData> MakeData()
     {
