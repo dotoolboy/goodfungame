@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,6 +62,11 @@ public class Enemy : Creature
     protected override void OnStateEntered_Dead() 
     {
         base.OnStateEntered_Dead();
+
+        // TODO:: Player의 KillCount 증가.
+
+        // TODO:: 오브젝트 디스폰
+
     }
     #endregion
 }
