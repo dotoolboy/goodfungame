@@ -1,0 +1,143 @@
+{
+  "stages": [
+    {
+      "stageCharge": 0,
+      "stageChargeKey": "MWJ",
+      "startDialogue": [
+        "내가",
+        "문원정",
+        "이",
+        "다!"
+      ],
+      "firstAppearanceEnemyKey": 1,
+      "firstWave": 2,
+      "secondDialogue": [
+        "웨이브2 !!! 문!원!정!"
+      ],
+      "secondAppearanceEnemyKey": 2,
+      "secondWave": 3,
+      "thirdDialogue": [
+        "웨이브3_문원정"
+      ],
+      "thirdAppearanceEnemyKey": 3,
+      "thirdWave": 4,
+      "stageClearDialogue": [
+        "이겨따리!!"
+      ],
+      "stageFailDialogue": [
+        "져따리!!!"
+      ],
+      "rewardGold": 200
+    },
+    {
+      "stageCharge": 1,
+      "stageChargeKey": "CHH",
+      "startDialogue": [
+        "내가 최현",
+        "호다!"
+      ],
+      "firstAppearanceEnemyKey": 5,
+      "firstWave": 2,
+      "secondDialogue": [
+        "웨이브2 !!! 최!현!호!"
+      ],
+      "secondAppearanceEnemyKey": 6,
+      "secondWave": 3,
+      "thirdDialogue": [
+        "웨이브3_최현호"
+      ],
+      "thirdAppearanceEnemyKey": 7,
+      "thirdWave": 4,
+      "stageClearDialogue": [
+        "이겨따리!!"
+      ],
+      "stageFailDialogue": [
+        "져따리!!!"
+      ],
+      "rewardGold": 200
+    },
+    {
+      "stageCharge": 2,
+      "stageChargeKey": "LJH",
+      "startDialogue": [
+        "내가 이정훈이다!"
+      ],
+      "firstAppearanceEnemyKey": 9,
+      "firstWave": 2,
+      "secondDialogue": [
+        "웨이브2 !!! 이!정!훈!"
+      ],
+      "secondAppearanceEnemyKey": 10,
+      "secondWave": 3,
+      "thirdDialogue": [
+        "웨이브3_이정훈"
+      ],
+      "thirdAppearanceEnemyKey": 11,
+      "thirdWave": 4,
+      "stageClearDialogue": [
+        "이겨따리!!"
+      ],
+      "stageFailDialogue": [
+        "져따리!!!"
+      ],
+      "rewardGold": 200
+    },
+    {
+      "stageCharge": 3,
+      "stageChargeKey": "JEH",
+      "startDialogue": [
+        "내가 전",
+        "은",
+        "하",
+        "다!"
+      ],
+      "firstAppearanceEnemyKey": 13,
+      "firstWave": 2,
+      "secondDialogue": [
+        "웨이브2 !!! 전!은!하!"
+      ],
+      "secondAppearanceEnemyKey": 14,
+      "secondWave": 3,
+      "thirdDialogue": [
+        "웨이브3_전은하"
+      ],
+      "thirdAppearanceEnemyKey": 15,
+      "thirdWave": 4,
+      "stageClearDialogue": [
+        "이겨따리!!"
+      ],
+      "stageFailDialogue": [
+        "져따리!!!"
+      ],
+      "rewardGold": 200
+    },
+    {
+      "stageCharge": 4,
+      "stageChargeKey": "KSJ",
+      "startDialogue": [
+        "내가 김세진이",
+        "다",
+        "!"
+      ],
+      "firstAppearanceEnemyKey": 17,
+      "firstWave": 2,
+      "secondDialogue": [
+        "웨이브2 !!! 김!세!진!"
+      ],
+      "secondAppearanceEnemyKey": 18,
+      "secondWave": 3,
+      "thirdDialogue": [
+        "웨이브3_김세진"
+      ],
+      "thirdAppearanceEnemyKey": 19,
+      "thirdWave": 4,
+      "stageClearDialogue": [
+        "이겨따리!!"
+      ],
+      "stageFailDialogue": [
+        "져따리!!!"
+      ],
+      "rewardGold": 200
+    }
+  ]
+}

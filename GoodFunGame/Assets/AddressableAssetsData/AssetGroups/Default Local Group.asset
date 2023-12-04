@@ -23,8 +23,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f9376216deba4b018ed8612adbc77d9
+    m_Address: SkillData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 305a5c39a99554e989e92eee29a7311c
+    m_Address: StageData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: e4508c381e52341aaba9e32ebf6d3ed6, type: 2}
+  m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: b88a885ee861340a79c1ffc859c9d604, type: 2}
