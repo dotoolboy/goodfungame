@@ -92,12 +92,13 @@ public class Creature : Thing {
     public virtual void SetInfo(string key) {
         Initialize();
 
-        Data = null;    // TODO:: key¸¦ ÅëÇØ ÇØ´ç Å©¸®ÃÄÀÇ Data¸¦ ¹Þ¾Æ¿Â´Ù. ex) Main.Data.Creatures[key];
+        Data = null;    // TODO:: keyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½Þ¾Æ¿Â´ï¿½. ex) Main.Data.Creatures[key];
 
         SetStatus();
     }
 
-    protected virtual void SetStatus(bool isFullHp = false) {
+    protected virtual void SetStatus(bool isFullHp = false) 
+    {
         HpMax = Data.hpMax;
         Damage = Data.damage;
         MoveSpeed = Data.moveSpeed;
