@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class Thing : MonoBehaviour {
     protected DataManager DataManager;
     protected virtual void Awake() {
         Initialize();
+
     }
 
     public virtual bool Initialize() {

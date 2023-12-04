@@ -17,7 +17,7 @@ public class AddressableAsset : MonoBehaviour
 
     private void Start()
     {
-        _dataManager = ServiceLocator.GetService<DataManager>();
+
 
         LoadAllAsync<Object>("PreLoad", (s, i, arg3) =>
         {
