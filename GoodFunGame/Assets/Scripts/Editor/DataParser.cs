@@ -17,6 +17,7 @@ public class DataParser : EditorWindow
         ParseData<SkillDataLoader>("Skill");
     }
 
+    #region Parsing Method
     /// <summary>
     ///  CSV_Data 파싱 하여 JSON에 덮어 쓰기
     /// </summary>
@@ -25,34 +26,46 @@ public class DataParser : EditorWindow
     {
         T loader = new();
         string[] lines = File.ReadAllText($"{Application.dataPath}/@CsvData/{csvFileName}Data.csv").Split("\n");
-
         for (int y = 1; y < lines.Length; y++)
         {
             string[] row = lines[y].Replace("\r", "").Split(',');
-            
             if (row.Length == 0 || string.IsNullOrEmpty(row[0])) continue;
-            
             MappingData(csvFileName, row, loader);
         }
-
         string jsonFile = JsonConvert.SerializeObject(loader, Formatting.Indented);
         File.WriteAllText($"{Application.dataPath}/@JsonData/{csvFileName}Data.json", jsonFile);
         AssetDatabase.Refresh();
     }
+    #endregion
 
+    #region Mapping Method
+    /// <summary>
+    ///  DataMapping Method
+    /// </summary>
+    /// <param name="csvFilename"></param>
+    /// <param name="row"></param>
+    /// <param name="loader"></param>
+    /// <typeparam name="T"></typeparam>
     private static void  MappingData<T>(string csvFilename,string[] row, T loader) where T : new()
     {
         switch (csvFilename)
         {
             case "Enemy":
-                EnemyData(row, loader);
+                EnemyData(row, loader as EnemyDataLoader);
                 break;
             case "Skill":
-                SkillData(row, loader);
+                SkillData(row, loader as SkillDataLoader);
                 break;
         }
     }
+    #endregion
 
+    #region EnemyData
+    /// <summary>
+    ///  EnemyData CSV
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="loader"></param>
     private static void EnemyData(string[] row, EnemyDataLoader loader)
     {
         EnemyData.FireType enumFire = (EnemyData.FireType)Enum.Parse(typeof(EnemyData.FireType), row[4]);
@@ -66,11 +79,18 @@ public class DataParser : EditorWindow
             fireType = enumFire.ToString()
         });
     }
+    
 
+    #endregion
+
+    #region SkillData
+    /// <summary>
+    ///  SkillData CSV
+    /// </summary>
+    /// <param name="row"></param>
+    /// <param name="loader"></param>
     private static void SkillData(string[] row, SkillDataLoader loader)
     {
-        string tempString = row[7];
-        string replaceText = tempString.Replace("_","\n");
         loader.skills.Add(new SkillData
         {
             skill = (SkillData.Skills)Enum.Parse(typeof(SkillData.Skills), row[0]),
@@ -81,8 +101,10 @@ public class DataParser : EditorWindow
             skillDuration = float.Parse(row[4]),
             skillDamage = int.Parse(row[5]),
             skillPrice = int.Parse(row[6]),
-            skillDesc =  replaceText,
+            skillDesc = row[7].Replace("_","\n")
         });
     }
+    #endregion
+
 #endif
 }
