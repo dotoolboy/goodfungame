@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// °ÔÀÓ¿¡¼­ µîÀåÇÏ´Â ´ëºÎºĞÀÇ ¿ÀºêÁ§Æ®ÀÇ º£ÀÌ½º°¡ µÇ´Â Å¬·¡½º.
+/// ê²Œì„ì—ì„œ ë“±ì¥í•˜ëŠ” ëŒ€ë¶€ë¶„ì˜ ì˜¤ë¸Œì íŠ¸ì˜ ë² ì´ìŠ¤ê°€ ë˜ëŠ” í´ë˜ìŠ¤.
 /// </summary>
 public class Thing : MonoBehaviour {
 

@@ -10,7 +10,7 @@ public class ResourceManager : MonoBehaviour
 {
     private static ResourceManager _instance;
     public bool Loaded { get; private set; }
-    private Dictionary<string, UnityEngine.Object> _resources;
+    private Dictionary<string, UnityEngine.Object> _resources = new();
 
     public static ResourceManager Instance
     {
