@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : Creature {
 
@@ -9,7 +10,7 @@ public class Player : Creature {
 
     // Inputs.
     public Vector2 Input { get; protected set; }
-    public Vector2 Velocity { get; protected set; }
+    //public Vector2 Velocity { get; protected set; }
 
     // Status.
     public float ExpMultiplier { get; protected set; }
@@ -60,6 +61,7 @@ public class Player : Creature {
     // State.
     private float _exp;
     private int _killCount;
+    [SerializeField] private float _speed;
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;
@@ -69,7 +71,15 @@ public class Player : Creature {
 
     #region MonoBehaviours
 
+    private void Start()
+    {
+        MoveSpeed = _speed;
+    }
 
+    protected virtual void FixedUpdate()
+    {
+        _rigidbody.velocity = Direction * MoveSpeed * Time.fixedDeltaTime;
+    }
 
     #endregion
 
@@ -102,4 +112,14 @@ public class Player : Creature {
         // 0 레벨이라면 return 0;
         return 1;
     }
+
+    #region InputSystem
+
+    public void OnMove(InputValue value)
+    {
+        Vector2 moveInput = value.Get<Vector2>().normalized;
+        Direction = moveInput;
+    }
+
+    #endregion
 }
