@@ -10,8 +10,6 @@ public class UIManager
     UI_Scene _sceneUI = null; // 현재의 고정 캔버스 UI
 
 
-
-
     public GameObject Root
     {
         get
@@ -68,7 +66,7 @@ public class UIManager
             ClosePopupUI();
     }
 
-public void SetCanvas(GameObject go, bool sort = true)
+    public void SetCanvas(GameObject go, bool sort = true)
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;

@@ -3,17 +3,26 @@ public class Define
     public enum UIEvent
     {
         Click,
+        Press,
+        PointerDown,
+        PointerUp,
         Drag,
+        BeginDrag,
+        PointerEnter,
+        EndDrag,
+
     }
 
     public enum MouseEvent
     {
-        Press,
         Click,
+        Press,
+        PointerDown,
+        PointerUp,
+        Drag,
+        BeginDrag,
+        EndDrag,
+        PointerEnter
     }
 
-    public enum CameraMode
-    {
-        QuarterView,
-    }
 }

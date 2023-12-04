@@ -19,6 +19,7 @@ public class TestScene : MonoBehaviour
                 if (count >= totalCount)
                 {
                     Main.Data.Initialize();
+                    Main.Game.Initialize();
                     InitializeGame();
                 }
             });
