@@ -22,34 +22,33 @@ public class Enemy : Creature
     #region Fields
 
     private EnemyData _enemyData;
-
+    private DataManager _dataManager;
     #endregion
 
     #region MonoBehaviours
 
     private void Start()
     {
-
+        _dataManager = ServiceLocator.GetService<DataManager>();
     }
-
     #endregion
 
     #region Initialize / Set
     public override bool Initialize() 
     {
         if (base.Initialize() == false) return false;
-        foreach (var enemy in DataManager.Enemies)
+        foreach (var enemy in _dataManager.Enemies)
         {
-            Debug.Log(enemy.Key);
-            // SetInfo(enemy.Key);
+            SetInfo(enemy.Key);
         }
 
         return true;
     }
 
-    public override void SetInfo(string key)
-    {
-        var enemy = DataManager.Enemies.FirstOrDefault(e => e.Key == key).Value;
+    public override void SetInfo(string key) {
+        base.SetInfo(key);
+
+        var enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
         hp = enemy.hp;
         currentHp = hp;
