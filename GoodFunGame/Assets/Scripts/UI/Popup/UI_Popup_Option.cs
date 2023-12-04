@@ -58,6 +58,5 @@ public class UI_Popup_Option : UI_Popup
     void Close(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
-        Debug.Log("옵션창꺼집니다");
     }
 }

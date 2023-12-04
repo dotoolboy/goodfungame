@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UIManager
@@ -34,6 +35,7 @@ public class UIManager
 
         return popup;
     }
+
 
     public void ClosePopupUI(UI_Popup popup) // 안전 차원
     {
@@ -93,6 +95,8 @@ public class UIManager
         _sceneUI = sceneUI;
 
         go.transform.SetParent(Root.transform);
+
+
 
         return sceneUI;
     }

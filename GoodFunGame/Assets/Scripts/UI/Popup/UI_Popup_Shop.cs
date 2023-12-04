@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_Scene_Shop : UI_Scene
+public class UI_Popup_Shop : UI_Popup
 {
     #region Enums
     enum Texts
@@ -59,6 +59,6 @@ public class UI_Scene_Shop : UI_Scene
 
     public void OnButtonClicked(PointerEventData data)
     {
-        Debug.Log("뒤로가기 버튼");
+        Main.UI.ClosePopupUI(this);
     }
 }

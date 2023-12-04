@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7729082129901967909}
   - component: {fileID: 7083219993876003960}
   - component: {fileID: 9068111240961144183}
-  - component: {fileID: 2177270643638377404}
+  - component: {fileID: 6200232036299602654}
   m_Layer: 5
-  m_Name: UI_Scene_Battle_Multi
+  m_Name: UI_Popup_BattleMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2177270643638377404
+--- !u!114 &6200232036299602654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4244545291035174665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e742841c84d25f04c9bc424c76943f89, type: 3}
+  m_Script: {fileID: 11500000, guid: d73b7d017e3aa7d48b8c7b2f5e8d2694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8583940266785843877
