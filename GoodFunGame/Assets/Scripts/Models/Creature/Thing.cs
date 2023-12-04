@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ���ӿ��� �����ϴ� ��κ��� ������Ʈ�� ���̽��� �Ǵ� Ŭ����.
+/// 게임에서 등장하는 대부분의 오브젝트의 베이스가 되는 클래스.
 /// </summary>
 public class Thing : MonoBehaviour {
 

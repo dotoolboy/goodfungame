@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class Player : Creature {
         get => _exp;
         set {
             _exp += (value - _exp) * ExpMultiplier;
-            // ==================== ·¹º§¾÷ Ã³¸® ====================
+            // ==================== ë ˆë²¨ì—… ì²˜ë¦¬ ====================
             int level = Level;
             while (true) {
                 float requiredExp = Temp_GetRequiredExp(level + 1);
@@ -92,14 +92,14 @@ public class Player : Creature {
 
 
     /// <summary>
-    /// ÇØ´ç ·¹º§¿¡ µµ´ŞÇÏ±â À§ÇØ ÇÊ¿äÇÑ °æÇèÄ¡·®
+    /// í•´ë‹¹ ë ˆë²¨ì— ë„ë‹¬í•˜ê¸° ìœ„í•´ í•„ìš”í•œ ê²½í—˜ì¹˜ëŸ‰
     /// </summary>
     /// <param name="level"></param>
     /// <returns></returns>
-    // TODO:: LevelData·Î °ü¸®ÇÏ´Â ¹æ¹ıÀ» Ã£¾Æº¼±î!
+    // TODO:: LevelDataë¡œ ê´€ë¦¬í•˜ëŠ” ë°©ë²•ì„ ì°¾ì•„ë³¼ê¹Œ!
     private float Temp_GetRequiredExp(int level) {
-        // ÃÖ´ë ·¹º§ÀÌ¶ó¸é return -1;
-        // 0 ·¹º§ÀÌ¶ó¸é return 0;
+        // ìµœëŒ€ ë ˆë²¨ì´ë¼ë©´ return -1;
+        // 0 ë ˆë²¨ì´ë¼ë©´ return 0;
         return 1;
     }
 }
