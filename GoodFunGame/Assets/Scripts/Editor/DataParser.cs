@@ -10,11 +10,20 @@ using UnityEngine;
 public class DataParser : EditorWindow
 {
 #if UNITY_EDITOR
+    [MenuItem("Tools/DeleteGameData")]
+    public static void DeleteGameData()
+    {
+        PlayerPrefs.DeleteAll();
+        string path = Application.persistentDataPath + "/SaveData.json";
+        if (File.Exists(path)) File.Delete(path);
+    }
+
     [MenuItem("Tools/ParseCSV")]
     public static void ParseCsv()
     {
         ParseData<EnemyDataLoader>("Enemy");
         ParseData<SkillDataLoader>("Skill");
+        ParseData<StageDataLoader>("Stage");
     }
 
     #region Parsing Method
@@ -55,6 +64,9 @@ public class DataParser : EditorWindow
                 break;
             case "Skill":
                 SkillData(row, loader as SkillDataLoader);
+                break; 
+            case "Stage":
+                StageData(row,loader as StageDataLoader);
                 break;
         }
     }
@@ -79,8 +91,6 @@ public class DataParser : EditorWindow
             fireType = enumFire.ToString()
         });
     }
-    
-
     #endregion
 
     #region SkillData
@@ -105,6 +115,36 @@ public class DataParser : EditorWindow
         });
     }
     #endregion
+
+    #region StageData
+    private static void StageData(string[] row, StageDataLoader loader)
+    {
+        string[] startDialogue = row[1].Split('/');
+        string[] secondDialogue = row[4].Split('/');
+        string[] thirdDialogue = row[7].Split('/');
+        string[] stageClearDialogue = row[10].Split('/');
+        string[] stageFailDialogue = row[11].Split('/');
+
+        loader.stages.Add(new StageData
+        {
+            stageCharge = (StageData.StageCharge)Enum.Parse(typeof(StageData.StageCharge), row[0]),
+            stageChargeKey = Enum.Parse(typeof(StageData.StageCharge), row[0]).ToString(),
+            startDialogue = startDialogue, // Assign the split string array
+            firstAppearanceEnemyKey = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), row[2]),
+            firstWave = int.Parse(row[3]),
+            secondDialogue = secondDialogue, // Assign the split string array
+            secondAppearanceEnemyKey = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), row[5]),
+            secondWave = int.Parse(row[6]),
+            thirdDialogue = thirdDialogue, // Assign the split string array
+            thirdAppearanceEnemyKey = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), row[8]),
+            thirdWave = int.Parse(row[9]),
+            stageClearDialogue = stageClearDialogue, // Assign the split string array
+            stageFailDialogue = stageFailDialogue, // Assign the split string array
+            rewardGold = int.Parse(row[12])
+        });
+    }
+    #endregion
+
 
 #endif
 }

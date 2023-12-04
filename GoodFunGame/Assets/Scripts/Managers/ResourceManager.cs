@@ -90,7 +90,7 @@ public class ResourceManager : MonoBehaviour
 
     // prefab
     //GameObject obj = Thing.Resource.InstantiatePrefab("name.prefab");
-    public GameObject InstantiatePrefab(string key)
+    public GameObject InstantiatePrefab(string key, Transform parent = null, bool pooling = false)
     {
         GameObject prefab = Load<GameObject>(key);
         if (prefab == null)
@@ -99,7 +99,9 @@ public class ResourceManager : MonoBehaviour
             return null;
         }
 
-        GameObject obj = UnityEngine.Object.Instantiate(prefab);
+        if (pooling) return Main.Pool.Pop(prefab);
+
+        GameObject obj = Instantiate(prefab, parent);
         obj.name = prefab.name;
         return obj;
     }

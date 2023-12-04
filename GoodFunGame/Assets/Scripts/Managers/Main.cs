@@ -31,11 +31,13 @@ public class Main : MonoBehaviour
     private ObjectManager objects = new();
     private DataManager data = new();
     private UIManager ui = new();
+    private GameManager game = new();
 
     public static PoolManager Pool => Instance?.pool;
     public static ResourceManager Resource => Instance?.resource;
     public static ObjectManager Object => Instance?.objects;
     public static DataManager Data => Instance?.data;
     public static UIManager UI => Instance?.ui;
+    public static GameManager Game => Instance?.game;
 
 }
