@@ -9,7 +9,6 @@ public class DataManager
 
     public void Initialize()
     {
-        ServiceLocator.RegisterService(this);
         Enemies = LoadJson<EnemyDataLoader, string, EnemyData>("EnemyData").MakeData();
         Players = LoadJson<PlayerDataLoader, string, PlayerData>("PlayerData").MakeData();
     }
