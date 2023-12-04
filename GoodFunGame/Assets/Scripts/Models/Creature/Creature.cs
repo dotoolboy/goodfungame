@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,7 +92,7 @@ public class Creature : Thing {
     public virtual void SetInfo(string key) {
         Initialize();
 
-        Data = null;    // TODO:: key¸¦ ÅëÇØ ÇØ´ç Å©¸®ÃÄÀÇ Data¸¦ ¹Ş¾Æ¿Â´Ù. ex) Main.Data.Creatures[key];
+        Data = null;    // TODO:: keyë¥¼ í†µí•´ í•´ë‹¹ í¬ë¦¬ì³ì˜ Dataë¥¼ ë°›ì•„ì˜¨ë‹¤. ex) Main.Data.Creatures[key];
 
         SetStatus();
     }
