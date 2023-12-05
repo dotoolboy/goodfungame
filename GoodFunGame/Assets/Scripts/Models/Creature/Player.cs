@@ -61,12 +61,13 @@ public class Player : Creature {
     private float _exp;
     private int _killCount;
     [SerializeField] private float _speed;
-    [SerializeField] private float _createProjectileSpeed;
+    [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;
     public Action cbOnPlayerDataUpdated;
-
+    public delegate void PlayerHealthChanged(float newHealth);
+    public event PlayerHealthChanged OnPlayerHealthChanged;
     #endregion
 
     #region MonoBehaviours
@@ -84,7 +85,13 @@ public class Player : Creature {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
+        {
             OnHit(collision.gameObject);
+            _collider.enabled = false;
+            StartCoroutine(ColliderBoxEnabledTrue());
+
+            OnPlayerHealthChanged?.Invoke(Hp);
+        }
     }
 
     #endregion
@@ -111,12 +118,11 @@ public class Player : Creature {
     {
         base.OnStateEntered_Dead();
 
-
         // TODO:: 오브젝트 디스폰
         //Main.Resource.Destroy(gameObject);
 
         // 게임 오버 화면 띄우기
-
+        Main.UI.ShowPopupUI<UI_Popup_GameOver>();
     }
     #endregion
 
@@ -138,6 +144,16 @@ public class Player : Creature {
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
         Direction = moveInput;
+    }
+
+    #endregion
+
+    #region Coroutine
+
+    IEnumerator ColliderBoxEnabledTrue()
+    {
+        yield return new WaitForSeconds(_invincibilityTime);
+        _collider.enabled = true;
     }
 
     #endregion
