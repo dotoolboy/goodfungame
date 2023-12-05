@@ -18,6 +18,7 @@ public class Projectile : Thing
     #region Fields
 
     // Components.
+    protected SpriteRenderer _spriter;
     protected Rigidbody2D _rigidbody;
 
     #endregion
@@ -37,15 +38,17 @@ public class Projectile : Thing
     {
         base.Initialize();
 
+        _spriter = this.GetComponent<SpriteRenderer>();
         _rigidbody = this.GetComponent<Rigidbody2D>();
 
         return true;
     }
 
-    public virtual Projectile SetInfo(Creature owner, float damage = -1, float scale = 1, float duration = 8)
+    public virtual Projectile SetInfo(Creature owner, string key, float damage = -1, float scale = 1, float duration = 8)
     {
         Initialize();
         this.Owner = owner;
+        this._spriter.sprite = Main.Resource.Load<Sprite>($"{key}.sprite");
         this.Damage = damage == -1 ? owner.Damage : damage;
         this.transform.localScale = Vector3.one * scale;
         this.Duration = duration;

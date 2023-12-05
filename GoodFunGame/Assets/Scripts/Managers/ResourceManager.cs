@@ -5,6 +5,7 @@ using System.ComponentModel;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -87,7 +88,7 @@ public class ResourceManager : MonoBehaviour
             int totalCount = op.Result.Count;
 
             // 각각의 위치 정보(result)에 따라
-            foreach (var result in op.Result)
+            foreach (IResourceLocation result in op.Result)
             {
                 // result.PrimaryKey: 리소스 위치의 고유 키 -> 를 이용하여 리소스 로드
                 LoadAsync<T>(result.PrimaryKey, obj =>

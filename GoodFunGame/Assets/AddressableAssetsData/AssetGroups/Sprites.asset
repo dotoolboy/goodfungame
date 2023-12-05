@@ -59,6 +59,72 @@ MonoBehaviour:
     m_SerializedLabels:
     - MWJ_Stage
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b35b0844e386456e8dc5bc2aaf5c141
+    m_Address: AUTOTARGET.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1347e330484a5402ebe69fcda2a8e199
+    m_Address: ENERGYBURST.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7bd522c9ea4e4897ad3108937b1e8b6
+    m_Address: GRAVITYFIELD.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9e23c1e463394370a7f8351b2e23c78
+    m_Address: HOMINGMISSILE.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db5a359966a6f4525b51d9f6cbd8eb00
+    m_Address: PIERCINGSHOT.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 228b690f323234b29ae74332418bfa56
+    m_Address: REFLECTSHIELD.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68987c118cfa745d3b9469cea8349ff2
+    m_Address: TIMEWARP.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06393d29a2e7f1b4da391642ed7e6abc
+    m_Address: Projectile_01.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2ae1e774491b10469ebd9bbf5c73f6f
+    m_Address: Projectile_02.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49fd776dec5a0a04292b55f25ee416a9
+    m_Address: Projectile_03.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5592f9eacb473740807d9878d943ca7
+    m_Address: Projectile_04.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
   m_SchemaSet:
