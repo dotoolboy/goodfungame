@@ -61,7 +61,7 @@ public class Player : Creature {
     private float _exp;
     private int _killCount;
     [SerializeField] private float _speed;
-    [SerializeField] private float _createProjectileSpeed;
+    [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;
@@ -84,7 +84,17 @@ public class Player : Creature {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Projectile")
+        {
             OnHit(collision.gameObject);
+            _collider.enabled = false;
+            StartCoroutine(ColliderBoxEnabledTrue());
+        }
+    }
+    
+    IEnumerator ColliderBoxEnabledTrue()
+    {
+        yield return new WaitForSeconds(_invincibilityTime);
+        _collider.enabled = true;
     }
 
     #endregion
