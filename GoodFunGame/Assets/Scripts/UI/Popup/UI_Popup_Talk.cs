@@ -27,12 +27,20 @@ public class UI_Popup_Talk : UI_Popup
     }
     enum GameObjects
     {
+        Right,
+        Left,
         Cursor,
     }
     #endregion
 
 
     private Animator anim;
+
+    private Animator cursorAnim;
+
+
+    private Animator leftAnim;
+    private Animator rightAnim;
 
 
     private bool isTyping = false;
@@ -46,7 +54,6 @@ public class UI_Popup_Talk : UI_Popup
 
     [HideInInspector] public Dictionary<int, DialogueSetting> talkData;
 
-    private Animator cursorAnim;
 
     void Start()
     {
@@ -77,7 +84,8 @@ public class UI_Popup_Talk : UI_Popup
 
         GetButton((int)Buttons.TalkBtn).gameObject.BindEvent(Talk);
 
-
+        rightAnim = GetObject((int)GameObjects.Right).GetComponent<Animator>();
+        leftAnim = GetObject((int)GameObjects.Left).GetComponent<Animator>();
         cursorAnim = GetObject((int)GameObjects.Cursor).GetComponent<Animator>();
         clickDelay = 0.3f; // 클릭 애니클립 길이 읽고 넣어주기
 
@@ -179,14 +187,8 @@ public class UI_Popup_Talk : UI_Popup
 
     }
 
-    //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-    public void Set()
-    {
-        anim.SetTrigger("Set");
-        anim.SetBool("isOpen", false);
 
-    }
     public void Open(PointerEventData data)
     {
         cursorAnim.gameObject.SetActive(false);
@@ -213,9 +215,12 @@ public class UI_Popup_Talk : UI_Popup
 
         anim.SetBool("isOpen", false);
 
+        Invoke("CloseEvent", anim.GetCurrentAnimatorStateInfo(0).length); // 대화창 다 내려가면 UI사라지도록
     }
 
-
-
+    public void CloseEvent()
+    {
+        Main.UI.ClosePopupUI(this);
+    }
 
 }
