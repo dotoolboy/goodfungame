@@ -43,17 +43,13 @@ public class UI_Popup_Shop : UI_Popup
     public override void Init()
     {
         base.Init();
-
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
-
-
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         // UI_SkillCard 프리팹에 스킬 데이터넣고 GetObject((int)GameObjects.Content).gameObject.transform  자식으로 추가
         Refresh();
-
     }
     private void Refresh()
     {
