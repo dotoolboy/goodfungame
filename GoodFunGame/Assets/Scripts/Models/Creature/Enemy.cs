@@ -26,6 +26,11 @@ public class Enemy : Creature
 
     private EnemyData _enemyData;
     private DataManager _dataManager;
+
+    [SerializeField] float moveMagnitude = 4f; // 움직임의 크기
+    [SerializeField] float moveFrequency = 3f; // 움직임의 빈도
+    [SerializeField] float moveTime = 2f;  // 움직이는 시간
+
     #endregion
 
     #region MonoBehaviours
@@ -80,10 +85,6 @@ public class Enemy : Creature
     #endregion
 
     #region Move
-
-    [SerializeField] float moveMagnitude = 4f; // 움직임의 크기
-    [SerializeField] float moveFrequency = 3f; // 움직임의 빈도
-    [SerializeField] float moveTime = 2f;  // 움직이는 시간
 
     IEnumerator Move()
     {

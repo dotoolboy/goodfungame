@@ -69,7 +69,7 @@ public class TempCharacter : Player
             yield return new WaitForSeconds(basicShotSpawnTime);
 
             Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
-            projectile.SetInfo(this, Damage, 1, 8);
+            projectile.SetInfo(this, "", Damage, 1);
             projectile.SetVelocity(Vector2.up * projectileSpeed);
         }
     }
