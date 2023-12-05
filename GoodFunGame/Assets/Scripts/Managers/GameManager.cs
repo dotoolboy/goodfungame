@@ -97,6 +97,26 @@ public class GameManager
         SaveGame();
     }
 
+    #region Skills
+
+    public bool PurchaseSkill(string key)
+    {
+        // #1. 구입 여부 및 가능 여부 검사.
+        SkillData data = Main.Data.Skills[key];
+        if (data.skillPrice > Gold) return false;
+        if (PurchasedSkills.Contains(key)) return false;
+
+        // #2. 구입한 스킬에 추가.
+        PurchasedSkills.Add(key);
+
+        // #3. 골드 차감.
+        Gold -= data.skillPrice;
+
+        return true;
+    }
+
+    #endregion
+
     #region Save / Load
 
     public void SaveGame()

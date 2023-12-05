@@ -20,6 +20,12 @@ public class UI_Popup_Purchase : UI_Popup
     }
 
     #endregion
+
+    #region Fields
+
+    private UI_SkillCard _card;
+
+    #endregion
     void Start()
     {
         Init();
@@ -33,23 +39,26 @@ public class UI_Popup_Purchase : UI_Popup
         BindText(typeof(Texts));
         BindImage(typeof(Images));
 
-
-        GetButton((int)Buttons.OkBtn).gameObject.BindEvent(Ok);
-        GetButton((int)Buttons.NoBtn).gameObject.BindEvent(No);
-
+        GetButton((int)Buttons.OkBtn).gameObject.BindEvent(OnBtnOk);
+        GetButton((int)Buttons.NoBtn).gameObject.BindEvent(OnBtnNo);
 
         return true;
     }
 
-    void Ok(PointerEventData data)
+    public void SetInfo(UI_SkillCard card)
     {
-        Debug.Log("샀어요");
-        Main.UI.ClosePopupUI(this);
-
+        _card = card;
     }
-    void No(PointerEventData data)
+
+    void OnBtnOk(PointerEventData data)
     {
-        Debug.Log("안살래요");
+        Main.Game.PurchaseSkill(_card.Data.skillStringKey);
+        _card.Refresh();
+        Main.UI.ClosePopupUI(this);
+    }
+    void OnBtnNo(PointerEventData data)
+    {
+        _card.Refresh();
         Main.UI.ClosePopupUI(this);
 
     }
