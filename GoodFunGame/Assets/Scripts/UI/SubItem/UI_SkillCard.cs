@@ -39,13 +39,15 @@ public class UI_SkillCard : UI_Base
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
+        if (!base.Init()) return false;
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
         GetButton((int)Buttons.BuyBtn).gameObject.BindEvent(PurchasePopup);
         Refresh();
+        return true;
     }
 
 
