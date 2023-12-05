@@ -9,9 +9,7 @@ public class UI_Popup_Pause : UI_Popup
     #region Enums
     enum Texts
     {
-        BackToMainText,
-        OptionsText,
-        ContinueText,
+     
     }
 
     enum Buttons
@@ -43,16 +41,17 @@ public class UI_Popup_Pause : UI_Popup
 
     public void BackToMain(PointerEventData data)
     {
-        Debug.Log("메인으로");
+        // 셀렉트 씬으로 돌아가기
+
+        Debug.Log("셀렉트 씬으로 돌아가기");
     }
     public void Options(PointerEventData data)
     {
-        Debug.Log("옵션");
-       
+        Main.UI.ShowPopupUI<UI_Popup_Option>();
+
     }
     public void Continue(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
-        Debug.Log("게임계속하기");
     }
 }
