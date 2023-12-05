@@ -100,6 +100,7 @@
       <workItem from="1701543878945" duration="10502000" />
       <workItem from="1701651665376" duration="524000" />
       <workItem from="1701739693468" duration="4244000" />
+      <workItem from="1701749883954" duration="7861000" />
     </task>
     <servers />
   </component>
@@ -116,13 +117,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Datas/SkillData.cs</url>
-          <line>54</line>
+          <line>45</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Datas/SkillData.cs" initialLine="54" containingFunctionPresentation="Method 'MakeData'">
             <startOffsets>
-              <option value="1296" />
+              <option value="1305" />
             </startOffsets>
             <endOffsets>
-              <option value="1297" />
+              <option value="1306" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />

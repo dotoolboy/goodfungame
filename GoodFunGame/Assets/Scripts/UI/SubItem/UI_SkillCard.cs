@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UI_SkillCard : UI_Base
 {
@@ -25,18 +26,24 @@ public class UI_SkillCard : UI_Base
     }
 
     #endregion
+
+    #region Property
+    // public Sprite iconBackSprite;   // 아이콘 Background
+    public Sprite iconSprite;   // Icon Sprite
+    public string skillNameText;    // 스킬 이름
+    public string skillDescText;    // 스킬 설명
+    public int skillPriceInteger;   // 스킬 가격
+    #endregion
     void Start()
     {
         Init();
     }
 
     public override void Init()
-    {  
-        
+    {
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
-
         GetButton((int)Buttons.BuyBtn).gameObject.BindEvent(PurchasePopup);
         Refresh();
     }
@@ -49,14 +56,11 @@ public class UI_SkillCard : UI_Base
         // 구매한 스킬은 구매했다고 표시되야함
         // 해금된 스킬이라면 변화
    
-        GetText((int)Texts.Name).text = "스킬이름";
-        GetText((int)Texts.Introduce).text = "스킬설명";
-        GetText((int)Texts.Price).text = "1000원";
-
-        GetImage((int)Images.IconImage).sprite = null;
-        GetImage((int)Images.IconBackground).sprite = null;
-
-
+        GetText((int)Texts.Name).text = skillNameText;
+        GetText((int)Texts.Introduce).text = skillDescText;
+        GetText((int)Texts.Price).text = $"{skillPriceInteger} Gold";
+        GetImage((int)Images.IconImage).sprite = iconSprite;
+        // GetImage((int)Images.IconBackground).sprite = iconBackSprite;
     }
     void PurchasePopup(PointerEventData data)
     {
