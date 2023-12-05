@@ -41,10 +41,13 @@ public class TestScene : MonoBehaviour
     {
         // ====== 게임 시작 ======
 
-        GameObject newObj = Main.Resource.InstantiatePrefab("TempCharacter.prefab");
+        GameObject newObj = Main.Resource.InstantiatePrefab("TempPlayer.prefab");
         Main.Object.Spawn<Player>("Player", Vector2.zero);
-        for (int i = 0; i < 5; i++)
-            Main.Object.Spawn<Enemy>("BOSS_MWJ", new Vector2(Random.Range(-5f, 5f), 5f));
+        //for (int i = 0; i < 5; i++)
+        //    Main.Object.Spawn<Enemy>("BOSS_MWJ", new Vector2(Random.Range(-5f, 5f), 5f));
+
+        //GameObject enemy = Main.Resource.InstantiatePrefab("TempEnemy.prefab");
+        //Main.Object.Spawn<Enemy>("Enemy", Vector2.zero);
         // =======================
     }
 
