@@ -8,9 +8,6 @@ using UnityEngine.EventSystems;
 public class UI_Popup_ResolutionPreview : UI_Popup
 {
 
-    private float countdown;
-    private WaitForSeconds oneSec = new WaitForSeconds(1f);
-
     #region Enums
     enum Texts
     {
@@ -23,13 +20,8 @@ public class UI_Popup_ResolutionPreview : UI_Popup
         NoBtn,
     }
 
-
-
     #endregion
-    void Start()
-    {
-        Init();
-    }
+
 
     public override void Init()
     {
@@ -44,14 +36,18 @@ public class UI_Popup_ResolutionPreview : UI_Popup
     }
 
 
-    void OnEnable() { }
+    void OnEnable()
+    {
+        Init();
+        StartCoroutine(PreviewCountdown()); //테스트
+
+    }
+
+
 
     IEnumerator PreviewCountdown()
     {
-
-        //  GetObject((int)GameObjects.Preview).gameObject.SetActive(true);
-
-        countdown = 10;
+        float countdown = 10;
 
         GetText((int)Texts.CountdownText).text = countdown.ToString();
 
@@ -63,7 +59,7 @@ public class UI_Popup_ResolutionPreview : UI_Popup
                 break;
             }
 
-            yield return oneSec;
+            yield return new WaitForSeconds(1f);
 
             countdown--;
 
