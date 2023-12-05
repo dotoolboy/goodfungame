@@ -99,6 +99,7 @@ MonoBehaviour:
     - SelectScene
     - SingleMenuScene
     - PreLoad
+    - Skill
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: eabb8a88b044e46479c5769c7f326752, type: 2}

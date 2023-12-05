@@ -1,32 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class UI_Popup_Shop : UI_Popup
 {
+    #region Transform
+    // 스킬 인스턴스화 Contents Transform 위치
+    [SerializeField] private Transform contentTransform;
+    #endregion
     #region Enums
-    enum Texts
+
+    private enum Texts
     {
         GoldText,
         PercentText
     }
-    enum Images
+
+    private enum Images
     {
         ShopNpc,
     }
-    enum Buttons
+
+    private enum Buttons
     {
         BackspaceBtn,
     }
-    enum GameObjects
+
+    private enum GameObjects
     {
         Content,
-
     }
 
     #endregion
-    void Start()
+    private void Start()
     {
         Init();
     }
@@ -42,10 +51,7 @@ public class UI_Popup_Shop : UI_Popup
 
 
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
-
         // UI_SkillCard 프리팹에 스킬 데이터넣고 GetObject((int)GameObjects.Content).gameObject.transform  자식으로 추가
-
-
         Refresh();
 
     }
@@ -53,9 +59,33 @@ public class UI_Popup_Shop : UI_Popup
     {
         GetText((int)Texts.GoldText).text = "내소지금";
         GetText((int)Texts.PercentText).text = "100%"; // 스킬 해금율 퍼센트
+        InstantiateSkillObject("Shop_SkillCard");
     }
 
+    /// <summary>
+    ///  스킬 오브젝트 인스턴스화
+    /// </summary>
+    /// <param name="skillName"></param>
+    private void InstantiateSkillObject(string skillName = null)
+    {
+        if (string.IsNullOrEmpty(skillName))
+            skillName = nameof(UI_SkillCard);
 
+        foreach (KeyValuePair<string, SkillData> skillData in Main.Data.Skills)
+        {
+            GameObject skillCard= Main.Resource.InstantiatePrefab($"{skillName}.prefab", contentTransform);
+            UI_SkillCard skillObject = skillCard.GetComponent<UI_SkillCard>();
+            Sprite icon = Main.Resource.Load<Sprite>($"{skillData.Key}.sprite");
+            if (skillData.Key != icon.name)
+            {
+                continue;
+            }
+            skillObject.iconSprite = icon;
+            skillObject.skillNameText = skillData.Key;
+            skillObject.skillDescText = skillData.Value.skillDesc;
+            skillObject.skillPriceInteger = skillData.Value.skillPrice;
+        }
+    }
     public void Close(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
