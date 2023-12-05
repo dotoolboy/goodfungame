@@ -24,7 +24,6 @@ public class UITestScene : MonoBehaviour
 
     private void InitializeGame()
     {
-        // Main.UI.ShowSceneUI<UI_Scene_Intro>();
 
         // Main.UI.ShowSceneUI<UI_Scene_Select>();
 
