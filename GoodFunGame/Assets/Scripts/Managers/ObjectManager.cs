@@ -8,6 +8,7 @@ public class ObjectManager
 
     public Player Player { get; private set; }
     public List<Enemy> Enemies { get; private set; } = new();
+    public List<Projectile> Projectiles { get; private set; } = new();
     public Transform EnemyParent
     {
         get
@@ -42,7 +43,16 @@ public class ObjectManager
 
             return enemy as T;
         }
+        else if (type == typeof(Projectile))
+        {
+            GameObject obj = Main.Resource.InstantiatePrefab("Projectile_TEMP.prefab", pooling: true);
+            obj.transform.position = position;
 
+            Projectile projectile = obj.GetOrAddComponent<Projectile>();
+            Projectiles.Add(projectile);
+
+            return projectile as T;
+        }
         return null;
     }
 
@@ -57,6 +67,11 @@ public class ObjectManager
         else if (type == typeof(Enemy))
         {
             Enemies.Remove(obj as Enemy);
+            Main.Resource.Destroy(obj.gameObject);
+        }
+        else if (type == typeof(Projectile))
+        {
+            Projectiles.Remove(obj as Projectile);
             Main.Resource.Destroy(obj.gameObject);
         }
     }

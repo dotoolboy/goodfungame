@@ -65,10 +65,7 @@ public class Projectile : Thing
     private IEnumerator CoCheckDestroy()
     {
         yield return new WaitForSeconds(Duration);
-        // Projectile 제거 임시.
-        // TODO:: ObjectManager의 Despawn 기능을 통해 제거하게끔!
-        Main.Resource.Destroy(this.gameObject);
-        //Main.Object.Despawn(this);
+        Main.Object.Despawn(this);
     }
 
 }
