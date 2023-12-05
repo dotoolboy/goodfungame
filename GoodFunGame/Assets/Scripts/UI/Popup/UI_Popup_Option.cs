@@ -30,9 +30,9 @@ public class UI_Popup_Option : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
@@ -44,6 +44,7 @@ public class UI_Popup_Option : UI_Popup
 
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
 
+        return true;
     }
 
     void Close(PointerEventData data)

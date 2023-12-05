@@ -25,9 +25,9 @@ public class UI_Popup_Purchase : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
@@ -38,7 +38,7 @@ public class UI_Popup_Purchase : UI_Popup
         GetButton((int)Buttons.NoBtn).gameObject.BindEvent(No);
 
 
-
+        return true;
     }
 
     void Ok(PointerEventData data)

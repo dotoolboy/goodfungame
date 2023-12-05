@@ -47,10 +47,10 @@ public class UI_Popup_Tooltip : UI_Popup
         MovePosition();
     }
 
-    public override void Init()
+    public override bool Init()
     {
 
-        base.Init();
+        if (!base.Init()) return false;
         BindObject(typeof(GameObjects));
         BindText(typeof(Texts));
 
@@ -66,7 +66,7 @@ public class UI_Popup_Tooltip : UI_Popup
 
 
 
-
+        return true;
     }
 
 

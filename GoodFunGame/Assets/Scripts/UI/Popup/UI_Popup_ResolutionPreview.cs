@@ -31,9 +31,9 @@ public class UI_Popup_ResolutionPreview : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
@@ -41,6 +41,7 @@ public class UI_Popup_ResolutionPreview : UI_Popup
         GetButton((int)Buttons.OkBtn).gameObject.BindEvent(OK);
         GetButton((int)Buttons.NoBtn).gameObject.BindEvent(NOPE);
 
+        return true;
     }
 
 

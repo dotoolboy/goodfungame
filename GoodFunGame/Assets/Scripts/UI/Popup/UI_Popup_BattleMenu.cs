@@ -11,9 +11,9 @@ public class UI_Popup_BattleMenu : UI_Popup
         Multiple
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
-
+        if (!base.Init()) return false;
+        return true;
     }
 }

@@ -35,9 +35,9 @@ public class UI_Popup_BattleMenu_Multiple : UI_Popup_BattleMenu
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
         BindObject(typeof(GameObjects));
@@ -46,6 +46,7 @@ public class UI_Popup_BattleMenu_Multiple : UI_Popup_BattleMenu
 
         GetButton((int)Buttons.PauseBtn).gameObject.BindEvent(Pause);
 
+        return true;
     }
 
     void Pause(PointerEventData data)

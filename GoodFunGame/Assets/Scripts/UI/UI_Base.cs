@@ -7,9 +7,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Define;
 
-public abstract class UI_Base : MonoBehaviour
+public class UI_Base : MonoBehaviour
 {
-    public abstract void Init();
+    private bool _initialized;
+
+    public virtual bool Init()
+    {
+        if (_initialized) return false;
+
+        _initialized = true;
+        return true;
+    }
 
 
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();

@@ -40,9 +40,9 @@ public class UI_Popup_Shop : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
@@ -50,6 +50,8 @@ public class UI_Popup_Shop : UI_Popup
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         // UI_SkillCard 프리팹에 스킬 데이터넣고 GetObject((int)GameObjects.Content).gameObject.transform  자식으로 추가
         Refresh();
+
+        return true;
     }
     private void Refresh()
     {
