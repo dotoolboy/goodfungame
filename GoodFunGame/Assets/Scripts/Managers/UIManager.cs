@@ -59,7 +59,7 @@ public class UIManager
         UI_Popup popup = _popupStack.Pop();
         Main.Resource.Destroy(popup.gameObject);
         popup = null;
-        _order--; // order 줄이기
+        _order--; 
     }
 
     public void CloseAllPopupUI()

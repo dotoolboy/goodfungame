@@ -6,7 +6,8 @@ public class UI_Scene_Select : UI_Scene
 {
     void Start()
     {
-        Main.UI.ShowPopupUI<UI_Popup_SelectMenu>();
+
+        Main.UI.ShowPopupUI<UI_Popup_SelectEntry>();
     }
   
 }

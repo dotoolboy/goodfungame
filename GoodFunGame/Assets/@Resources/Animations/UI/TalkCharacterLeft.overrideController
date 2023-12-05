@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TalkCharacterLeft
+  m_Controller: {fileID: 9100000, guid: 5de4b9c5962abb64faeec73c5f5241d0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 253398b4922705e4290e9d1fe79e7fec, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cc7b19cd4177a524e964c8212867b130, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f4e09e6c2f18f3443a0ed1136ee733ed, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 425472f83093ee3498b60bd52d84befd, type: 2}
