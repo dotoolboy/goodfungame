@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: skill name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
+  m_sharedMaterial: {fileID: -3682131304925435381, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -203,8 +203,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Buy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
+  m_sharedMaterial: {fileID: -3682131304925435381, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -339,8 +339,8 @@ MonoBehaviour:
   m_text: hello hello hello hello hello hello hello hello hello hello hello hello
     hello hello hello hello
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
+  m_sharedMaterial: {fileID: -3682131304925435381, guid: a994ebab7f65c4c469139119aa4c5d06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -956,3 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491ef028cccf1ac4ca3842c5315cae9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconSprite: {fileID: 0}
+  skillNameText: 
+  skillDescText: 
+  skillPriceInteger: 0
