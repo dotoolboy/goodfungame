@@ -80,6 +80,12 @@ public class Player : Creature {
         _rigidbody.velocity = Direction * MoveSpeed * Time.fixedDeltaTime;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+            OnHit(collision.gameObject);
+    }
+
     #endregion
 
     #region Initialize / Set
