@@ -79,8 +79,11 @@ public class Enemy : Creature
 
         // TODO:: Player의 KillCount 증가.
 
-        // TODO:: 오브젝트 디스폰
+        // 터지는 효과
+        Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
+        // TODO:: 오브젝트 디스폰
+        Main.Resource.Destroy(gameObject);
     }
     #endregion
 

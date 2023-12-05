@@ -106,6 +106,19 @@ public class Player : Creature {
 
     #endregion
 
+    #region State
+    protected override void OnStateEntered_Dead()
+    {
+        base.OnStateEntered_Dead();
+
+
+        // TODO:: 오브젝트 디스폰
+        //Main.Resource.Destroy(gameObject);
+
+        // 게임 오버 화면 띄우기
+
+    }
+    #endregion
 
     /// <summary>
     /// 해당 레벨에 도달하기 위해 필요한 경험치량
