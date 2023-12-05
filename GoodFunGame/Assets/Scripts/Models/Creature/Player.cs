@@ -61,6 +61,7 @@ public class Player : Creature {
     private float _exp;
     private int _killCount;
     [SerializeField] private float _speed;
+    [SerializeField] private float _createProjectileSpeed;
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;

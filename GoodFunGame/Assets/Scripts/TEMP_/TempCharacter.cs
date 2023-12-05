@@ -17,11 +17,17 @@ public class TempCharacter : Player
     public float projectileStartAngle;
     public float projectileSpreadAngle;
     public float shotTime = 1;
+    public float basicShotSpawnTime = 0.5f;
     public int petals = 2;
     public int bulletsPerPetal = 10;
     public float angleIncrementPerBullet = 10;
     public float timeBetweenBullets = 0.1f;
     private Coroutine coShot;
+
+    void Start()
+    {
+        StartCoroutine(BasicShot());
+    }
 
     protected override void Update()
     {
@@ -53,6 +59,18 @@ public class TempCharacter : Player
             //Vector2 direction = (Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition) - this.transform.position).normalized;
             //float speed = 3;
             //projectile.SetVelocity(direction * speed);
+        }
+    }
+
+    private IEnumerator BasicShot()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(basicShotSpawnTime);
+
+            Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
+            projectile.SetInfo(this, "", Damage, 1);
+            projectile.SetVelocity(Vector2.up * projectileSpeed);
         }
     }
 
