@@ -74,7 +74,6 @@ public class Player : Creature {
     private void Start()
     {
         MoveSpeed = _speed;
-        StartCoroutine(SpawnProjectiles());
     }
 
     protected virtual void FixedUpdate()
@@ -126,19 +125,6 @@ public class Player : Creature {
     {
         Vector2 moveInput = value.Get<Vector2>().normalized;
         Direction = moveInput;
-    }
-
-    #endregion
-
-    #region coroutine
-    IEnumerator SpawnProjectiles()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(_createProjectileSpeed);
-            GameObject projectile = Main.Resource.InstantiatePrefab("Projectile_TEMP.prefab", this.transform, true);
-            projectile.transform.position = transform.position;
-        }
     }
 
     #endregion
