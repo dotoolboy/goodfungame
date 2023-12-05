@@ -7,10 +7,6 @@ public class UI_Popup_SelectEntry : UI_Popup
 {
 
     #region Enums
-    enum Texts
-    {
-    }
-
     enum Buttons
     {
         Select_Btn_Solo,
@@ -28,7 +24,6 @@ public class UI_Popup_SelectEntry : UI_Popup
         if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
-        BindText(typeof(Texts));
 
         GetButton((int)Buttons.Select_Btn_Solo).gameObject.BindEvent(Solo);
         GetButton((int)Buttons.Select_Btn_Multiple).gameObject.BindEvent(Multi);
