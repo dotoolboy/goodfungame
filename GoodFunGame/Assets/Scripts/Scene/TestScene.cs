@@ -37,7 +37,6 @@ public class TestScene : MonoBehaviour
             Main.Object.Despawn(FindObjectOfType<Enemy>());
         }
     }
-
     private void InitializeGame()
     {
         // ====== 게임 시작 ======

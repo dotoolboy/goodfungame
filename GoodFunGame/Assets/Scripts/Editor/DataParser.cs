@@ -144,7 +144,5 @@ public class DataParser : EditorWindow
         });
     }
     #endregion
-
-
 #endif
 }
