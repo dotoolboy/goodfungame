@@ -40,16 +40,12 @@ public class UI_Popup_Shop : UI_Popup
     public override void Init()
     {
         base.Init();
-
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
-
-
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         Refresh();
-
     }
     private void Refresh()
     {

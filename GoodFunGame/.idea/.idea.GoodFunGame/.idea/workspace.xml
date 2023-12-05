@@ -22,6 +22,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/StageBackGround.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Models/Creature/Creature.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scene/TestSceneStage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_UGUI_Private.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2Ytg5SZ1SLduFDwbQ000MrjcLlL" />
   <component name="ProjectViewState">
@@ -100,7 +101,7 @@
       <workItem from="1701543878945" duration="10502000" />
       <workItem from="1701651665376" duration="524000" />
       <workItem from="1701739693468" duration="4244000" />
-      <workItem from="1701749883954" duration="7861000" />
+      <workItem from="1701749883954" duration="11804000" />
     </task>
     <servers />
   </component>

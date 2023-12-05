@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GoodFunGame/Assets/@Resources/Animations/UI.meta
 guid: e9dde97b5c7caf742b1a6a0b64fa17ac
+========
+guid: b9ed5fb5d3cfd419690df4c24723b150
+>>>>>>>> Develop1.0:GoodFunGame/Assets/@Resources/Animations/512.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

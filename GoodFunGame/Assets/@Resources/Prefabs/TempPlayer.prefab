@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 220
+  _createProjectileSpeed: 0.5
 --- !u!114 &1621929926866557377
 MonoBehaviour:
   m_ObjectHideFlags: 0
