@@ -53,8 +53,9 @@ public class Option_Resolution : UI_Base
     }
 
 
-    public override void Init() 
+    public override bool Init() 
     {
+        if (!base.Init()) return false;
         resolutions = new List<Resolution>();
 
         BindObject(typeof(GameObjects));
@@ -94,6 +95,7 @@ public class Option_Resolution : UI_Base
 
         dropdown.RefreshShownValue();
 
+        return true;
     }
 
     public void Preview(PointerEventData data)

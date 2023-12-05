@@ -54,8 +54,9 @@ public class Option_Audio : UI_Base
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
+        if (!base.Init()) return false;
         BindText(typeof(Texts));
         BindObject(typeof(GameObjects));
 
@@ -64,6 +65,7 @@ public class Option_Audio : UI_Base
         _toggle = GetObject((int)GameObjects.MuteToggle).GetComponent<Toggle>();
         _slider = GetObject((int)GameObjects.VolumeSlider).GetComponent<Slider>();
 
+        return true;
     }
 
     public void Volume(float value)

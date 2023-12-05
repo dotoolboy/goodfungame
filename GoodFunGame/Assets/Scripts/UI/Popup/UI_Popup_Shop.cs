@@ -37,15 +37,17 @@ public class UI_Popup_Shop : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         Refresh();
+
+        return true;
     }
     private void Refresh()
     {

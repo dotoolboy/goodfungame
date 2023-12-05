@@ -22,15 +22,15 @@ public class UI_Popup_IntroMenu : UI_Popup
         Init();
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
 
         GetButton((int)Buttons.StartButton).gameObject.BindEvent(OnButtonClicked);
 
-
+        return true;
     }
 
     public void OnButtonClicked(PointerEventData data)

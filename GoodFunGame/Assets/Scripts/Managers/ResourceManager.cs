@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 public class ResourceManager : MonoBehaviour
 {
-    public bool Loaded { get; private set; }
+    public bool Loaded { get; set; }
     private Dictionary<string, UnityEngine.Object> _resources = new();
 
     // key(주소)를 받아 비동기(Async) 로드
