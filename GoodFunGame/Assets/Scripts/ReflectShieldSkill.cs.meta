@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 03aa097737430c24bbb052d189804d49
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - reflectShieldPrefab: {fileID: 2801467335081030729, guid: ef444f7fc12e09b489052a5de00a61c6, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
