@@ -55,9 +55,9 @@ public class UI_Popup_Talk : UI_Popup
 
     }
 
-    public override void Init()
+    public override bool Init()
     {
-        base.Init();
+        if (!base.Init()) return false;
 
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
@@ -84,7 +84,7 @@ public class UI_Popup_Talk : UI_Popup
 
 
         Open(null);
-
+        return true;
     }
 
     public void Talk(PointerEventData data)
