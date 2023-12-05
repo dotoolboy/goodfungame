@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : MonoBehaviour
+public class GameScene : BaseScene
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override bool Initialize()
     {
-        
-    }
+        if (!base.Initialize()) return false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // ==================================== 씬 진입 시 처리 ====================================
+
+        UI = Main.UI.ShowSceneUI<UI_Scene_Game>();
+
+        Main.Object.Spawn<Player>("Player", new(0, -2));
+
+
+
+        // =========================================================================================
+
+        return true;
     }
 }
