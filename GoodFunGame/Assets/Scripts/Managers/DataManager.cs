@@ -12,7 +12,7 @@ public class DataManager
     {
         Enemies = LoadJson<EnemyDataLoader, string, EnemyData>("EnemyData").MakeData();
         Skills = LoadJson<SkillDataLoader, string, SkillData>("SkillData").MakeData();
-        Stages = LoadJson<StageDataLoader, string, StageData>("Stage").MakeData();
+        Stages = LoadJson<StageDataLoader, string, StageData>("StageData").MakeData();
     }
 
     private TLoader LoadJson<TLoader, TKey, TValue>(string path) where TLoader : ILoadData<TKey, TValue>

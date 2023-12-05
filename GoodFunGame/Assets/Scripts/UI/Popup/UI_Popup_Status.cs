@@ -1,18 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UI_Popup_Status : UI_Popup
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+    #region Enums
+    enum Texts
     {
-        
+       
     }
 
-    // Update is called once per frame
-    void Update()
+
+    enum Buttons
     {
-        
+        BackspaceBtn
+    }
+
+
+
+    #endregion
+    void Start()
+    {
+        Init();
+    }
+
+    // 스킬 장착 관리, 캐릭터 정보 이름 등등등 관리가능해야함
+    public override void Init()
+    {
+        base.Init();
+
+        BindText(typeof(Texts));
+        BindButton(typeof(Buttons));
+
+        GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
+
+    }
+
+    void Close(PointerEventData data)
+    {
+        Main.UI.ClosePopupUI(this);
     }
 }

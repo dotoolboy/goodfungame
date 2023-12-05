@@ -27,6 +27,8 @@ public class UI_Popup_Purchase : UI_Popup
 
     public override void Init()
     {
+        base.Init();
+
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
         BindImage(typeof(Images));

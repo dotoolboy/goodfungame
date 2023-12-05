@@ -31,6 +31,13 @@ public class Enemy : Creature
     {
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "PlayerProjectile")
+            OnHit(collision.gameObject);
+    }
+
     #endregion
 
     #region Initialize / Set
