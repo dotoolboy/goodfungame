@@ -18,6 +18,13 @@ public class ObjectManager
             return root.transform;
         }
     }
+    public T SpawnProjectileGenerator<T>() where T : ProjectileGenerator
+    {
+        GameObject newObject = new("ProjectileGenerator");
+        T pg = newObject.GetOrAddComponent<T>();
+
+        return pg as T;
+    }
     public T Spawn<T>(string key, Vector2 position) where T : Thing
     {
         System.Type type = typeof(T);
@@ -74,6 +81,10 @@ public class ObjectManager
             Projectiles.Remove(obj as Projectile);
             Main.Resource.Destroy(obj.gameObject);
         }
+    }
+    public void DespawnProjectileGenerator<T>(T obj) where T : ProjectileGenerator
+    {
+        Main.Resource.Destroy(obj.gameObject);
     }
 }
 

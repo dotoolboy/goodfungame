@@ -43,7 +43,7 @@ public class TestScene : MonoBehaviour
     {
         // ====== 게임 시작 ======
 
-        GameObject newObj = Main.Resource.InstantiatePrefab("TempCharacter.prefab");
+        GameObject newObj = Main.Resource.InstantiatePrefab("TempCharacter1.prefab");
         //Main.Object.Spawn<Player>("Player", Vector2.zero);
         //for (int i = 0; i < 5; i++)
         //    Main.Object.Spawn<Enemy>("BOSS_MWJ", new Vector2(Random.Range(-5f, 5f), 5f));
