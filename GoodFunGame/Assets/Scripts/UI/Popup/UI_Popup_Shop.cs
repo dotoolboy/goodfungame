@@ -7,10 +7,7 @@ using UnityEngine.Serialization;
 
 public class UI_Popup_Shop : UI_Popup
 {
-    #region Transform
-    // 스킬 인스턴스화 Contents Transform 위치
-    [SerializeField] private Transform contentTransform;
-    #endregion
+
     #region Enums
 
     private enum Texts
@@ -48,7 +45,6 @@ public class UI_Popup_Shop : UI_Popup
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
-        // UI_SkillCard 프리팹에 스킬 데이터넣고 GetObject((int)GameObjects.Content).gameObject.transform  자식으로 추가
         Refresh();
     }
     private void Refresh()
@@ -69,7 +65,7 @@ public class UI_Popup_Shop : UI_Popup
 
         foreach (KeyValuePair<string, SkillData> skillData in Main.Data.Skills)
         {
-            GameObject skillCard= Main.Resource.InstantiatePrefab($"{skillName}.prefab", contentTransform);
+            GameObject skillCard= Main.Resource.InstantiatePrefab($"{skillName}.prefab", GetObject((int)GameObjects.Content).gameObject.transform);
             UI_SkillCard skillObject = skillCard.GetComponent<UI_SkillCard>();
             Sprite icon = Main.Resource.Load<Sprite>($"{skillData.Key}.sprite");
             if (skillData.Key != icon.name)

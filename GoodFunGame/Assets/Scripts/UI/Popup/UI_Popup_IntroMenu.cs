@@ -37,7 +37,7 @@ public class UI_Popup_IntroMenu : UI_Popup
     {
         // 셀렉트 씬으로 넘어가기 
         Main.UI.ClosePopupUI(this);
-        Main.UI.ShowPopupUI<UI_Popup_SelectEntry>();
+        Main.UI.ShowSceneUI<UI_Scene_Select>();
 
 
 
