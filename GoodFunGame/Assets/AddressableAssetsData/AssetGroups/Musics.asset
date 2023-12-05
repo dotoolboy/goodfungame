@@ -21,13 +21,13 @@ MonoBehaviour:
     m_Address: MWJ_BGM_1.mp3
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 397e9e0d5d63cfa46ab09a1eade28808
     m_Address: MWJ_BGM_2.mp3
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
