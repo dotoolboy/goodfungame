@@ -21,43 +21,43 @@ MonoBehaviour:
     m_Address: MWJ_Projetile_1.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5eb1974fa9cc214fa33b1f2928ad87d
     m_Address: MWJ_Projetile_2.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 085c0e2f760d226429fc066ee3cc00d5
     m_Address: MWJ_Projetile_3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e8f34537fac3c2428d2108dc40aeeef
     m_Address: MWJ_Enemy_1.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c67e6c525529f9d4bab5b83eea3c94ef
     m_Address: MWJ_Enemy_2.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 76455fad58700f14c9c51853f65e7dfc
     m_Address: MWJ_Enemy_3.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fab5c2982b41bed45ad4eb7c4ca12383
     m_Address: MWJ_Boss_1.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MWJ_Stage
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b35b0844e386456e8dc5bc2aaf5c141
     m_Address: AUTOTARGET.sprite
