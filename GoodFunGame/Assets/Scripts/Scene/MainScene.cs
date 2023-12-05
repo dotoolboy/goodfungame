@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainScene : MonoBehaviour
+public class MainScene : BaseScene
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override bool Initialize()
     {
-        
-    }
+        if (!base.Initialize()) return false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // ==================================== 씬 진입 시 처리 ====================================
+
+        // 이 곳에 씬 처리 작업!
+        UI = Main.UI.ShowSceneUI<UI_Scene_Main>();
+        Main.UI.ShowPopupUI<UI_Popup_SelectEntry>();
+
+        // =========================================================================================
+
+        return true;
     }
 }
