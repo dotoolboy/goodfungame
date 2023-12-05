@@ -27,20 +27,15 @@ public class UI_Popup_Talk : UI_Popup
     }
     enum GameObjects
     {
-        Right,
-        Left,
+        Character,
         Cursor,
     }
     #endregion
 
 
     private Animator anim;
-
     private Animator cursorAnim;
-
-
-    private Animator leftAnim;
-    private Animator rightAnim;
+    private Animator characterAnim;
 
 
     private bool isTyping = false;
@@ -84,8 +79,7 @@ public class UI_Popup_Talk : UI_Popup
 
         GetButton((int)Buttons.TalkBtn).gameObject.BindEvent(Talk);
 
-        rightAnim = GetObject((int)GameObjects.Right).GetComponent<Animator>();
-        leftAnim = GetObject((int)GameObjects.Left).GetComponent<Animator>();
+        characterAnim = GetObject((int)GameObjects.Character).GetComponent<Animator>();
         cursorAnim = GetObject((int)GameObjects.Cursor).GetComponent<Animator>();
         clickDelay = 0.3f; // 클릭 애니클립 길이 읽고 넣어주기
 
@@ -200,6 +194,7 @@ public class UI_Popup_Talk : UI_Popup
         NameChange(talkData[0].name);
 
         anim.SetBool("isOpen", true);
+        characterAnim.SetBool("isTalk", true);
 
         Talk(null);
 
@@ -214,6 +209,7 @@ public class UI_Popup_Talk : UI_Popup
         isTyping = false;
 
         anim.SetBool("isOpen", false);
+        characterAnim.SetBool("isTalk", false);
 
         Invoke("CloseEvent", anim.GetCurrentAnimatorStateInfo(0).length); // 대화창 다 내려가면 UI사라지도록
     }
