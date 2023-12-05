@@ -121,8 +121,9 @@ public class Creature : Thing {
 
     #endregion
 
-    public virtual void OnHit(Creature attacker, float damage) {
-        Hp -= damage;
+    public virtual void OnHit(GameObject collisionProjectile) {
+        Projectile projectile = collisionProjectile.GetComponent<Projectile>();
+        Hp -= projectile.Damage;
+        Main.Resource.Destroy(collisionProjectile);
     }
-
 }
