@@ -24,9 +24,14 @@ public class TempCharacter : Player
     public float timeBetweenBullets = 0.1f;
     private Coroutine coShot;
 
+    //private TimeWarpSkill timeWarpSkill;
+    //private ReflectShieldSkill reflectShieldSkill;
+
     void Start()
     {
         StartCoroutine(BasicShot());
+        //timeWarpSkill = gameObject.AddComponent<TimeWarpSkill>();
+        //reflectShieldSkill = gameObject.AddComponent<ReflectShieldSkill>();
     }
 
     protected override void Update()
@@ -60,6 +65,12 @@ public class TempCharacter : Player
             //float speed = 3;
             //projectile.SetVelocity(direction * speed);
         }
+        
+        // 스킬 임시
+        //if(UnityEngine.Input.GetKeyDown(KeyCode.Z)) 
+        //{
+        //    reflectShieldSkill.Activate();
+        //}
     }
 
     private IEnumerator BasicShot()
