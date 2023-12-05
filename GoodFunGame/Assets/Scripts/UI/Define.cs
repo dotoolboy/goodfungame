@@ -6,9 +6,9 @@ public class Define
         Press,
         PointerDown,
         PointerUp,
+        PointerEnter,
         Drag,
         BeginDrag,
-        PointerEnter,
         EndDrag,
 
     }
@@ -19,10 +19,10 @@ public class Define
         Press,
         PointerDown,
         PointerUp,
+        PointerEnter,
         Drag,
         BeginDrag,
         EndDrag,
-        PointerEnter
     }
 
 }

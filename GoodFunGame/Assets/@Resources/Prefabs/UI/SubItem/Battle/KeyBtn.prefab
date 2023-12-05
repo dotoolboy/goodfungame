@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4973969145397939455}
   - component: {fileID: 613425163818584606}
   - component: {fileID: 1887366620205091477}
+  - component: {fileID: 5482695162500149616}
   m_Layer: 5
   m_Name: KeyBtn
   m_TagString: Untagged
@@ -121,3 +122,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5482695162500149616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787406380923000207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5032b7cb3ae3542b4903bc2fd02f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

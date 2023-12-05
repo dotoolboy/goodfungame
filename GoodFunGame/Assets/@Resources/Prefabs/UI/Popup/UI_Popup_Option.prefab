@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -110,11 +110,11 @@ RectTransform:
   m_Children:
   - {fileID: 1186764819715017878}
   - {fileID: 7227351137917220483}
+  - {fileID: 5437146041188681672}
   - {fileID: 8211319467690020228}
   - {fileID: 2826214206013376803}
   - {fileID: 7392738228415695068}
   - {fileID: 6772806441236696922}
-  - {fileID: 5437146041188681672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -371,7 +371,8 @@ PrefabInstance:
       value: Option_Resolution
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9199268980091170822, guid: 5cc5750871151ae4a919207950d9f68b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cc5750871151ae4a919207950d9f68b, type: 3}
@@ -482,7 +483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194915732169688955, guid: e772ad91b6ec2e140b975cede38fc071, type: 3}
       propertyPath: m_Name
-      value: Option_Volume
+      value: MASTER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -572,11 +573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 59
+      value: 432
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -45
+      value: -236
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -702,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194915732169688955, guid: e772ad91b6ec2e140b975cede38fc071, type: 3}
       propertyPath: m_Name
-      value: Option_Volume (2)
+      value: SFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -816,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8194915732169688955, guid: e772ad91b6ec2e140b975cede38fc071, type: 3}
       propertyPath: m_Name
-      value: Option_Volume (1)
+      value: BGM
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

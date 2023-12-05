@@ -202,9 +202,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4164556243021018115}
     m_Modifications:
+    - target: {fileID: 4859734642890782052, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
+      propertyPath: m_text
+      value: Single
+      objectReference: {fileID: 0}
     - target: {fileID: 5208083596307786150, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
       propertyPath: m_Name
-      value: Entry_Button
+      value: Select_Btn_Solo
       objectReference: {fileID: 0}
     - target: {fileID: 8615455179240363237, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
       propertyPath: m_Pivot.x
@@ -308,9 +312,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4164556243021018115}
     m_Modifications:
+    - target: {fileID: 4859734642890782052, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
+      propertyPath: m_text
+      value: Multiple
+      objectReference: {fileID: 0}
     - target: {fileID: 5208083596307786150, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
       propertyPath: m_Name
-      value: Entry_Button (1)
+      value: Select_Btn_Multiple
       objectReference: {fileID: 0}
     - target: {fileID: 8615455179240363237, guid: 1bbca7a00f073e84f9a46d85d09a3010, type: 3}
       propertyPath: m_Pivot.x

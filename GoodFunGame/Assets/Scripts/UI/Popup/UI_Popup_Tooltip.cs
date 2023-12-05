@@ -50,6 +50,7 @@ public class UI_Popup_Tooltip : UI_Popup
     public override void Init()
     {
 
+        base.Init();
         BindObject(typeof(GameObjects));
         BindText(typeof(Texts));
 
