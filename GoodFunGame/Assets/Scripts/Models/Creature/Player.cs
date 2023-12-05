@@ -66,7 +66,7 @@ public class Player : Creature {
     // Callbacks.
     public Action cbOnPlayerLevelUp;
     public Action cbOnPlayerDataUpdated;
-    public delegate void PlayerHealthChanged(float newHealth);
+    public delegate void PlayerHealthChanged();
     public event PlayerHealthChanged OnPlayerHealthChanged;
     #endregion
 
@@ -90,7 +90,7 @@ public class Player : Creature {
             _collider.enabled = false;
             StartCoroutine(ColliderBoxEnabledTrue());
 
-            OnPlayerHealthChanged?.Invoke(Hp);
+            OnPlayerHealthChanged?.Invoke();
         }
     }
 
