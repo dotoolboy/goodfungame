@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6327048809206537013}
-  - component: {fileID: 2593652748818916636}
   - component: {fileID: 6330581932678596227}
   - component: {fileID: 1226541073842689585}
   - component: {fileID: 3519659275528469273}
+  - component: {fileID: -1439692023570627719}
   m_Layer: 0
-  m_Name: TempCharacter
+  m_Name: TempCharacter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,29 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2593652748818916636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6032083819981231839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4390fe2fdb856194e9c30857cd17a4da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0
-  pattern: 1
-  projectileCount: 60
-  projectileSpeed: 3
-  projectileStartAngle: 0
-  projectileSpreadAngle: 90
-  shotTime: 1
-  petals: 2
-  bulletsPerPetal: 10
-  angleIncrementPerBullet: 10
-  timeBetweenBullets: 0.1
 --- !u!212 &6330581932678596227
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,14 +123,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.21875, y: 1.6875}
+    oldSize: {x: 0.8125, y: 1.125}
     newSize: {x: 0.5, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 1.25}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &3519659275528469273
 Rigidbody2D:
@@ -182,3 +159,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1439692023570627719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6032083819981231839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b33a97476e7d5459c0176a30b16eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 0
+  hp: 0
+  speed: 0
+  currentHp: 0
+  damage: 0
+  fireType: 0
