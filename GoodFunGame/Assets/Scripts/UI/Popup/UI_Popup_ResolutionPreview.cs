@@ -44,8 +44,6 @@ public class UI_Popup_ResolutionPreview : UI_Popup
 
     }
 
-
-
     IEnumerator PreviewCountdown()
     {
         float countdown = 10;
@@ -74,7 +72,6 @@ public class UI_Popup_ResolutionPreview : UI_Popup
         StopAllCoroutines();
 
         Debug.Log("해상도 적용");
-
         Main.UI.ClosePopupUI(this);
     }
 
@@ -83,7 +80,6 @@ public class UI_Popup_ResolutionPreview : UI_Popup
         StopAllCoroutines();
 
         Debug.Log("해상도 적용취소");
-
         Main.UI.ClosePopupUI(this);
 
     }

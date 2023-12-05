@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 
 public class Option_Resolution : UI_Base
@@ -29,7 +27,7 @@ public class Option_Resolution : UI_Base
 
 
     private TMP_Dropdown dropdown;
-    private UnityEngine.UI.Toggle toggle;
+    private Toggle toggle;
 
     private List<Resolution> resolutions; //해상도 목록
 
@@ -63,10 +61,14 @@ public class Option_Resolution : UI_Base
 
 
 
+
+
         GetButton((int)Buttons.PreviewBtn).gameObject.BindEvent(Preview);
 
         dropdown = GetObject((int)GameObjects.Dropdown).GetComponent<TMP_Dropdown>();
-        toggle = GetObject((int)GameObjects.Toggle).GetComponent<UnityEngine.UI.Toggle>();
+        toggle = GetObject((int)GameObjects.Toggle).GetComponent<Toggle>();
+        toggle.onValueChanged.AddListener(FullScreenToggle);
+        dropdown.onValueChanged.AddListener(Dropbox);
 
 
 
@@ -95,22 +97,23 @@ public class Option_Resolution : UI_Base
 
         dropdown.RefreshShownValue();
 
+        Refresh();
+
         return true;
     }
 
-    public void Preview(PointerEventData data)
+    void Refresh()
     {
-        Main.UI.ShowPopupUI<UI_Popup_ResolutionPreview>();
+        toggle.isOn = Screen.fullScreen ? true : false;
+        dropdown.value = resolutions.Count - 1;
+        Dropbox(resolutions.Count - 1);
     }
-
-    public void Dropbox(int num) 
+    public void Dropbox(int num)
     {
         resolutionNumSet = num;
         dropdown.value = num; // 해상도목록에 체크마크도 갱신
 
     }
-
-
     public void FullScreenToggle(bool On)
     {
         toggle.isOn = On;
@@ -118,20 +121,31 @@ public class Option_Resolution : UI_Base
         Screen.fullScreen = On;
     }
 
-    public void Save()
+
+
+    public void Preview(PointerEventData data)
     {
+        Screen.SetResolution(resolutions[resolutionNumSet].width, resolutions[resolutionNumSet].height, screenMode);
+        Main.UI.ShowPopupUI<UI_Popup_ResolutionPreview>();
     }
 
-    public void Load()
-    {
 
+
+    public void Yes() // 해상도 적용할때
+    {
+        resolutionNum = resolutionNumSet;
+        dropdown.value = resolutionNum;
     }
 
-
+    public void No() // 해상도 취소할때
+    {
+        dropdown.value = resolutionNum;
+        Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
+    }
 
     public void DefaultSetting()
     {
-
+     
     }
 
 }
