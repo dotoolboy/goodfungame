@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Option_Audio : UI_Base
 {
 
-    private AudioMixer _audioMixer;
+    [SerializeField] private AudioMixer _audioMixer;
 
     private Slider _slider;
     private Toggle _toggle;
@@ -22,10 +22,8 @@ public class Option_Audio : UI_Base
         set
         {
             _type = value;
-            Refresh();
         }
     }
-
 
 
     #region Enums
@@ -63,18 +61,22 @@ public class Option_Audio : UI_Base
         GetText((int)Texts.NameText).text = _type.ToString();
 
         _toggle = GetObject((int)GameObjects.MuteToggle).GetComponent<Toggle>();
+        _toggle.onValueChanged.AddListener(Mute);
+
         _slider = GetObject((int)GameObjects.VolumeSlider).GetComponent<Slider>();
+        _slider.onValueChanged.AddListener(Volume);
+
+
+        Refresh();
 
         return true;
     }
 
     public void Volume(float value)
     {
-
-        if (!_toggle.isOn)
-            _audioMixer.SetFloat(_type.ToString(), Mathf.Log10(value) * 20);
-
-
+        if (!_toggle.isOn) 
+            _audioMixer.SetFloat(_type.ToString(), Mathf.Log10(value) * 20); // 이제 이렇게주면 -40 밑으로 내려갈때 자동으로 0 된다. 슬라이더 최소값을 0.01로 바꿔서 임시로 해결
+     
         GetText((int)Texts.VolumeText).text = (_slider.value * 100).ToString("N0");
     }
 
@@ -91,8 +93,13 @@ public class Option_Audio : UI_Base
 
     void Refresh()
     {
-        // 자기 타입에 맞게 변화
+      
+        GetText((int)Texts.VolumeText).text = (_slider.value * 100).ToString("N0");
 
+        if (_toggle.isOn)
+            _audioMixer.SetFloat(_type.ToString(), -80f);
+        else
+            _audioMixer.SetFloat(_type.ToString(), Mathf.Log10(_slider.value) * 20);
     }
 
 
@@ -101,12 +108,9 @@ public class Option_Audio : UI_Base
     }
     void Load()
     {
-
     }
-
     public void DefaultSetting()
     {
-
     }
 
 }
