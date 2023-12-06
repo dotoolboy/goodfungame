@@ -35,8 +35,8 @@ public class Enemy : Creature
     {
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-            OnHit(projectile.Owner);
+            //Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            OnHit(Main.Object.Player);
 
             Main.Object.Player.ScoreCount++;
         }
