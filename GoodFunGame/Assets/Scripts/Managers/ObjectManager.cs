@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ObjectManager
 {
@@ -112,8 +113,8 @@ public class ObjectManager
 
     public void DespawnAllProjectile()
     {
-        foreach(var item in Projectiles)
-            Despawn(item);
+        for (int i = 0; i < Projectiles.Count; ++i)
+            Despawn(Projectiles[i]);
     }
 
     public void Clear()

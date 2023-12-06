@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill_EnergyBurst : SkillBase
 {
+    GameObject _energyBurstWind;
     public override void Initialize()
     {
         base.Initialize();
@@ -15,13 +16,24 @@ public class Skill_EnergyBurst : SkillBase
         if (!base.Activate()) return false;
 
         // 이펙트
+        _energyBurstWind = Main.Resource.InstantiatePrefab("EnergyBurstWind.prefab");
+        StartCoroutine(DestroyPrefab());
 
-        // enemyProjectile 모두 Despawn
+        // 모든 projectile 없애기
         Main.Object.DespawnAllProjectile();
 
         // enemy 데미지
+        List<Enemy> enemies = Main.Object.Enemies;
 
+        for (int i = 0; i < enemies.Count; ++i)
+            enemies[i].OnHit(Main.Object.Player);
 
         return true;
+    }
+
+    IEnumerator DestroyPrefab()
+    {
+        yield return new WaitForSeconds(2f);
+        Main.Resource.Destroy(_energyBurstWind);
     }
 }
