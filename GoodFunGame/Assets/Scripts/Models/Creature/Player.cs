@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -52,7 +53,8 @@ public class Player : Creature
             _invincible = value;
             if (_invincible)
             {
-                StartCoroutine(InvincibleTimer(_invincibilityTime));
+                if (_coInvincible != null) StopCoroutine(_coInvincible);
+                _coInvincible = StartCoroutine(InvincibleTimer(_invincibilityTime));
             }
         }
     }
@@ -82,11 +84,17 @@ public class Player : Creature
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
     private bool _invincible = false;
 
+    // Skills.
+    private List<SkillBase> _skills = new();
+
     // Callbacks.
     public Action cbOnPlayerLevelUp;
     public Action cbOnPlayerDataUpdated;
     public delegate void PlayerHealthChanged();
     public event PlayerHealthChanged OnPlayerHealthChanged;
+
+    // Coroutines.
+    private Coroutine _coInvincible;
     #endregion
 
     #region MonoBehaviours
@@ -94,12 +102,6 @@ public class Player : Creature
     private void Start()
     {
         MoveSpeed = _speed;
-        //StartCoroutine(BasicShot());
-
-        // 임시 스킬 테스트
-        //timeWarpSkill = gameObject.AddComponent<TimeWarpSkill>();
-        reflectShieldSkill = gameObject.AddComponent<ReflectShieldSkill>();
-        //gravityFieldSkill = gameObject.AddComponent<GravityFieldSkill>();
     }
 
     protected override void FixedUpdate()
@@ -150,6 +152,7 @@ public class Player : Creature
     {
         if (base.Initialize() == false) return false;
         SetStatus(true);
+        SetSkills();
         return true;
     }
 
@@ -162,6 +165,19 @@ public class Player : Creature
     public override void SetInfo(string key)
     {
         base.SetInfo(key);
+    }
+
+    private void SetSkills()
+    {
+        // TODO:: 선택한 스킬을 가져오도록 변경.
+        _skills.Add(this.AddComponent<Skill_ReflectShield>());
+        _skills.Add(this.AddComponent<Skill_GravityField>());
+        _skills.Add(this.AddComponent<Skill_TimeWarp>());
+
+        for (int i = 0; i < _skills.Count; i++)
+        {
+            _skills[i].Initialize();
+        }
     }
 
     #endregion
@@ -244,7 +260,7 @@ public class Player : Creature
 
     // 임시 스킬 테스트
     //private TimeWarpSkill timeWarpSkill;
-    private ReflectShieldSkill reflectShieldSkill;
+    //private ReflectShieldSkill reflectShieldSkill;
     //private GravityFieldSkill gravityFieldSkill;
 
     // 임시 스킬 테스트
@@ -252,7 +268,16 @@ public class Player : Creature
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
         {
-            reflectShieldSkill.Activate();
+            _skills[0].Activate();
         }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.X))
+        {
+            _skills[1].Activate();
+        }
+        if (UnityEngine.Input.GetKeyDown(KeyCode.C))
+        {
+            _skills[2].Activate();
+        }
+
     }
 }
