@@ -38,7 +38,7 @@ public class Creature : Thing {
         set {
             if (value > HpMax) _hp = HpMax;
             else if (value <= 0) {
-                Hp = 0;
+                _hp = 0;
                 if (State != CreatureState.DEAD)
                     State = CreatureState.DEAD;
             }
@@ -96,10 +96,10 @@ public class Creature : Thing {
         Data = null;    // TODO:: key를 통해 해당 크리쳐의 Data를 받아온다. ex) Main.Data.Creatures[key];
 
 
-        SetStatus(true);
+        SetStatus(false);
     }
 
-    protected virtual void SetStatus(bool isFullHp = false, int MaxHp = 2) 
+    protected virtual void SetStatus(bool isFullHp = false, int MaxHp = 3) 
     {
         //HpMax = Data.hpMax;
         //Damage = Data.damage;
@@ -121,8 +121,10 @@ public class Creature : Thing {
 
     #endregion
 
-    public virtual void OnHit(GameObject obj) {
-        //Hp -= obj.Damage;
-        Hp -= 1;
+    public virtual void OnHit(Creature obj) {
+        Hp -= obj.Damage; // 현재 Enemy에 대미지 설정 X
+        //Debug.Log(Hp);
+        //Debug.Log("damage :" + obj.Damage);
+        //Hp -= 1;
     }
 }

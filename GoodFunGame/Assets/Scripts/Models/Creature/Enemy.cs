@@ -29,11 +29,13 @@ public class Enemy : Creature
 
     #region MonoBehaviours
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag($"PlayerProjectile"))
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            OnHit(collision.gameObject);
+            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            OnHit(projectile.Owner);
+
             Main.Object.Player.ScoreCount++;
         }
     }
