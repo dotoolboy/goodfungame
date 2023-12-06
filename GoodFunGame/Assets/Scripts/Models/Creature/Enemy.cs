@@ -176,12 +176,31 @@ public class Enemy : Creature
 
     private IEnumerator CoAttack()
     {
-        PG_Fan fanShot = Main.Object.SpawnProjectileGenerator<PG_Fan>();
-        fanShot.transform.position = this.transform.position;
-        fanShot.transform.SetParent(this.transform);
-        fanShot.Initialize(this, "Bullet_1_KSJ", 10, 6, 3, 250, 40);
-        fanShot.Shot();
-        yield return new WaitUntil(() => fanShot == null);
+        ProjectileGenerator pg = null;
+        int count = Random.Range(2, 8);
+        float time = Random.Range(0, 4);
+
+        int a = Random.Range(0, 2);
+        switch (a)
+        {
+            case 1:
+                PG_Fan fanShot = Main.Object.SpawnProjectileGenerator<PG_Fan>();
+                fanShot.transform.position = this.transform.position;
+                fanShot.transform.SetParent(this.transform);
+                fanShot.Initialize(this, "Bullet_1_KSJ", count, time, 3, 250, 40);
+                fanShot.Shot();
+                pg = fanShot;
+                break;
+            case 2:
+                PG_Circle circleShot = Main.Object.SpawnProjectileGenerator<PG_Circle>();
+                circleShot.transform.position = this.transform.position;
+                circleShot.transform.SetParent(this.transform);
+                circleShot.Initialize(this, "Bullet_1_KSJ", count, time, 3);
+                circleShot.Shot();
+                pg = circleShot;
+                break;
+        }
+        yield return new WaitUntil(() => pg == null);
         yield return new WaitForSeconds(1);
         _coAttack = null;
         yield break;
