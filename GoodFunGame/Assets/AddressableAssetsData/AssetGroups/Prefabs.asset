@@ -239,12 +239,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0230c46091f30f4448205057224593d8
-    m_Address: UI_MountSkill.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6b07f0c04feb6144991647acb73395d8
     m_Address: UI_Popup_GameEnd_Clear.prefab
     m_ReadOnly: 0

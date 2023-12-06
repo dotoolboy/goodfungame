@@ -83,11 +83,8 @@ public class GameManager
         get => _equipSkills;
         set
         {
-            if (_equipSkills.Count < 3) 
-            { 
             _equipSkills = value;
             OnEquipChanged?.Invoke();
-            }
         }
     }
 

@@ -73,7 +73,7 @@ public class UI_Popup_Status : UI_Popup
     }
     void Refresh()
     {
-        GetText((int)Texts.BestText).text = $"최고기록 : 999999999";
+        GetText((int)Texts.BestText).text = $"최고기록 : 0";
         GetText((int)Texts.SkillCollectText).text = $"수집율 : {String.Format("{0}", (float)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
         GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
         GetText((int)Texts.NameText).text = $"{Main.Game.UserName}";
@@ -88,12 +88,6 @@ public class UI_Popup_Status : UI_Popup
         {
             UI_SkillEquip newEquip = Main.Resource.InstantiatePrefab("UI_SkillEquip.prefab", GetObject((int)GameObjects.Content).transform).GetComponent<UI_SkillEquip>();
             newEquip.SetInfo(key);
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            UI_MountSkillBtn mount = Main.Resource.InstantiatePrefab("UI_MountSkill.prefab", GetObject((int)GameObjects.Panel).transform).GetComponent<UI_MountSkillBtn>();
-                mount.num = i;
         }
 
     }
