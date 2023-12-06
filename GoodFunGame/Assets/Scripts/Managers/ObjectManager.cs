@@ -98,5 +98,13 @@ public class ObjectManager
     {
         Main.Resource.Destroy(obj.gameObject);
     }
+
+    public void Clear()
+    {
+        Player = null;
+        Enemies.Clear();
+        Projectiles.Clear();
+        ExplosionVFX.Clear();
+    }
 }
 
