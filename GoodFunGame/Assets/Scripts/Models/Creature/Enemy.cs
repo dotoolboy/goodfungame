@@ -6,43 +6,32 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static EnemySpawn;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+using Random = UnityEngine.Random;
 
 public class Enemy : Creature 
 {
     #region Properties
-
     public EnemyData.EnemyKey enemyType;
     public int hp;
     public float speed;
     public int currentHp;
     public int damage;
     public EnemyData.FireType fireType;
-
-
+    public Pattern movePattern;
     #endregion
 
     #region Fields
 
-    private EnemyData _enemyData;
-    private DataManager _dataManager;
-
-    [SerializeField] float moveMagnitude = 4f; // 움직임의 크기
-    [SerializeField] float moveFrequency = 3f; // 움직임의 빈도
-    [SerializeField] float moveTime = 2f;  // 움직이는 시간
-
+    public Coroutine MoveCoroutine;
     #endregion
 
     #region MonoBehaviours
 
-    private void Start()
-    {
-        StartCoroutine(Move());
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "PlayerProjectile")
+        if (collision.gameObject.CompareTag($"PlayerProjectile"))
             OnHit(collision.gameObject);
     }
 
@@ -52,23 +41,42 @@ public class Enemy : Creature
     public override bool Initialize() 
     {
         if (base.Initialize() == false) return false;
-        foreach (var enemy in Main.Data.Enemies)
+        foreach (KeyValuePair<string, EnemyData> enemy in Main.Data.Enemies)
         {
             SetInfo(enemy.Key);
         }
-
         return true;
     }
 
     public override void SetInfo(string key) {
         base.SetInfo(key);
-
-        var enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
+        EnemyData enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
         hp = enemy.hp;
         currentHp = hp;
         speed = enemy.speed;
         damage = enemy.damage;
+        movePattern = AssignmentPattern(key);
+    }
+
+    /// <summary>
+    ///  랜덤한 패턴 타입 할당 "Key == BOSS를 포함하면 BOSS Type을 반환"
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    private Pattern AssignmentPattern(string key)
+    {
+        Pattern patternType;
+        if (key.Contains("BOSS"))
+        {
+            patternType = Pattern.BOSS;
+        }
+        else
+        {
+            Pattern[] patternTypes = Enum.GetValues(typeof(Pattern)).Cast<Pattern>().ToArray();
+            patternType = patternTypes[Random.Range(0,patternTypes.Length)];
+        }
+        return patternType;
     }
     #endregion
 
@@ -79,107 +87,55 @@ public class Enemy : Creature
 
         // TODO:: Player의 KillCount 증가.
 
-        // 터지는 효과
-        Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
-
         // TODO:: 오브젝트 디스폰
-        Main.Resource.Destroy(gameObject);
+        EndToEnemyCoroutine(this);
+        MoveCoroutine = StartCoroutine(ExplosionVFX());
+    }
+
+    private IEnumerator ExplosionVFX()
+    {
+        // 터지는 효과
+        var explosionVFX =Main.Object.Spawn<Thing>("Explosion", this.transform.position);
+        yield return new WaitForSeconds(1f);
+        // 터지는 효과 없애기
+        EndToEnemyCoroutine(explosionVFX);
     }
     #endregion
 
-    #region Move
-
-    IEnumerator Move()
+    #region MoveMentPattern
+    /// <summary>
+    ///  지그재그패턴  총 3번의 움직임 변화가 있음  (파라매터로 전달)
+    /// </summary>
+    public void Zigzag()
     {
-        while(State != CreatureState.DEAD)
-        {
-            System.Random random = new System.Random();
-            int randomNumber = random.Next(0, 3);
-
-            Vector3 originalPosition = transform.position;
-
-            switch (randomNumber)
-            {
-                case 0:
-                    yield return StartCoroutine(UpDown());
-                    break;
-
-                case 1:
-                    yield return StartCoroutine(LeftRight());
-                    break;
-
-                case 2:
-                    yield return StartCoroutine(Diagonal());
-                    break;
-                default:
-                    break;
-            }
-            yield return StartCoroutine(MoveToOriginalPosition(originalPosition, 0.15f));
-
-        }
-        yield break;
+        Vector2[] wayPoints = Main.Spawn.CalculateWaypoints(this, 3);
+        MoveCoroutine = StartCoroutine(Main.Spawn.MoveZigzag(this, wayPoints));
+    }
+    /// <summary>
+    ///  일직선 움직임
+    /// </summary>
+    public void Vertical()
+    {
+        MoveCoroutine = StartCoroutine(Main.Spawn.MoveToVertical(this));
     }
 
-    IEnumerator UpDown()
+    /// <summary>
+    ///  보스일때 움직임
+    /// </summary>
+    public void Boss()
     {
-        float elapsedTime = 0f;
-        Vector3 originalPosition = transform.position;
-
-        while (elapsedTime < moveTime)
-        {
-            float newY = originalPosition.y + Mathf.Sin(elapsedTime * moveFrequency) * moveMagnitude;
-            transform.position = new Vector3(originalPosition.x, newY, originalPosition.z);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+        MoveCoroutine = StartCoroutine(Main.Spawn.BossAppear(this));
     }
 
-    IEnumerator LeftRight()
+    public void EndToEnemyCoroutine<T>(T coroutineObject) where T : Thing
     {
-        float elapsedTime = 0f;
-        Vector3 originalPosition = transform.position;
-
-        while (elapsedTime < moveTime)
+        if (MoveCoroutine != null)
         {
-            float newX = originalPosition.x + Mathf.Sin(elapsedTime * moveFrequency) * moveMagnitude;
-            transform.position = new Vector3(newX, originalPosition.y, originalPosition.z);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            StopCoroutine(MoveCoroutine);
+            MoveCoroutine = null;
         }
+        Main.Object.Despawn(coroutineObject);
     }
-
-    IEnumerator Diagonal()
-    {
-        float elapsedTime = 0f;
-        Vector3 originalPosition = transform.position;
-
-        while (elapsedTime < moveTime)
-        {
-            float newX = originalPosition.x + Mathf.Sin(elapsedTime * moveFrequency) * moveMagnitude;
-            float newY = originalPosition.y + Mathf.Sin(elapsedTime * moveFrequency) * moveMagnitude;
-            transform.position = new Vector3(newX, newY, originalPosition.z);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        yield return StartCoroutine(MoveToOriginalPosition(originalPosition, 0.2f));
-    }
-
-    IEnumerator MoveToOriginalPosition(Vector3 originalPosition, float duration)
-    {
-        float elapsedTime = 0f;
-        Vector3 startPosition = transform.position;
-
-        while (elapsedTime < duration)
-        {
-            transform.position = Vector3.Lerp(startPosition, originalPosition, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        transform.position = originalPosition;
-    }
-
     #endregion
+
 }
