@@ -41,4 +41,10 @@ public class Main : MonoBehaviour
     public static UIManager UI => Instance?._ui;
     public static GameManager Game => Instance?._game;
     public static EnemySpawn Spawn => Instance?._enemySpawn;
+
+    public static void Clear()
+    {
+        Pool.Clear();
+        Object.Clear();
+    }
 }

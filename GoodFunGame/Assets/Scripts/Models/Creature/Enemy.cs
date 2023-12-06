@@ -62,7 +62,7 @@ public class Enemy : Creature
 
     public override void SetInfo(string key) {
         base.SetInfo(key);
-        _paths = GetComponents<DOTweenPath>();
+
         EnemyData enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
         hp = enemy.hp;
