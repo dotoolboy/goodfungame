@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,10 +8,12 @@ public class ObjectManager
 {
 
     public Player Player { get; private set; }
-    public List<Enemy> Enemies { get; private set; } = new();
-    public List<Projectile> Projectiles { get; private set; } = new();
-
-    public List<Explosion> ExplosionVFX { get; set; } = new();
+    // get에  event invoke 하면 Remove, Add시 이벤트 송신 가능해짐
+    private List<Enemy> Enemies { get; set; } = new();
+    public event Action<int> OnVictory;
+    private int _killCount;
+    private List<Projectile> Projectiles { get; set; } = new();
+    private List<Explosion> ExplosionVFX { get; set; } = new();
 
     public Transform EnemyParent
     {
@@ -79,7 +82,7 @@ public class ObjectManager
 
     public void Despawn<T>(T obj) where T : Thing
     {
-        System.Type type = typeof(T);
+        Type type = typeof(T);
 
         if (type == typeof(Player))
         {
@@ -88,6 +91,7 @@ public class ObjectManager
         else if (type == typeof(Enemy))
         {
             Enemies.Remove(obj as Enemy);
+            CheckForVictory();
             Main.Resource.Destroy(obj.gameObject);
         }
         else if (type == typeof(Projectile))
@@ -112,6 +116,12 @@ public class ObjectManager
         Enemies.Clear();
         Projectiles.Clear();
         ExplosionVFX.Clear();
+    }
+
+    private void CheckForVictory()
+    {
+        _killCount++;
+        if (Enemies.Count == 0) OnVictory?.Invoke(_killCount);
     }
 }
 

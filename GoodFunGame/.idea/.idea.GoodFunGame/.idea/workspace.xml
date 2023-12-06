@@ -20,6 +20,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Datas/CreatureData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/StageBackGround.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/StageManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Models/Creature/Creature.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scene/EnemyMovementDemo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scene/TestSceneStage.cs" root0="FORCE_HIGHLIGHTING" />
@@ -119,7 +120,7 @@
       <workItem from="1701805272717" duration="19941000" />
       <workItem from="1701829342397" duration="8030000" />
       <workItem from="1701849770029" duration="1535000" />
-      <workItem from="1701851329582" duration="7384000" />
+      <workItem from="1701851329582" duration="14980000" />
     </task>
     <servers />
   </component>
