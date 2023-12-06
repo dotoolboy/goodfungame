@@ -381,6 +381,7 @@ public class UI_Popup_Talk : UI_Popup
     public void CloseEvent()
     {
         Main.UI.ClosePopupUI(this);
+
     }
 
 
