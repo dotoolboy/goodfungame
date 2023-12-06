@@ -56,7 +56,6 @@ public class UI_Popup_BattleMenu_Single : UI_Popup_BattleMenu
         Main.UI.ShowPopupUI<UI_Popup_Pause>();
 
 
-
     }
 
 }

@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Option_Resolution
       objectReference: {fileID: 0}
+    - target: {fileID: 7472316211962569842, guid: 5cc5750871151ae4a919207950d9f68b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7697501753652450914, guid: 5cc5750871151ae4a919207950d9f68b, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 39

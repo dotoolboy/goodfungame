@@ -2,44 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
-public class UI_Popup_Status : UI_Popup
+public class UI_Popup_SkillEquipButton : UI_Popup
 {
 
-
     #region Enums
-    enum Texts
+
+    enum GameObjects
     {
-       
-    }
-    enum Images
-    {
-        PlayerImage,
     }
 
     enum Buttons
     {
-        BackspaceBtn
     }
 
-
-
     #endregion
+
+
     void Start()
     {
         Init();
     }
 
-    // 스킬 장착 관리, 캐릭터 정보 이름 등등등 관리가능해야함
     public override bool Init()
     {
         if (!base.Init()) return false;
 
-        BindText(typeof(Texts));
+        BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
-        BindImage(typeof(Images));
 
-        GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
+
+
+    //    GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
 
         return true;
     }
