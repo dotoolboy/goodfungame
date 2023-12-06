@@ -58,6 +58,7 @@ public class UI_SkillCard : UI_Base
     public void Refresh()
     {
         if (Data == null) return;
+        Init();
         GetText((int)Texts.Name).text = Data.skillStringKey;
         GetText((int)Texts.Introduce).text = Data.skillDesc;
         GetText((int)Texts.Price).text = $"{Data.skillPrice} Gold";

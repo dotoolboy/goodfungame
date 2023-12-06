@@ -9,6 +9,9 @@ public class ObjectManager
     public Player Player { get; private set; }
     public List<Enemy> Enemies { get; private set; } = new();
     public List<Projectile> Projectiles { get; private set; } = new();
+
+    public List<GameObject> ExplosionVFX { get; set; } = new();
+
     public Transform EnemyParent
     {
         get
@@ -25,6 +28,7 @@ public class ObjectManager
 
         return pg as T;
     }
+
     public T Spawn<T>(string key, Vector2 position) where T : Thing
     {
         System.Type type = typeof(T);
@@ -39,18 +43,18 @@ public class ObjectManager
 
             return Player as T;
         }
-        else if (type == typeof(Enemy))
-        {
-            GameObject obj = Main.Resource.InstantiatePrefab("Enemy.prefab", pooling: true);
-            obj.transform.position = position;
 
+        if (type == typeof(Enemy))
+        {
+            GameObject obj = Main.Resource.InstantiatePrefab("TempEnemy.prefab", pooling: true);
+            obj.transform.position = position;
             Enemy enemy = obj.GetOrAddComponent<Enemy>();
             enemy.SetInfo(key);
             Enemies.Add(enemy);
-
             return enemy as T;
         }
-        else if (type == typeof(Projectile))
+
+        if (type == typeof(Projectile))
         {
             GameObject obj = Main.Resource.InstantiatePrefab("Projectile_TEMP.prefab", pooling: true);
             obj.transform.position = position;
@@ -59,6 +63,14 @@ public class ObjectManager
             Projectiles.Add(projectile);
 
             return projectile as T;
+        }
+
+        if (type == typeof(Thing))
+        {
+            GameObject obj = Main.Resource.InstantiatePrefab("Explosion.prefab", pooling: true);
+            obj.transform.position = position;
+            ExplosionVFX.Add(obj);
+            return obj as T;
         }
         return null;
     }
