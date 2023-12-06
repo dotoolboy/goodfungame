@@ -65,7 +65,6 @@ public class UI_Popup_Tooltip : UI_Popup
         GetObject((int)GameObjects.Tooltip).gameObject.SetActive(false);
 
 
-
         return true;
     }
 
@@ -86,7 +85,7 @@ public class UI_Popup_Tooltip : UI_Popup
         GetText((int)Texts.Content).text = content;
         GetObject((int)GameObjects.Header).gameObject.SetActive(false);
 
-        _layoutElement.enabled = GetText((int)Texts.Content).preferredWidth > _characterWrapLimit;   // 텍스트 길면 LayoutElement 활성화해서 글에 자동으로 엔터넣기
+        _layoutElement.enabled = GetText((int)Texts.Content).preferredWidth > _characterWrapLimit;   // 텍스트길면 LayoutElement 활성화해서 글에 자동으로 엔터넣기
 
         GetObject((int)GameObjects.Tooltip).gameObject.SetActive(true);
 

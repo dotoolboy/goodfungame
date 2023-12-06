@@ -86,6 +86,9 @@ public class Enemy : Creature
         base.OnStateEntered_Dead();
 
         // TODO:: Player의 KillCount 증가.
+        // Score += 50;
+        // 터지는 효과
+        Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
         // TODO:: 오브젝트 디스폰
         EndToEnemyCoroutine(this);
