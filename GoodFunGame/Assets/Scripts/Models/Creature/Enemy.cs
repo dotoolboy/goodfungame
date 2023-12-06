@@ -1,14 +1,10 @@
 
-using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static EnemySpawn;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using Random = UnityEngine.Random;
 
 public class Enemy : Creature 
@@ -21,12 +17,15 @@ public class Enemy : Creature
     public int damage;
     public EnemyData.FireType fireType;
     public Pattern movePattern;
+    private SpriteRenderer _enemySpriteRenderer;
     #endregion
 
     #region Fields
 
-    public Coroutine MoveCoroutine;
+    private Coroutine _moveCoroutine;
     private Coroutine _coAttack;
+    private string _key;
+    private string _projectileKey;
     #endregion
 
     #region MonoBehaviours
@@ -52,6 +51,7 @@ public class Enemy : Creature
     public override bool Initialize() 
     {
         if (base.Initialize() == false) return false;
+        _enemySpriteRenderer = GetComponent<SpriteRenderer>();
         foreach (KeyValuePair<string, EnemyData> enemy in Main.Data.Enemies)
         {
             SetInfo(enemy.Key);
@@ -61,8 +61,10 @@ public class Enemy : Creature
 
     public override void SetInfo(string key) {
         base.SetInfo(key);
+        _key = key;
         EnemyData enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
+        _enemySpriteRenderer.sprite = Main.Resource.Load<Sprite>($"{key}.sprite");
         hp = enemy.hp;
         currentHp = hp;
         speed = enemy.speed;
@@ -120,7 +122,7 @@ public class Enemy : Creature
     {
         CoroutineInit();
         Vector2[] wayPoints = CalculateWaypoints(this, 3);
-        MoveCoroutine = StartCoroutine(MoveZigzag(this, wayPoints));
+        _moveCoroutine = StartCoroutine(MoveZigzag(this, wayPoints));
     }
     /// <summary>
     ///  일직선 움직임
@@ -128,7 +130,7 @@ public class Enemy : Creature
     public void Vertical()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(MoveToVertical(this));
+        _moveCoroutine = StartCoroutine(MoveToVertical(this));
     }
 
     /// <summary>
@@ -137,25 +139,25 @@ public class Enemy : Creature
     public void Boss()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(Main.Spawn.BossAppear(this));
+        _moveCoroutine = StartCoroutine(Main.Spawn.BossAppear(this));
     }
 
     public void BossHorizontal()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(BossHorizontalPattern(this));
+        _moveCoroutine = StartCoroutine(BossHorizontalPattern(this));
     }
 
     public void BossInfinity()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(BossInfinityPattern(this));
+        _moveCoroutine = StartCoroutine(BossInfinityPattern(this));
     }
 
     public void BossInAndOut()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(BossInAndOutPattern(this));
+        _moveCoroutine = StartCoroutine(BossInAndOutPattern(this));
     }
 
     public void EndToEnemyCoroutine<T>(T coroutineObject) where T : Thing
@@ -166,52 +168,68 @@ public class Enemy : Creature
 
     private void CoroutineInit()
     {
-        if (MoveCoroutine == null) return;
-        StopCoroutine(MoveCoroutine);
-        MoveCoroutine = null;
+        if (_moveCoroutine == null) return;
+        StopCoroutine(_moveCoroutine);
+        _moveCoroutine = null;
     }
     #endregion
 
     #region AttackPattern
+    private string[] MappingProjectileKey()
+    {
+        string[] key = { };
+        if (enemyType.ToString() != _key)
+        {
+            return new string[] { };
+        }
 
+        if (Main.Object.ProjectileMappings.TryGetValue(enemyType, out string[] projectileKeys))
+        {
+            key = projectileKeys;
+        }
+
+        return key;
+    }
     private IEnumerator CoAttack()
     {
         ProjectileGenerator pg = null;
         int count = Random.Range(2, 8);
         float time = Random.Range(0, 4);
-
-        int a = Random.Range(0, 5);
+        int a = Random.Range(0, 4);
+        string key = _key.Contains("BOSS") 
+            ? MappingProjectileKey()[Random.Range(0, MappingProjectileKey().Length)] 
+            : MappingProjectileKey()[0];
         switch (a)
         {
             case 1:
                 PG_Fan fanShot = Main.Object.SpawnProjectileGenerator<PG_Fan>();
-                fanShot.transform.position = this.transform.position;
-                fanShot.transform.SetParent(this.transform);
-                fanShot.Initialize(this, "Bullet_1_KSJ", count, time, 3, 250, 40);
+                fanShot.transform.position = transform.position;
+                fanShot.transform.SetParent(transform);
+                fanShot.Initialize(this, key, count, time, 3, 250, 40);
                 fanShot.Shot();
                 pg = fanShot;
                 break;
             case 2:
                 PG_Circle circleShot = Main.Object.SpawnProjectileGenerator<PG_Circle>();
-                circleShot.transform.position = this.transform.position;
-                circleShot.transform.SetParent(this.transform);
-                circleShot.Initialize(this, "Bullet_1_KSJ", count, time, 3);
+                circleShot.transform.position = transform.position;
+                circleShot.transform.SetParent(transform);
+                circleShot.Initialize(this, key, count, time, 3);
                 circleShot.Shot();
                 pg = circleShot;
                 break;
             case 3:
                 PG_Ring ringShot = Main.Object.SpawnProjectileGenerator<PG_Ring>();
-                ringShot.transform.position = this.transform.position;
-                ringShot.transform.SetParent(this.transform);
-                ringShot.Initialize(this, "Bullet_1_KSJ", 20, time, 3);
+                ringShot.transform.position = transform.position;
+                ringShot.transform.SetParent(transform);
+                ringShot.Initialize(this, key, 20, time, 3);
                 ringShot.Shot();
                 pg = ringShot;
                 break;
             case 4:
                 PG_Vertical verticalShot = Main.Object.SpawnProjectileGenerator<PG_Vertical>();
-                verticalShot.transform.position = this.transform.position;
-                verticalShot.transform.SetParent(this.transform);
-                verticalShot.Initialize(this, "Bullet_1_KSJ", count, time, 3);
+                verticalShot.transform.position = transform.position;
+                verticalShot.transform.SetParent(transform);
+                verticalShot.Initialize(this, key, count, time, 3);
                 verticalShot.Shot();
                 pg = verticalShot;
                 break;

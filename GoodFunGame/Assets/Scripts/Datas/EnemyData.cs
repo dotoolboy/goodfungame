@@ -20,7 +20,7 @@ public class EnemyData
         SOLDIER2_CHH,
         SOLDIER3_CHH,
         
-        BOSS_LJS,    // 이정훈님
+        BOSS_LJH,    // 이정훈님
         SOLDIER1_LJH,
         SOLDIER2_LJH,
         SOLDIER3_LJH,

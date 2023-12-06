@@ -7,11 +7,34 @@ using static UnityEditor.Progress;
 
 public class ObjectManager
 {
+    public Dictionary<EnemyData.EnemyKey, string[]> ProjectileMappings = new Dictionary<EnemyData.EnemyKey, string[]>
+    {
+        { EnemyData.EnemyKey.BOSS_MWJ, new[] { "Bullet_1_MWJ", "Bullet_2_MWJ", "Bullet_3_MWJ" } },
+        { EnemyData.EnemyKey.SOLDIER1_MWJ, new[] { "Bullet_1_MWJ" } },
+        { EnemyData.EnemyKey.SOLDIER2_MWJ, new[] { "Bullet_2_MWJ" } },
+        { EnemyData.EnemyKey.SOLDIER3_MWJ, new[] { "Bullet_3_MWJ" } },
+        { EnemyData.EnemyKey.BOSS_CHH, new[] { "Bullet_1_CHH", "Bullet_2_CHH", "Bullet_3_CHH" } },
+        { EnemyData.EnemyKey.SOLDIER1_CHH, new[] { "Bullet_1_CHH" } },
+        { EnemyData.EnemyKey.SOLDIER2_CHH, new[] { "Bullet_2_CHH" } },
+        { EnemyData.EnemyKey.SOLDIER3_CHH, new[] { "Bullet_3_CHH" } },
+        { EnemyData.EnemyKey.BOSS_LJH, new[] { "Bullet_1_LJH", "Bullet_2_LJH", "Bullet_3_LJH" } },
+        { EnemyData.EnemyKey.SOLDIER1_LJH, new[] { "Bullet_1_LJH" } },
+        { EnemyData.EnemyKey.SOLDIER2_LJH, new[] { "Bullet_2_LJH" } },
+        { EnemyData.EnemyKey.SOLDIER3_LJH, new[] { "Bullet_3_LJH" } },
+        { EnemyData.EnemyKey.BOSS_JEH, new[] { "Bullet_1_JEH", "Bullet_2_JEH", "Bullet_3_JEH" } },
+        { EnemyData.EnemyKey.SOLDIER1_JEH, new[] { "Bullet_1_JEH" } },
+        { EnemyData.EnemyKey.SOLDIER2_JEH, new[] { "Bullet_2_JEH" } },
+        { EnemyData.EnemyKey.SOLDIER3_JEH, new[] { "Bullet_3_JEH" } },
+        { EnemyData.EnemyKey.BOSS_KSJ, new[] { "Bullet_1_KSJ", "Bullet_2_KSJ", "Bullet_3_KSJ" } },
+        { EnemyData.EnemyKey.SOLDIER1_KSJ, new[] { "Bullet_1_KSJ" } },
+        { EnemyData.EnemyKey.SOLDIER2_KSJ, new[] { "Bullet_2_KSJ" } },
+        { EnemyData.EnemyKey.SOLDIER3_KSJ, new[] { "Bullet_3_KSJ" } },
+    };
 
     public Player Player { get; private set; }
     public List<Enemy> Enemies { get; set; } = new();
     public event Action<int> OnVictory;
-    private int _killCount;
+    public int KillCount;
     private List<Projectile> Projectiles { get; set; } = new();
     private List<Explosion> ExplosionVFX { get; set; } = new();
 
@@ -126,8 +149,8 @@ public class ObjectManager
 
     private void CheckForVictory()
     {
-        _killCount++;
-        if (Enemies.Count == 0) OnVictory?.Invoke(_killCount);
+        KillCount++;
+        if (Enemies.Count == 0) OnVictory?.Invoke(KillCount);
     }
 }
 
