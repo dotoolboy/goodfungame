@@ -23,11 +23,16 @@ public class GameScene : BaseScene
         // 스테이지 정보 초기화
         Main.Stage.InitializeStage();
         // 스테이지 레벨 및 적 스폰 시간 통제
-        _coGame = StartCoroutine(Main.Stage.CreateStage(1,5f));
+        _coGame = NextStage();
   
         // =========================================================================================
-
         return true;
+    }
+
+    public Coroutine NextStage()
+    {
+        Debug.Log($"StageLevel : {Main.Game.Data.stageLevel}");
+        return  StartCoroutine(Main.Stage.CreateStage(Main.Game.Data.stageLevel,4f));
     }
 
     private void Update()
@@ -38,5 +43,4 @@ public class GameScene : BaseScene
             else Main.UI.ShowPopupUI<UI_Popup_Pause>();
         }
     }
-
 }

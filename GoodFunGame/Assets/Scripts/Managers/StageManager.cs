@@ -40,7 +40,7 @@ public class StageManager
     {
         {"BOSS_MWJ", new List<string> {"SOLDIER1_MWJ", "SOLDIER2_MWJ", "SOLDIER3_MWJ"}},
         {"BOSS_CHH", new List<string> {"SOLDIER1_CHH", "SOLDIER2_CHH", "SOLDIER3_CHH"}},
-        {"BOSS_LJS", new List<string> {"SOLDIER1_LJH", "SOLDIER2_LJH", "SOLDIER3_LJH"}},
+        {"BOSS_LJH", new List<string> {"SOLDIER1_LJH", "SOLDIER2_LJH", "SOLDIER3_LJH"}},
         {"BOSS_JEH", new List<string> {"SOLDIER1_JEH", "SOLDIER2_JEH", "SOLDIER3_JEH"}},
         {"BOSS_KSJ", new List<string> {"SOLDIER1_KSJ", "SOLDIER2_KSJ", "SOLDIER3_KSJ"}}
     };
@@ -48,12 +48,14 @@ public class StageManager
 
     public void InitializeStage()
     {
-        stageLevel = Main.Game.Data.stageLevel;
+        stageLevel = Main.Game.Data.stageLevel == 0 ? 1 : Main.Game.Data.stageLevel;
+        Main.Game.Data.stageLevel = stageLevel;
         _stageHighScore = Main.Game.Data.stageHighScore;
         StageCurrentScore = 0;
         _waveCount = GameManager.StageWaveMaxCount;
         _waveDesign = Main.Game.WaveVolume;
         Main.Object.OnVictory += OnVictory;
+        Main.Object.KillCount = 0;
     }
 
     /// <summary>
@@ -64,6 +66,7 @@ public class StageManager
     /// <returns></returns>
     public IEnumerator CreateStage(int stage, float spawnDelay)
     {
+        Main.Object.KillCount = 0;
         if (stageLevel > 5)
         {
             Debug.Log("최대 스테이지 달성 더이상 게임이 불가능합니다.");

@@ -99,7 +99,7 @@ public class UI_Popup_GameEnd_Clear : UI_Popup
         Time.timeScale = 1;
         Main.Game.Data.stageLevel++;
         Main.UI.ClosePopupUI(this);
-
+        (Main.Scene.CurrentScene as GameScene).NextStage();
     }
 
 }

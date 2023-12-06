@@ -110,6 +110,7 @@ public class GameManager
     public void Initialize()
     {
         _dataPath = Application.persistentDataPath + "/SaveData.json";
+        Debug.Log(Application.persistentDataPath);
         if (LoadGame()) return;
 
         // ================== 로드 실패, 초기화. ==================
