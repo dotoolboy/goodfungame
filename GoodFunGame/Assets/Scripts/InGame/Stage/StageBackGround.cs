@@ -33,7 +33,7 @@ public class StageBackGround : MonoBehaviour
         ResetPosition = CameraTransform.position.y + CameraHeight;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (LayerSet layerSet in layerSets)
         {
@@ -42,8 +42,6 @@ public class StageBackGround : MonoBehaviour
             Scrolling(layerSet.topLayer, layerSet.TopSpeed);
         }
     }
-
-
 
     private void Scrolling(Transform layer, float speed)
     {

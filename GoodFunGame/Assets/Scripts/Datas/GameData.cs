@@ -6,7 +6,6 @@ using UnityEngine;
 [Serializable]
 public class GameData
 {
-
     #region Player Info
 
     public string userName = "Player";
@@ -21,6 +20,11 @@ public class GameData
     public bool muteBGM = false;
     public bool muteSFX = false;
 
+    #endregion
+
+    #region StageData
+    public int stageLevel;
+    public int stageHighScore;
     #endregion
 
 

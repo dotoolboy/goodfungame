@@ -51,8 +51,8 @@ public class UI_Scene_Game : UI_Scene
 
     private void Refresh()
     {
-        GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
-        GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
+        // GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
+        // GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
     }
 
     private void OnBtnPause(PointerEventData data)
@@ -62,7 +62,7 @@ public class UI_Scene_Game : UI_Scene
 
     private void OnPlayerDataUpdated()
     {
-        GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
-        GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
+        // GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
+        // GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
     }
 }
