@@ -43,6 +43,26 @@ public class Player : Creature
             cbOnPlayerDataUpdated?.Invoke();
         }
     }
+
+    public bool Invincible
+    {
+        get => _invincible; 
+        set
+        {
+            _invincible = value;
+            if (_invincible)
+            {
+                StartCoroutine(InvincibleTimer(_invincibilityTime));
+            }
+        }
+    }
+
+    private IEnumerator InvincibleTimer(float invincibilityTime)
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        Invincible = false;
+    }
+
     #endregion
 
     #region Fields
@@ -60,6 +80,7 @@ public class Player : Creature
 
     [SerializeField] private float _speed;
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
+    private bool _invincible = false;
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;
@@ -95,6 +116,7 @@ public class Player : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (Invincible) return;
         if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
         {
             if (collision.CompareTag("EnemyProjectile"))
@@ -102,16 +124,14 @@ public class Player : Creature
                 Projectile projectile = collision.gameObject.GetComponent<Projectile>();
                 Main.Resource.Destroy(collision.gameObject);
                 OnHit(projectile.Owner);
+                Invincible = true;
             }
             else
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 OnHit(enemy);
+                Invincible = true;
             }
-
-            // 무적
-            _collider.enabled = false;
-            StartCoroutine(EnableColliderAfterInvincibility());
 
             // 알파값 변경
             StartCoroutine(AlphaModifyAfterCollision());
