@@ -34,6 +34,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d782bc2bede34e66b4df18f3f7c51ec7171a00/b1/0920f6e4/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d782bc2bede34e66b4df18f3f7c51ec7171a00/be/91517323/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fcc0bbf6bf4e430c91d4aa05736fc5c62ac00/7c/3950a5bf/ShortcutExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fcc0bbf6bf4e430c91d4aa05736fc5c62ac00/ad/5f2c01fb/TweenExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2Ytg5SZ1SLduFDwbQ000MrjcLlL" />
   <component name="ProjectViewState">
@@ -88,10 +89,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="50719">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2076">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="50719" />
+      <option name="pid" value="2076" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -115,7 +116,8 @@
       <workItem from="1701739693468" duration="4244000" />
       <workItem from="1701749883954" duration="21235000" />
       <workItem from="1701787177301" duration="99000" />
-      <workItem from="1701805272717" duration="18016000" />
+      <workItem from="1701805272717" duration="19941000" />
+      <workItem from="1701829342397" duration="8030000" />
     </task>
     <servers />
   </component>
@@ -126,78 +128,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs</url>
-          <line>211</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs" initialLine="211" containingFunctionPresentation="Method 'BossMovePattern'">
-            <startOffsets>
-              <option value="6612" />
-              <option value="6677" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6715" />
-              <option value="6713" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs</url>
-          <line>212</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs" initialLine="212" containingFunctionPresentation="Method 'BossMovePattern'">
-            <startOffsets>
-              <option value="6724" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6748" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs</url>
-          <line>218</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs" initialLine="218" containingFunctionPresentation="Method 'BossMovePattern'">
-            <startOffsets>
-              <option value="6851" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6898" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs</url>
-          <line>219</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs" initialLine="219" containingFunctionPresentation="Method 'BossMovePattern'">
-            <startOffsets>
-              <option value="6910" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6975" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs</url>
-          <line>220</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/InGame/Stage/EnemySpawn.cs" initialLine="220" containingFunctionPresentation="Method 'BossMovePattern'">
-            <startOffsets>
-              <option value="6984" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7031" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

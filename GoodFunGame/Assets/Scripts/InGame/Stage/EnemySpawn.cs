@@ -16,7 +16,6 @@ public class EnemySpawn
     private List<Enemy> _enemySpawnList = new();
     private const float SpeedOffset = 1.5f;
     private const float WayPointWidthValue = 2;
-    private DOTweenPath[] _bossPattern;
 
     #region SpawnGroup Controller
     private readonly string[] _bossKey = {
@@ -28,8 +27,6 @@ public class EnemySpawn
     };
     private int _bossIndex;
 
-    private Coroutine _bossMoveCoroutine;
-
     private readonly Dictionary<string, List<string>> _enemyGroups = new()
     {
         {"BOSS_MWJ", new List<string> {"SOLDIER1_MWJ", "SOLDIER2_MWJ", "SOLDIER3_MWJ"}},
@@ -40,10 +37,9 @@ public class EnemySpawn
     };
     #endregion
 
-
     public enum Pattern { VERTICAL, ZIGZAG, BOSS}
 
-    public enum BossPattern { Horizontal, Infinity, InAndOut}
+    private enum BossPattern { Horizontal, Infinity, InAndOut}
 
     #region Get And Set Enemy Pattern
     public void StageVolume(int stageValue)
@@ -176,15 +172,10 @@ public class EnemySpawn
     ///  보스 출현
     /// </summary>
     /// <param name="enemy"></param>
+    /// <param name="paths"></param>
     /// <returns></returns>
     public IEnumerator BossAppear(Enemy enemy)
     {
-        _bossPattern = enemy.GetComponents<DOTweenPath>();
-        if (_bossPattern == null || _bossPattern.Length == 0)
-        {
-            Debug.LogError("DOTweenPath components not found on the enemy.");
-            yield break;
-        }
         Vector2 endPos = new(enemy.transform.position.x, 3.5f);
         while (enemy.transform.position.y > 3.5f)
         {
@@ -200,25 +191,103 @@ public class EnemySpawn
 
     private void BossNextPattern(Enemy enemy)
     {
-        enemy.StopCoroutine(enemy.MoveCoroutine);
-        enemy.MoveCoroutine = null;
         BossPattern[] bossPatterns = Enum.GetValues(typeof(BossPattern)).Cast<BossPattern>().ToArray();
         BossPattern bossPattern = bossPatterns[Random.Range(0, bossPatterns.Length)];
-        BossMovePattern(enemy, bossPattern);
+
+        switch (bossPattern)
+        {
+            case BossPattern.Horizontal:
+                enemy.BossHorizontal();
+                break;
+            case BossPattern.Infinity:
+                enemy.BossInfinity();
+                break;
+            case BossPattern.InAndOut:
+                enemy.BossInAndOut();
+                break;
+        }
     }
 
-    private void BossMovePattern(Enemy enemy, BossPattern patternName)
+    public IEnumerator BossHorizontalPattern(Enemy enemy)
     {
-        DOTweenPath patternPlay = _bossPattern.FirstOrDefault(pattern => patternName.ToString() == pattern.id);
-        if (patternPlay == null)
+        Vector3[] waypoints =
         {
-            Debug.LogError("Pattern play is null.");
-            return;
-        }
+            new(2.5f,3.5f,0f), 
+            new(-2.5f,3.5f,0f), 
+            new(0f,3.5f,0f)
+        };
 
-        // patternPlay.onComplete.RemoveAllListeners();
-        // patternPlay.onComplete.AddListener(() => BossNextPattern(enemy));
-        patternPlay.DOPlayById(patternName.ToString());
+        int repeatCount = 2;
+
+        while (repeatCount > 0)
+        {
+            foreach (Vector3 wayPoint in waypoints)
+            {
+                while (Vector3.Distance(enemy.transform.position, wayPoint) > 0.01f)
+                {
+                    enemy.transform.position = Vector3.MoveTowards(
+                        enemy.transform.position, 
+                        wayPoint,
+                        enemy.speed * Time.deltaTime * SpeedOffset);
+                    yield return null;
+                }
+            }
+            repeatCount--;
+        }
+        BossNextPattern(enemy);
+    }
+
+    public IEnumerator BossInfinityPattern(Enemy enemy)
+    {
+        Vector3[] waypoints =
+        {
+            new(0f,3.5f,0f), 
+            new(-1.5f,2.5f,0f), 
+            new(-3f,3.5f,0f), 
+            new(-1.5f,4.5f,0f), 
+            new(1.5f,2.5f,0f), 
+            new(3f,3.5f,0f), 
+            new(1.5f,4.5f,0f), 
+            new Vector3(0f,3.5f,0f)
+        };
+        foreach (Vector3 wayPoint in waypoints)
+        {
+            while (Vector3.Distance(enemy.transform.position, wayPoint) > 0.01f)
+            {
+                enemy.transform.position = Vector3.MoveTowards(
+                    enemy.transform.position, 
+                    wayPoint,
+                    enemy.speed * Time.deltaTime * SpeedOffset);
+                yield return null;
+            }
+        }
+        BossNextPattern(enemy);
+    }
+
+    public IEnumerator BossInAndOutPattern(Enemy enemy)
+    {
+        Vector3[] waypoints =
+        {
+            new(0f,3.5f,0f), 
+            new(0f,1f,0f), 
+            new(0f,3.5f,0f), 
+            new(-1.7f,2.5f,0f), 
+            new(0f,3.5f,0f), 
+            new(1.7f,2.5f,0f), 
+            new(0f,3.5f,0f)
+        };
+        foreach (Vector3 wayPoint in waypoints)
+        {
+            while (Vector3.Distance(enemy.transform.position, wayPoint) > 0.01f)
+            {
+                enemy.transform.position = Vector3.MoveTowards(
+                    enemy.transform.position, 
+                    wayPoint,
+                    enemy.speed * Time.deltaTime * SpeedOffset);
+                yield return null;
+            }
+        }
+        BossNextPattern(enemy);
     }
     #endregion
 }
