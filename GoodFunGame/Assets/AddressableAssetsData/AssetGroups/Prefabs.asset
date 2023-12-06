@@ -227,12 +227,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5bc23bc189044214ca86eefe2fa2779d
-    m_Address: UI_SkillIcon.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0486ab379a064374c948dd943e28aeb2
     m_Address: UI_SkillEquip.prefab
     m_ReadOnly: 0
