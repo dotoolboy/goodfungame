@@ -103,8 +103,8 @@ public class Enemy : Creature
         Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
         // TODO:: 오브젝트 디스폰
-        EndToEnemyCoroutine(this);
         MoveCoroutine = StartCoroutine(ExplosionVFX());
+        EndToEnemyCoroutine(this);
     }
 
     private IEnumerator ExplosionVFX()
