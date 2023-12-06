@@ -159,7 +159,7 @@ public class Option_Resolution : UI_Base
                 break;
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
 
             countdown--;
 
