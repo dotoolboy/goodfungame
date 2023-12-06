@@ -17,11 +17,12 @@ public class GameScene : BaseScene
 
         // 플레이어 생성
         Player player = Main.Object.Spawn<Player>("Player", new(0, -2));
-        player.ScoreCount = 0;
-        player.GoldCount = 0;
 
+        // 스테이지 생성
         if (_coGame != null) StopCoroutine(_coGame);
-        _coGame = StartCoroutine(CoGame());
+        // 스테이지 레벨 및 적 스폰 시간 통제
+        _coGame = StartCoroutine(Main.Stage.CreateStage(1,5f));
+
         // =========================================================================================
 
         return true;
@@ -35,23 +36,6 @@ public class GameScene : BaseScene
             else Main.UI.ShowPopupUI<UI_Popup_Pause>();
         }
 
-    }
-
-    private IEnumerator CoGame()
-    {
-        Main.Spawn.StageVolume(1);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(2);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(3);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(3);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(3);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(3);
-        yield return new WaitForSeconds(5.0f);
-        Main.Spawn.StageVolume(4);
     }
 
     //void OnPause()

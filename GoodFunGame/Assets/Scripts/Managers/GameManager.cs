@@ -27,6 +27,12 @@ public class GameManager
             OnResourcesChanged?.Invoke();
         }
     }
+
+
+    public const int StageWaveMaxCount = 7;
+    // 한 웨이브당 Spawn되는 적의 숫자 
+    public readonly int[] WaveVolume = { 3, 4, 3, 4, 5, 3, 1 };
+
     public List<string> PurchasedSkills
     {
         get => _data.purchasedSkills;
