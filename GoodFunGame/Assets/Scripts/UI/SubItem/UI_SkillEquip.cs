@@ -47,8 +47,11 @@ public class UI_SkillEquip : UI_Base
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
+        GetButton((int)Buttons.Btn).gameObject.BindEvent(Equip);
 
-        GetButton((int)Buttons.Btn).gameObject.BindEvent(TESTTEST);
+
+        Main.Game.OnEquipChanged -= Refresh;
+        Main.Game.OnEquipChanged += Refresh;
 
         Refresh();
 
@@ -57,6 +60,7 @@ public class UI_SkillEquip : UI_Base
     public void SetInfo(string key)
     {
         Data = Main.Data.Skills[key];
+        Init();
         Refresh();
     }
 
@@ -64,7 +68,6 @@ public class UI_SkillEquip : UI_Base
     {
         if (Data == null) return;
 
-        Init();
         GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
 
         name = Data.skill.ToString(); // 툴팁이 읽는용
@@ -74,11 +77,31 @@ public class UI_SkillEquip : UI_Base
         GetImage((int)Images.Btn).raycastTarget = Main.Game.PurchasedSkills.Contains(Data.skillStringKey);
         GetText((int)Texts.BtnText).text = Main.Game.PurchasedSkills.Contains(Data.skillStringKey) ? "장착" : "미획득";
 
-
+        if (Main.Game.EquipSkills.Contains(Data.skillStringKey))
+        {
+            GetText((int)Texts.BtnText).text = "착용중";
+        }
 
 
     }
-    void TESTTEST(PointerEventData data)
-    { Debug.Log("테스트테스트"); }
+    void Equip(PointerEventData data)
+    {
+        if (Main.Game.EquipSkills.Contains(Data.skillStringKey))
+        {
+            Debug.Log("이미 장착중입니다!");
+            return;
+        }
+
+        if (Main.Game.EquipSkills.Count >= 3)
+        {
+            Debug.Log("스킬창이 꽉 찼습니다!!");
+            return;
+        }
+
+
+        Debug.Log("스킬 장착했습니다!");
+        Main.Game.EquipSkills.Add(Data.skillStringKey);
+
+    }
 
 }
