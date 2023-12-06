@@ -16,6 +16,7 @@ public static class Extension
     {
         return obj != null && obj.activeSelf;
     }
+
     public static bool IsValid(this Thing thing)
     {
         return thing != null && thing.isActiveAndEnabled;
