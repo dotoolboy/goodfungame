@@ -44,6 +44,7 @@ public class UI_Popup_Pause : UI_Popup
 
     public void BackToMain(PointerEventData data)
     {
+        Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("TitleScene");
     }
     public void Options(PointerEventData data)
