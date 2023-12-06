@@ -48,7 +48,7 @@ public class EnemyData
 [Serializable]
 public class EnemyDataLoader : ILoadData<string, EnemyData>
 {
-    public List<EnemyData> enemies = new List<EnemyData>();
+    public List<EnemyData> enemies = new();
     public Dictionary<string, EnemyData> MakeData()
     {
        return enemies.ToDictionary(enemy => enemy.keyName);

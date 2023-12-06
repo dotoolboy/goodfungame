@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UI_Popup_SelectMenu : UI_Popup
 {
@@ -13,7 +14,6 @@ public class UI_Popup_SelectMenu : UI_Popup
         ShopBtnText,
         StatusBtnText,
         PlayBtnText,
-        OptionBtnText,
         IntroduceText,
 
     }
@@ -28,10 +28,17 @@ public class UI_Popup_SelectMenu : UI_Popup
     }
 
     #endregion
+
+    #region MonoBehaviours
+
     void Start()
     {
         Init();
     }
+
+    #endregion
+
+    #region Initialize
 
     public override bool Init()
     {
@@ -40,34 +47,35 @@ public class UI_Popup_SelectMenu : UI_Popup
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
 
-        GetButton((int)Buttons.ShopBtn).gameObject.BindEvent(Shop);
-        GetButton((int)Buttons.StatusBtn).gameObject.BindEvent(Status);
-        GetButton((int)Buttons.OptionBtn).gameObject.BindEvent(Option);
-        GetButton((int)Buttons.PlayBtn).gameObject.BindEvent(Play);
+        GetButton((int)Buttons.ShopBtn).gameObject.BindEvent(OnBtnShop);
+        GetButton((int)Buttons.StatusBtn).gameObject.BindEvent(OnBtnStatus);
+        GetButton((int)Buttons.OptionBtn).gameObject.BindEvent(OnBtnSettings);
+        GetButton((int)Buttons.PlayBtn).gameObject.BindEvent(OnBtnPlayGame);
 
         return true;
     }
 
-    public void Shop(PointerEventData data)
+    #endregion
+
+    #region OnButtons
+
+    public void OnBtnShop(PointerEventData data)
     {
         Main.UI.ShowPopupUI<UI_Popup_Shop>();
     }
-    public void Status(PointerEventData data)
+    public void OnBtnStatus(PointerEventData data)
     {
         Main.UI.ShowPopupUI<UI_Popup_Status>();
     }
-    public void Option(PointerEventData data)
+    public void OnBtnSettings(PointerEventData data)
     {
         Main.UI.ShowPopupUI<UI_Popup_Option>();
     }
-    public void Play(PointerEventData data)
+    public void OnBtnPlayGame(PointerEventData data)
     {
-
-        Debug.Log("게임시작");
-        // 게임씬으로 이동
-
-
-
-
+        Main.UI.CloseAllPopupUI();
+        SceneManager.LoadScene("GameScene");
     }
+    
+    #endregion
 }

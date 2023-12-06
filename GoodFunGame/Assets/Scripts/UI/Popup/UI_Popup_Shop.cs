@@ -51,33 +51,17 @@ public class UI_Popup_Shop : UI_Popup
     }
     private void Refresh()
     {
-        GetText((int)Texts.GoldText).text = "내소지금";
+        GetText((int)Texts.GoldText).text = Main.Game.Gold.ToString();
         GetText((int)Texts.PercentText).text = "100%"; // 스킬 해금율 퍼센트
-        InstantiateSkillObject("Shop_SkillCard");
+        SetSkillCard();
     }
 
-    /// <summary>
-    ///  스킬 오브젝트 인스턴스화
-    /// </summary>
-    /// <param name="skillName"></param>
-    private void InstantiateSkillObject(string skillName = null)
+    private void SetSkillCard()
     {
-        if (string.IsNullOrEmpty(skillName))
-            skillName = nameof(UI_SkillCard);
-
-        foreach (KeyValuePair<string, SkillData> skillData in Main.Data.Skills)
+        foreach (string key in Main.Data.Skills.Keys)
         {
-            GameObject skillCard= Main.Resource.InstantiatePrefab($"{skillName}.prefab", GetObject((int)GameObjects.Content).gameObject.transform);
-            UI_SkillCard skillObject = skillCard.GetComponent<UI_SkillCard>();
-            Sprite icon = Main.Resource.Load<Sprite>($"{skillData.Key}.sprite");
-            if (skillData.Key != icon.name)
-            {
-                continue;
-            }
-            skillObject.iconSprite = icon;
-            skillObject.skillNameText = skillData.Key;
-            skillObject.skillDescText = skillData.Value.skillDesc;
-            skillObject.skillPriceInteger = skillData.Value.skillPrice;
+            UI_SkillCard newCard = Main.Resource.InstantiatePrefab("Shop_SkillCard.prefab", GetObject((int)GameObjects.Content).transform).GetComponent<UI_SkillCard>();
+            newCard.SetInfo(key);
         }
     }
     public void Close(PointerEventData data)

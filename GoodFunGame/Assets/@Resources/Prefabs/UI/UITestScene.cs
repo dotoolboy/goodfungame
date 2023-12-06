@@ -24,10 +24,10 @@ public class UITestScene : MonoBehaviour
 
     private void InitializeGame()
     {
-        Main.UI.ShowSceneUI<UI_Scene_Intro>();
+        // Main.UI.ShowSceneUI<UI_Scene_Intro>();
         // Main.UI.ShowSceneUI<UI_Scene_Select>();
-
-       // Main.UI.ShowSceneUI<UI_Scene_Battle>();
+        Main.UI.ShowPopupUI<UI_Popup_Talk>();
+        // Main.UI.ShowSceneUI<UI_Scene_Battle>();
 
 
     }

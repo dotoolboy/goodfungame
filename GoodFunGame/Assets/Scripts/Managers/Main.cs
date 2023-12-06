@@ -26,18 +26,21 @@ public class Main : MonoBehaviour
         }
     }
 
-    private PoolManager pool = new();
-    private ResourceManager resource = new();
-    private ObjectManager objects = new();
-    private DataManager data = new();
-    private UIManager ui = new();
-    private GameManager game = new();
+    private readonly PoolManager _pool = new();
+    private readonly ResourceManager _resource = new();
+    private readonly ObjectManager _objects = new();
+    private readonly DataManager _data = new();
+    private readonly UIManager _ui = new();
+    private readonly GameManager _game = new();
+    private readonly EnemySpawn _enemySpawn = new();
+    private readonly EnemyMoveManager _enemyMoveManager = new();
 
-    public static PoolManager Pool => Instance?.pool;
-    public static ResourceManager Resource => Instance?.resource;
-    public static ObjectManager Object => Instance?.objects;
-    public static DataManager Data => Instance?.data;
-    public static UIManager UI => Instance?.ui;
-    public static GameManager Game => Instance?.game;
-
+    public static PoolManager Pool => Instance?._pool;
+    public static ResourceManager Resource => Instance?._resource;
+    public static ObjectManager Object => Instance?._objects;
+    public static DataManager Data => Instance?._data;
+    public static UIManager UI => Instance?._ui;
+    public static GameManager Game => Instance?._game;
+    public static EnemySpawn Spawn => Instance?._enemySpawn;
+    public static EnemyMoveManager Move => Instance?._enemyMoveManager;
 }
