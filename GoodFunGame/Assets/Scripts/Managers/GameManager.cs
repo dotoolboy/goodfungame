@@ -76,41 +76,21 @@ public class GameManager
                 // TODO:: SFX 켜기. ex) Main.Sound.MuteSFX(false);
             }
         }
-    }
 
-    public Dictionary<SkillData.Skills, bool> EquipSkill
+    }
+    public List<String> EquipSkills
     {
-        get => _equipSkill;
+        get => _equipSkills;
         set
         {
-            _equipSkill = value;
-            if (!EquipSkills.Contains(_equipSkill))
-            {
-                EquipSkills.Add(_equipSkill);
-            }
-            else
-            {
-                Debug.Log("이미 장착된 스킬입니다.");
+            if (_equipSkills.Count < 3) 
+            { 
+            _equipSkills = value;
+            OnEquipChanged?.Invoke();
             }
         }
     }
 
-    public Dictionary<SkillData.Skills, bool> UnEquipSkill
-    {
-        get => _equipSkill;
-        set
-        {
-            _equipSkill = value;
-            if (EquipSkills.Contains(_equipSkill))
-            {
-                EquipSkills.Remove(_equipSkill);
-            }
-            else
-            {
-                Debug.Log("이미 장착 해제된 스킬입니다.");
-            }
-        }
-    }
 
     #endregion
 
@@ -119,11 +99,14 @@ public class GameManager
     // GameData.
     private GameData _data = new();
     private string _dataPath;
-    public List<Dictionary<SkillData.Skills, bool>> EquipSkills;
-    private Dictionary<SkillData.Skills, bool> _equipSkill;
+
+    private List<String> _equipSkills = new();
+
 
     // Events.
     public event Action OnResourcesChanged; // Gold 등의 재화가 변동될 때 이벤트. ex) 여기에 재화 UI 새로고침과 같은 코드를 넣어두면 좋겠습니다!
+
+    public event Action OnEquipChanged; // 장비창 실험용!
 
     #endregion
 

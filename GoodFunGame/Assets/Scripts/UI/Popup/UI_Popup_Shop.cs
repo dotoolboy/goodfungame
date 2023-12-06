@@ -39,6 +39,10 @@ public class UI_Popup_Shop : UI_Popup
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
+        SetSkillCard();
+
+        Main.Game.OnResourcesChanged += Refresh;
+
         Refresh();
 
         return true;
@@ -46,9 +50,6 @@ public class UI_Popup_Shop : UI_Popup
     private void Refresh()
     {
         GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
-        SetSkillCard();
-
-
     }
 
     private void SetSkillCard()
