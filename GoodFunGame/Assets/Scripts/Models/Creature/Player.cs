@@ -25,25 +25,6 @@ public class Player : Creature
             cbOnPlayerDataUpdated?.Invoke();
         }
     }
-    public int ScoreCount
-    {
-        get => _scoreCount;
-        set
-        {
-            _scoreCount = value;
-            cbOnPlayerDataUpdated?.Invoke();
-        }
-    }
-
-    public int GoldCount
-    {
-        get => _goldCount;
-        set
-        {
-            _goldCount = value;
-            cbOnPlayerDataUpdated?.Invoke();
-        }
-    }
 
     public bool Invincible
     {
@@ -72,8 +53,6 @@ public class Player : Creature
     // State.
     private float _exp;
     private int _killCount;
-    private int _scoreCount;
-    private int _goldCount;
     private float _attackCooldown;
     private float _attackCooldownTimer;
 
