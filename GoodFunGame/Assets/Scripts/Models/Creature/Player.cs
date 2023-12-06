@@ -97,9 +97,15 @@ public class Player : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "EnemyProjectile" || collision.gameObject.tag == "Enemy")
         {
             OnHit(collision.gameObject);
+
+            if (collision.gameObject.tag == "EnemyProjectile")
+            {
+                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+                Main.Resource.Destroy(collision.gameObject);
+            }
 
             // 무적
             _collider.enabled = false;
@@ -139,11 +145,13 @@ public class Player : Creature
     {
         base.OnStateEntered_Dead();
 
-        // TODO:: 오브젝트 디스폰
-        //Main.Resource.Destroy(gameObject);
-
         // 게임 오버 화면 띄우기
         Main.UI.ShowPopupUI<UI_Popup_GameOver>();
+
+
+        // TODO:: 오브젝트 디스폰
+        //Main.Resource.Destroy(gameObject);
+        Main.Object.Despawn<Player>(this);
     }
     #endregion
 
