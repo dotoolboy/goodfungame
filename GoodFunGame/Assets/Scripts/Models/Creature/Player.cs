@@ -55,6 +55,10 @@ public class Player : Creature
     private int _goldCount;
     private float _attackCooldown;
     private float _attackCooldownTimer;
+
+    //private float _basicShotSpawnTime = 0.5f;
+    private float _projectileSpeed = 5f;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
 
@@ -70,6 +74,7 @@ public class Player : Creature
     private void Start()
     {
         MoveSpeed = _speed;
+        //StartCoroutine(BasicShot());
     }
 
     protected override void FixedUpdate()
@@ -86,9 +91,15 @@ public class Player : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
         {
             OnHit(collision.gameObject);
+
+            if (collision.gameObject.tag == "EnemyProjectile")
+            {
+                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+                Main.Resource.Destroy(collision.gameObject);
+            }
 
             // 무적
             _collider.enabled = false;
@@ -131,11 +142,14 @@ public class Player : Creature
     {
         base.OnStateEntered_Dead();
 
-        // TODO:: 오브젝트 디스폰
-        //Main.Resource.Destroy(gameObject);
-
         // 게임 오버 화면 띄우기
         Main.UI.ShowPopupUI<UI_Popup_GameOver>().SetInfo();
+        //Main.UI.ShowPopupUI<UI_Popup_GameOver>();
+
+
+        // TODO:: 오브젝트 디스폰
+        //Main.Resource.Destroy(gameObject);
+        //Main.Object.Despawn<Player>(this);
     }
     #endregion
 
@@ -155,12 +169,27 @@ public class Player : Creature
     {
         Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
         projectile.SetInfo(this, "Bullet_4_KSJ", Damage, 1);
-        projectile.SetVelocity(Vector2.up * 10);
+        projectile.SetVelocity(Vector2.up * _projectileSpeed);
+        projectile.gameObject.tag = "PlayerProjectile";
     }
 
     #endregion
 
     #region Coroutine
+
+    //IEnumerator BasicShot()
+    //{
+    //    // boss가 죽을 때 까지
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(_basicShotSpawnTime);
+
+    //        Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
+    //        projectile.SetInfo(this, "Bullet_2_KSJ", Damage); // 임시 스프라이트
+    //        projectile.SetVelocity(Vector2.up * _projectileSpeed);
+    //        projectile.gameObject.tag = "PlayerProjectile";
+    //    }
+    //}
 
     IEnumerator EnableColliderAfterInvincibility()
     {
