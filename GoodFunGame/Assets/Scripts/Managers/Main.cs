@@ -34,6 +34,7 @@ public class Main : MonoBehaviour
     private readonly GameManager _game = new();
     private readonly EnemySpawn _enemySpawn = new();
     private readonly StageManager _stage = new();
+    private readonly SceneManagerEx _scene = new();
 
     public static PoolManager Pool => Instance?._pool;
     public static ResourceManager Resource => Instance?._resource;
@@ -43,6 +44,7 @@ public class Main : MonoBehaviour
     public static GameManager Game => Instance?._game;
     public static EnemySpawn Spawn => Instance?._enemySpawn;
     public static StageManager Stage => Instance?._stage;
+    public static SceneManagerEx Scene => Instance?._scene;
 
     public static void Clear()
     {

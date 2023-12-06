@@ -55,15 +55,13 @@ public class UI_Popup_GameOver : UI_Popup
     void Retry(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
-        Main.Clear();
-        SceneManager.LoadScene("GameScene");
+        Main.Scene.LoadScene("GameScene");
     }
 
      void Exit(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
-        Main.Clear();
-        SceneManager.LoadScene("TitleScene");
+        Main.Scene.LoadScene("TitleScene");
     }
 
 }

@@ -74,7 +74,7 @@ public class UI_Popup_SelectMenu : UI_Popup
     public void OnBtnPlayGame(PointerEventData data)
     {
         Main.UI.CloseAllPopupUI();
-        SceneManager.LoadScene("GameScene");
+        Main.Scene.LoadScene("GameScene");
     }
     
     #endregion
