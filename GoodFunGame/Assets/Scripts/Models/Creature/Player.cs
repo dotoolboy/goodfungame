@@ -69,6 +69,9 @@ public class Player : Creature
     // State.
     private float _exp;
     private int _killCount;
+    private float _basicShotSpawnTime = 0.5f;
+    private float _projectileSpeed = 5f;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
 
@@ -84,6 +87,7 @@ public class Player : Creature
     private void Start()
     {
         MoveSpeed = _speed;
+        StartCoroutine(BasicShot());
     }
 
     protected virtual void FixedUpdate()
@@ -167,6 +171,20 @@ public class Player : Creature
     #endregion
 
     #region Coroutine
+
+    IEnumerator BasicShot()
+    {
+        // boss가 죽을 때 까지
+        while (true)
+        {
+            yield return new WaitForSeconds(_basicShotSpawnTime);
+
+            Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
+            projectile.SetInfo(this, "Bullet_2_KSJ", Damage); // 임시 스프라이트
+            projectile.SetVelocity(Vector2.up * _projectileSpeed);
+            projectile.gameObject.tag = "PlayerProjectile";
+        }
+    }
 
     IEnumerator EnableColliderAfterInvincibility()
     {
