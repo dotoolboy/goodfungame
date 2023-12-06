@@ -32,6 +32,10 @@ public class Projectile : Thing
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Creature creature = collision.GetComponent<Creature>();
+        if (!creature.IsValid() || !this.IsValid()) return;
+        if (creature == Owner) return;
+
         if (collision.gameObject.CompareTag($"Wall"))
         {
             if (this.IsValid()) Main.Object.Despawn(this);
