@@ -74,6 +74,11 @@ public class Player : Creature
     {
         MoveSpeed = _speed;
         //StartCoroutine(BasicShot());
+
+        // 임시 스킬 테스트
+        //timeWarpSkill = gameObject.AddComponent<TimeWarpSkill>();
+        reflectShieldSkill = gameObject.AddComponent<ReflectShieldSkill>();
+        //gravityFieldSkill = gameObject.AddComponent<GravityFieldSkill>();
     }
 
     protected override void FixedUpdate()
@@ -216,4 +221,18 @@ public class Player : Creature
     }
 
     #endregion
+
+    // 임시 스킬 테스트
+    //private TimeWarpSkill timeWarpSkill;
+    private ReflectShieldSkill reflectShieldSkill;
+    //private GravityFieldSkill gravityFieldSkill;
+
+    // 임시 스킬 테스트
+    protected override void Update()
+    {
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
+        {
+            reflectShieldSkill.Activate();
+        }
+    }
 }

@@ -30,8 +30,8 @@ public class TestScene : MonoBehaviour
     {
         // ====== 게임 시작 ======
 
-        GameObject newObj = Main.Resource.InstantiatePrefab("TempCharacter.prefab");
-        newObj.transform.position = new Vector3(0f, -3.5f, 0f);
+        Player player = Main.Object.Spawn<Player>("Player", new(0, -2));
+        
         //Main.Object.Spawn<Player>("Player", Vector2.zero);
         //for (int i = 0; i < 5; i++)
         //    Main.Object.Spawn<Enemy>("BOSS_MWJ", new Vector2(Random.Range(-5f, 5f), 5f));
