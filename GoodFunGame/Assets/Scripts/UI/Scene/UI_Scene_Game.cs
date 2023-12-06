@@ -25,7 +25,7 @@ public class UI_Scene_Game : UI_Scene
 
     #endregion
 
-    void Start()
+    private void Start()
     {
         Init();
     }
@@ -36,23 +36,18 @@ public class UI_Scene_Game : UI_Scene
 
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
-
         GetButton((int)Buttons.PauseBtn).gameObject.BindEvent(OnBtnPause);
-
-        player = Main.Object.Player;
-        player.cbOnPlayerDataUpdated += OnPlayerDataUpdated;
-
-
+        Main.Game.OnResourcesChanged += OnPlayerDataUpdated;
+        Main.Stage.OnScoreChanged += OnPlayerDataUpdated;
         Refresh();
-
 
         return true;
     }
 
     private void Refresh()
     {
-        // GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
-        // GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
+        GetText((int)Texts.GoldText).text = Main.Game.Data.gold.ToString();
+        GetText((int)Texts.ScoreText).text = Main.Game.Data.stageHighScore.ToString();
     }
 
     private void OnBtnPause(PointerEventData data)
@@ -62,7 +57,7 @@ public class UI_Scene_Game : UI_Scene
 
     private void OnPlayerDataUpdated()
     {
-        // GetText((int)Texts.ScoreText).text = player.ScoreCount.ToString();
-        // GetText((int)Texts.GoldText).text = player.GoldCount.ToString();
+        GetText((int)Texts.ScoreText).text = Main.Stage.StageCurrentScore.ToString();
+        GetText((int)Texts.GoldText).text = Main.Game.Data.gold.ToString();
     }
 }
