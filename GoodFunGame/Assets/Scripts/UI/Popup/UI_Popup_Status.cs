@@ -39,7 +39,7 @@ public class UI_Popup_Status : UI_Popup
     {
         Content,
 
-        Panel
+        //Panel
 
 
     }
@@ -64,8 +64,8 @@ public class UI_Popup_Status : UI_Popup
 
         SetSkill();
 
-        Main.Game.OnEquipChanged -= SetSkill;
-        Main.Game.OnEquipChanged += SetSkill;
+        //Main.Game.OnEquipChanged -= SetSkill;
+        //Main.Game.OnEquipChanged += SetSkill;
         Refresh();
 
 
@@ -84,6 +84,7 @@ public class UI_Popup_Status : UI_Popup
 
     private void SetSkill() // 스킬 목록 만들기
     {
+        GetObject((int)GameObjects.Content).DestroyChilds();
         foreach (string key in Main.Data.Skills.Keys)
         {
             UI_SkillEquip newEquip = Main.Resource.InstantiatePrefab("UI_SkillEquip.prefab", GetObject((int)GameObjects.Content).transform).GetComponent<UI_SkillEquip>();

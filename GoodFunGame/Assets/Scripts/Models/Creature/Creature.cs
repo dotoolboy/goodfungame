@@ -127,4 +127,8 @@ public class Creature : Thing {
         //Debug.Log("damage :" + obj.Damage);
         //Hp -= 1;
     }
+    public virtual void OnHit(int damage)
+    {
+        Hp -= damage;
+    }
 }

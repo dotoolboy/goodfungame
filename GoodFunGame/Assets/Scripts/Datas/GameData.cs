@@ -12,6 +12,7 @@ public class GameData
     public int gold = 0;
 
     public List<string> purchasedSkills = new();    // 구입한 스킬의 skillStringKey를 저장.
+    public List<string> equippedSkills = new();     // 장착한 스킬의 skillStringKey를 저장.
 
     #endregion
 

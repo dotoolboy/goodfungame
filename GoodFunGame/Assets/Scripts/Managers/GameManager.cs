@@ -42,6 +42,15 @@ public class GameManager
             SaveGame();
         }
     }
+    public List<string> EquippedSkills
+    {
+        get => _data.equippedSkills;
+        set
+        {
+            _data.equippedSkills = value;
+            SaveGame();
+        }
+    }
     public bool MuteBGM
     {
         get => _data.muteBGM;
@@ -78,6 +87,7 @@ public class GameManager
         }
 
     }
+    
     public List<String> EquipSkills
     {
         get => _equipSkills;
@@ -135,6 +145,37 @@ public class GameManager
 
         // #3. 골드 차감.
         Gold -= data.skillPrice;
+
+        return true;
+    }
+    public bool EquipSkill(string key)
+    {
+        // #1. 장착 가능 여부 검사.
+        if (!PurchasedSkills.Contains(key)) return false;
+        if (EquippedSkills.Contains(key)) return false;
+        if (EquippedSkills.Count >= 3) return false;
+        // #2. 장착한 스킬에 추가.
+        EquippedSkills.Add(key);
+
+        // #3. 콜백.
+        OnEquipChanged?.Invoke();
+
+        SaveGame();
+
+        return true;
+    }
+    public bool UnequipSkill(string key)
+    {
+        // #1. 장착 해제 가능 여부 검사.
+        if (!EquippedSkills.Contains(key)) return false;
+
+        // #2. 장착한 스킬에서 제거.
+        EquippedSkills.Remove(key);
+
+        // #3. 콜백.
+        OnEquipChanged?.Invoke();
+
+        SaveGame();
 
         return true;
     }
