@@ -13,45 +13,8 @@ public class Player : Creature
     public Vector2 Input { get; protected set; }
 
     // Status.
-    public float ExpMultiplier { get; protected set; }
     public float CollectDistance => 4.0f;   // TODO:: NO HARDCODING!
 
-    // State.
-    public int Level { get; private set; } = 1;
-    public float Exp
-    {
-        get => _exp;
-        set
-        {
-            _exp += (value - _exp) * ExpMultiplier;
-            // ==================== 레벨업 처리 ====================
-            int level = Level;
-            while (true)
-            {
-                float requiredExp = Temp_GetRequiredExp(level + 1);
-                if (requiredExp < 0 || _exp < requiredExp) break;
-                level++;
-            }
-            if (level != Level)
-            {
-                Level = level;
-                cbOnPlayerLevelUp?.Invoke();
-            }
-            // =====================================================
-
-            cbOnPlayerDataUpdated?.Invoke();
-        }
-    }
-    public float ExpRatio
-    {
-        get
-        {
-            float requiredExp = Temp_GetRequiredExp(Level + 1);
-            if (requiredExp < 0) return 0;
-            float currentTotalExp = Temp_GetRequiredExp(Level);
-            return (Exp - currentTotalExp) / (requiredExp - currentTotalExp);
-        }
-    }
     public int KillCount
     {
         get => _killCount;
@@ -90,6 +53,12 @@ public class Player : Creature
     private int _killCount;
     private int _scoreCount;
     private int _goldCount;
+    private float _attackCooldown;
+    private float _attackCooldownTimer;
+
+    //private float _basicShotSpawnTime = 0.5f;
+    private float _projectileSpeed = 5f;
+
     [SerializeField] private float _speed;
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
 
@@ -105,18 +74,32 @@ public class Player : Creature
     private void Start()
     {
         MoveSpeed = _speed;
+        //StartCoroutine(BasicShot());
     }
 
-    protected virtual void FixedUpdate()
+    protected override void FixedUpdate()
     {
         _rigidbody.velocity = Direction * MoveSpeed * Time.fixedDeltaTime;
+
+        if (_attackCooldownTimer <= 0)
+        {
+            Attack();
+            _attackCooldownTimer = _attackCooldown;
+        }
+        _attackCooldownTimer -= Time.fixedDeltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Projectile" || collision.gameObject.tag == "Enemy")
+        if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
         {
             OnHit(collision.gameObject);
+
+            if (collision.gameObject.tag == "EnemyProjectile")
+            {
+                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+                Main.Resource.Destroy(collision.gameObject);
+            }
 
             // 무적
             _collider.enabled = false;
@@ -141,12 +124,15 @@ public class Player : Creature
         return true;
     }
 
+    protected override void SetStatus(bool isFullHp = false, int MaxHp = 2)
+    {
+        base.SetStatus(isFullHp, MaxHp);
+        _attackCooldown = 0.25f;
+    }
+
     public override void SetInfo(string key)
     {
         base.SetInfo(key);
-
-        Level = 1;
-        Exp = 0;
     }
 
     #endregion
@@ -156,26 +142,16 @@ public class Player : Creature
     {
         base.OnStateEntered_Dead();
 
-        // TODO:: 오브젝트 디스폰
-        //Main.Resource.Destroy(gameObject);
-
         // 게임 오버 화면 띄우기
         Main.UI.ShowPopupUI<UI_Popup_GameOver>().SetInfo();
+        //Main.UI.ShowPopupUI<UI_Popup_GameOver>();
+
+
+        // TODO:: 오브젝트 디스폰
+        //Main.Resource.Destroy(gameObject);
+        //Main.Object.Despawn<Player>(this);
     }
     #endregion
-
-    /// <summary>
-    /// 해당 레벨에 도달하기 위해 필요한 경험치량
-    /// </summary>
-    /// <param name="level"></param>
-    /// <returns></returns>
-    // TODO:: LevelData로 관리하는 방법을 찾아볼까!
-    private float Temp_GetRequiredExp(int level)
-    {
-        // 최대 레벨이라면 return -1;
-        // 0 레벨이라면 return 0;
-        return 1;
-    }
 
     #region InputSystem
 
@@ -187,7 +163,33 @@ public class Player : Creature
 
     #endregion
 
+    #region Attack
+
+    private void Attack()
+    {
+        Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
+        projectile.SetInfo(this, "Bullet_4_KSJ", Damage, 1);
+        projectile.SetVelocity(Vector2.up * _projectileSpeed);
+        projectile.gameObject.tag = "PlayerProjectile";
+    }
+
+    #endregion
+
     #region Coroutine
+
+    //IEnumerator BasicShot()
+    //{
+    //    // boss가 죽을 때 까지
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(_basicShotSpawnTime);
+
+    //        Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
+    //        projectile.SetInfo(this, "Bullet_2_KSJ", Damage); // 임시 스프라이트
+    //        projectile.SetVelocity(Vector2.up * _projectileSpeed);
+    //        projectile.gameObject.tag = "PlayerProjectile";
+    //    }
+    //}
 
     IEnumerator EnableColliderAfterInvincibility()
     {

@@ -18,7 +18,7 @@ public class GameScene : BaseScene
         player.ScoreCount = 0;
         player.GoldCount = 0;
 
-
+        StartCoroutine(CoGame());
         // =========================================================================================
 
         return true;
@@ -31,6 +31,17 @@ public class GameScene : BaseScene
             OnPause();
         }
 
+    }
+
+    private IEnumerator CoGame()
+    {
+        Main.Spawn.StageVolume(1);
+        yield return new WaitForSeconds(2.0f);
+        Main.Spawn.StageVolume(2);
+        yield return new WaitForSeconds(2.0f);
+        Main.Spawn.StageVolume(3);
+        yield return new WaitForSeconds(2.0f);
+        Main.Spawn.StageVolume(3);
     }
 
     void OnPause()

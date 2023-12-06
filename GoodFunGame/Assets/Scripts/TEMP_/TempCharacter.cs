@@ -17,7 +17,6 @@ public class TempCharacter : Player
     public float projectileStartAngle;
     public float projectileSpreadAngle;
     public float shotTime = 1;
-    public float basicShotSpawnTime = 0.5f;
     public int petals = 2;
     public int bulletsPerPetal = 10;
     public float angleIncrementPerBullet = 10;
@@ -29,7 +28,6 @@ public class TempCharacter : Player
 
     void Start()
     {
-        StartCoroutine(BasicShot());
         //timeWarpSkill = gameObject.AddComponent<TimeWarpSkill>();
         //reflectShieldSkill = gameObject.AddComponent<ReflectShieldSkill>();
     }
@@ -71,18 +69,6 @@ public class TempCharacter : Player
         //{
         //    reflectShieldSkill.Activate();
         //}
-    }
-
-    private IEnumerator BasicShot()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(basicShotSpawnTime);
-
-            Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
-            projectile.SetInfo(this, "", Damage, 1);
-            projectile.SetVelocity(Vector2.up * projectileSpeed);
-        }
     }
 
     private void Shot()
