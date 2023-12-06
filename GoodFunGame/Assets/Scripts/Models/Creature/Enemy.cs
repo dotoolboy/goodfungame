@@ -25,6 +25,8 @@ public class Enemy : Creature
     #region Fields
 
     public Coroutine MoveCoroutine;
+    private Coroutine _coAttack;
+
     #endregion
 
     #region MonoBehaviours
@@ -36,6 +38,11 @@ public class Enemy : Creature
             OnHit(collision.gameObject);
             Main.Object.Player.ScoreCount++;
         }
+    }
+
+    protected override void Update()
+    {
+        _coAttack ??= StartCoroutine(CoAttack());
     }
 
     #endregion
@@ -144,4 +151,20 @@ public class Enemy : Creature
     }
     #endregion
 
+    #region AttackPattern
+
+    private IEnumerator CoAttack()
+    {
+        PG_Fan fanShot = Main.Object.SpawnProjectileGenerator<PG_Fan>();
+        fanShot.transform.position = this.transform.position;
+        fanShot.transform.SetParent(this.transform);
+        fanShot.Initialize(this, "Bullet_1_KSJ", 10, 6, 3, 250, 40);
+        fanShot.Shot();
+        yield return new WaitUntil(() => fanShot == null);
+        yield return new WaitForSeconds(1);
+        _coAttack = null;
+        yield break;
+    }
+
+    #endregion
 }

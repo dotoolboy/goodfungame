@@ -52,6 +52,7 @@ public class ProjectileGenerator : MonoBehaviour
     {
         Projectile projectile = Main.Object.Spawn<Projectile>(Key, this.transform.position);
         projectile.SetInfo(Owner, Key, 10, 1, 10);
+        projectile.tag = "EnemyProjectile";
         return projectile;
     }
 
