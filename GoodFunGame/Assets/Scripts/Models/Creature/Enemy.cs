@@ -36,7 +36,10 @@ public class Enemy : Creature
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-            OnHit(projectile.Owner);
+            if (projectile != null)
+                OnHit(projectile.Owner);
+            else
+                OnHit(2);
             Main.Stage.StageCurrentScore++;
         }
     }
