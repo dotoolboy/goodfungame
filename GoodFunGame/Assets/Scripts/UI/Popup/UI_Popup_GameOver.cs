@@ -13,6 +13,11 @@ public class UI_Popup_GameOver : UI_Popup
         RetryBtn,
         ExitBtn
     }
+    enum Texts
+    {
+        ScoreText,
+        GoldText,
+    }
 
     #endregion
 
@@ -27,12 +32,20 @@ public class UI_Popup_GameOver : UI_Popup
         if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
+        BindText(typeof(Texts));
 
         GetButton((int)Buttons.RetryBtn).gameObject.BindEvent(Retry);
         GetButton((int)Buttons.ExitBtn).gameObject.BindEvent(Exit);
 
 
         return true;
+    }
+
+    public void SetInfo()
+    {
+        GetText((int)Texts.ScoreText).text = $"{Main.Object.Player.ScoreCount}";
+        GetText((int)Texts.GoldText).text = $"{Main.Object.Player.GoldCount}";
+
     }
 
 
