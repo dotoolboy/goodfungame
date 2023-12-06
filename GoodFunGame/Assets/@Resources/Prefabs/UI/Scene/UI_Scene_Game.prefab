@@ -1076,7 +1076,7 @@ GameObject:
   - component: {fileID: 971136621348753799}
   - component: {fileID: 8377701435206603707}
   m_Layer: 5
-  m_Name: Image
+  m_Name: skillImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,7 +1457,7 @@ GameObject:
   - component: {fileID: 6975809972524776661}
   - component: {fileID: 7413895400583173034}
   m_Layer: 5
-  m_Name: Image
+  m_Name: skillImage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3136,7 +3136,7 @@ GameObject:
   - component: {fileID: 2166594183087368690}
   - component: {fileID: 8356821266412234375}
   m_Layer: 5
-  m_Name: Image
+  m_Name: skillImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

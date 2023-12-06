@@ -26,6 +26,14 @@ public class UI_Scene_Game : UI_Scene
 
     }
 
+    enum Images
+    {
+
+        skillImage1,
+        skillImage2,
+        skillImage3
+    }
+
     #endregion
 
     #region Fields
@@ -46,6 +54,7 @@ public class UI_Scene_Game : UI_Scene
         BindButton(typeof(Buttons));
         BindText(typeof(Texts)); 
         BindObject(typeof(GameObjects));
+        BindImage(typeof(Images));
         GetButton((int)Buttons.PauseBtn).gameObject.BindEvent(OnBtnPause);
         Main.Game.OnResourcesChanged += OnPlayerDataUpdated;
         Main.Stage.OnScoreChanged += OnPlayerDataUpdated;
@@ -68,6 +77,7 @@ public class UI_Scene_Game : UI_Scene
         for (int i = 0; i < Main.Game.EquippedSkills.Count; i++)
         {
             GetObject((int)GameObjects.ControllerIcon).gameObject.SetActive(true);
+            GetImage(i).sprite = Main.Resource.Load<Sprite>($"{Main.Data.Skills[Main.Game.EquippedSkills[i]].skillStringKey}.sprite");
             GetObject(i).gameObject.SetActive(true);
         }
 
