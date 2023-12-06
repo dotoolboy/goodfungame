@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UI_Popup_Pause : UI_Popup
 {
@@ -43,9 +44,7 @@ public class UI_Popup_Pause : UI_Popup
 
     public void BackToMain(PointerEventData data)
     {
-        // 셀렉트 씬으로 돌아가기
-
-        Debug.Log("셀렉트 씬으로 돌아가기");
+        SceneManager.LoadScene("UI_Scene_Title");
     }
     public void Options(PointerEventData data)
     {

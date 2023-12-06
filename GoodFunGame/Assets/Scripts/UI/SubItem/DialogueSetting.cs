@@ -3,11 +3,9 @@ public class DialogueSetting
     public string name;
     public string line;
 
-    // 기본 말속도 (0.02f);
-
-    public DialogueSetting(string naa, string daaa)
+    public DialogueSetting(string na, string da)
     {
-        name = naa;
-        line = daaa;
+        name = na;
+        line = da;
     }
 }
