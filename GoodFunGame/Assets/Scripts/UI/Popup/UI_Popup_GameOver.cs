@@ -45,7 +45,6 @@ public class UI_Popup_GameOver : UI_Popup
     {
         GetText((int)Texts.ScoreText).text = $"{Main.Object.Player.ScoreCount}";
         GetText((int)Texts.GoldText).text = $"{Main.Object.Player.GoldCount}";
-
     }
 
 
