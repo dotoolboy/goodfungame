@@ -116,7 +116,7 @@ public class Player : Creature
     public override bool Initialize()
     {
         if (base.Initialize() == false) return false;
-
+        SetStatus(true);
         return true;
     }
 
@@ -176,20 +176,30 @@ public class Player : Creature
 
     IEnumerator AlphaModifyAfterCollision()
     {
-        float targetAlpha = 0.3f;
+        float targetAlpha = 0.1f;
 
         Color startColor = _spriter.color;
         Color targetColor = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
 
-        float elapsedTime = 0f;
-        while (elapsedTime < _invincibilityTime)
+        for (int i = 0; i < 3; ++i)
         {
-            _spriter.color = Color.Lerp(startColor, targetColor, elapsedTime / _invincibilityTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return FadeColor(startColor, targetColor, _invincibilityTime / 6);
+            yield return FadeColor(targetColor, startColor, _invincibilityTime / 6);
         }
 
         _spriter.color = startColor;
+    }
+    
+    IEnumerator FadeColor(Color startColor, Color targetColor, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            _spriter.color = Color.Lerp(startColor, targetColor, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
     #endregion
