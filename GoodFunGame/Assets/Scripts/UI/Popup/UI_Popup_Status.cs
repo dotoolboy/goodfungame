@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class UI_Popup_Status : UI_Popup
 
 
     #region Enums
-    
+
     enum Images
     {
         PlayerImage,
@@ -38,7 +39,6 @@ public class UI_Popup_Status : UI_Popup
         Init();
     }
 
-    // 스킬 장착 관리, 캐릭터 정보 이름 등등등 관리가능해야함
     public override bool Init()
     {
         if (!base.Init()) return false;
@@ -48,8 +48,6 @@ public class UI_Popup_Status : UI_Popup
         BindObject(typeof(GameObjects));
         BindImage(typeof(Images));
 
-        GetText((int)Texts.BestText).text = "최고기록 : 99999999"; 
-        GetText((int)Texts.SkillCollectText).text = "수집율100퍼";  //$"수집율 : { 해금된스킬갯수 / Main.Data.Skills.Keys * 100f).ToString()}%";
 
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         Refresh();
@@ -57,12 +55,15 @@ public class UI_Popup_Status : UI_Popup
 
         return true;
     }
-    private void Refresh()
+    void Refresh()
     {
-        GetText((int)Texts.GoldText).text = Main.Game.Gold.ToString();
+        GetText((int)Texts.BestText).text = $"최고기록 : 999999999";
+        GetText((int)Texts.SkillCollectText).text = $"수집율 : {String.Format("{0:#}", (float)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
+        GetText((int)Texts.GoldText).text = $"{Main.Game.Gold}";
+        GetText((int)Texts.NameText).text = $"{Main.Game.UserName}";
         SetSkillEquip();
 
-
+        
     }
 
     private void SetSkillEquip()

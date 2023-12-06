@@ -14,13 +14,29 @@ public class UI_SkillEquip : UI_Base
 
     enum Buttons
     {
+        Btn
     }
 
     enum Images
     {
-        IconImage
+        IconImage,
+        Btn
     }
 
+    enum Texts
+    {
+        BtnText,
+
+
+    }
+
+    private string name;
+    private string description;
+
+    private void Start()
+    {
+        Init();
+    }
 
     public override bool Init()
     {
@@ -29,9 +45,12 @@ public class UI_SkillEquip : UI_Base
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
+        BindText(typeof(Texts));
 
 
-        //    GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
+        GetButton((int)Buttons.Btn).gameObject.BindEvent(TESTTEST);
+
+        Refresh();
 
         return true;
     }
@@ -44,16 +63,22 @@ public class UI_SkillEquip : UI_Base
     public void Refresh()
     {
         if (Data == null) return;
+
         Init();
+        GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
 
-        //  GetText((int)Texts.Name).text = Data.skillStringKey;
-        //   GetText((int)Texts.Introduce).text = Data.skillDesc;
-        //   GetText((int)Texts.Price).text = $"{Data.skillPrice} Gold";
-          GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
+        name = Data.skill.ToString(); // 툴팁이 읽는용
+        description = Data.skillDesc;
+
+        GetButton((int)Buttons.Btn).interactable = Main.Game.PurchasedSkills.Contains(Data.skillStringKey); // 소유한 스킬일때만 버튼 활성화
+        GetImage((int)Images.Btn).raycastTarget = Main.Game.PurchasedSkills.Contains(Data.skillStringKey);
+        GetText((int)Texts.BtnText).text = Main.Game.PurchasedSkills.Contains(Data.skillStringKey) ? "장착" : "미획득";
 
 
 
-        // 팝업창에뜰 설명, 스킬이름, 아이콘, 장착여부
+
     }
+    void TESTTEST(PointerEventData data)
+    { Debug.Log("테스트테스트"); }
 
 }
