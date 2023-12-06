@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class AutoProjectile : MonoBehaviour
+public class Skill_AutoTargetObject : MonoBehaviour
 {
     GameObject _target;
     Rigidbody2D _rigidbody;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ObjectManager
 {
@@ -108,6 +109,12 @@ public class ObjectManager
     public void DespawnProjectileGenerator<T>(T obj) where T : ProjectileGenerator
     {
         Main.Resource.Destroy(obj.gameObject);
+    }
+
+    public void DespawnAllProjectile()
+    {
+        for (int i = 0; i < Projectiles.Count; ++i)
+            Despawn(Projectiles[i]);
     }
 
     public void Clear()
