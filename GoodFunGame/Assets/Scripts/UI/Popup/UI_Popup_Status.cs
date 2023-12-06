@@ -8,18 +8,29 @@ public class UI_Popup_Status : UI_Popup
 
 
     #region Enums
-    enum Texts
+    
+    enum Images
     {
-       
+        PlayerImage,
     }
-
 
     enum Buttons
     {
         BackspaceBtn
     }
 
+    enum Texts
+    {
+        NameText,
+        SkillCollectText,
+        BestText,
+        GoldText
 
+    }
+    enum GameObjects
+    {
+        Content
+    }
 
     #endregion
     void Start()
@@ -34,11 +45,35 @@ public class UI_Popup_Status : UI_Popup
 
         BindText(typeof(Texts));
         BindButton(typeof(Buttons));
+        BindObject(typeof(GameObjects));
+        BindImage(typeof(Images));
+
+        GetText((int)Texts.BestText).text = "최고기록 : 99999999"; 
+        GetText((int)Texts.SkillCollectText).text = "수집율100퍼";  //$"수집율 : { 해금된스킬갯수 / Main.Data.Skills.Keys * 100f).ToString()}%";
 
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
+        Refresh();
+
 
         return true;
     }
+    private void Refresh()
+    {
+        GetText((int)Texts.GoldText).text = Main.Game.Gold.ToString();
+        SetSkillEquip();
+
+
+    }
+
+    private void SetSkillEquip()
+    {
+        foreach (string key in Main.Data.Skills.Keys)
+        {
+            UI_SkillEquip newEquip = Main.Resource.InstantiatePrefab("UI_SkillEquip.prefab", GetObject((int)GameObjects.Content).transform).GetComponent<UI_SkillEquip>();
+            newEquip.SetInfo(key);
+        }
+    }
+
 
     void Close(PointerEventData data)
     {

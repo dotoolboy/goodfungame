@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 7234935010058167793}
   - component: {fileID: 39590894745883645}
   - component: {fileID: 2829219755196210520}
+  - component: {fileID: 4833978987889582274}
   m_Layer: 5
   m_Name: Life
   m_TagString: Untagged
@@ -288,6 +289,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4833978987889582274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61378429144033177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa138992d0a896741a3050185e683299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconNum: 1
 --- !u!1 &199734122774650446
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +564,7 @@ GameObject:
   - component: {fileID: 5681612742979926265}
   - component: {fileID: 5085025351249242587}
   - component: {fileID: 4859924676540370396}
+  - component: {fileID: 7102554211425281106}
   m_Layer: 5
   m_Name: Life (1)
   m_TagString: Untagged
@@ -615,6 +630,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7102554211425281106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306481651847757010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa138992d0a896741a3050185e683299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconNum: 2
 --- !u!1 &1490527372863119853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,6 +1110,7 @@ GameObject:
   - component: {fileID: 687338427770908348}
   - component: {fileID: 1180438854539097138}
   - component: {fileID: 5326477681299785906}
+  - component: {fileID: 2667854908002728985}
   m_Layer: 5
   m_Name: Life (2)
   m_TagString: Untagged
@@ -1147,6 +1176,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2667854908002728985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280746242714029957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa138992d0a896741a3050185e683299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iconNum: 3
 --- !u!1 &4357196125223092032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,7 +2038,7 @@ GameObject:
   - component: {fileID: 2419613186853769291}
   - component: {fileID: 7820352612919854291}
   m_Layer: 5
-  m_Name: Score
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2702,7 +2744,7 @@ GameObject:
   - component: {fileID: 7663701483327026726}
   - component: {fileID: 3972090121366137204}
   m_Layer: 5
-  m_Name: Gold
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2940,7 +2982,7 @@ GameObject:
   - component: {fileID: 8516468731770972135}
   - component: {fileID: 3971984991076955839}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class UI_HeartIcon : MonoBehaviour
 {
-    [SerializeField] int _iconNum = 2;
+    [SerializeField] int _iconNum = 3;
 
     Player player;
 
     void Start()
     {
         player = Main.Object.Player;
-        // player.OnPlayerHealthChanged += UpdateUI;
+        player.OnPlayerHealthChanged += UpdateUI;
     }
 
     void UpdateUI()

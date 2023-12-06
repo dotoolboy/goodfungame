@@ -26,15 +26,25 @@ public class Enemy : Creature
     #region Fields
 
     public Coroutine MoveCoroutine;
-    private DOTweenPath[] _paths;
+    private Coroutine _coAttack;
     #endregion
 
     #region MonoBehaviours
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag($"PlayerProjectile"))
-            OnHit(collision.gameObject);
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            OnHit(projectile.Owner);
+
+            Main.Object.Player.ScoreCount++;
+        }
+    }
+
+    protected override void Update()
+    {
+        _coAttack ??= StartCoroutine(CoAttack());
     }
 
     #endregion
@@ -88,11 +98,14 @@ public class Enemy : Creature
     {
         base.OnStateEntered_Dead();
 
-        // TODO:: Player의 KillCount 증가.
+        // 적을 죽일때마다 스코어 점수 추가
+        Main.Object.Player.ScoreCount += 50;
+        // 터지는 효과
+        Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
         // TODO:: 오브젝트 디스폰
-        EndToEnemyCoroutine(this);
         MoveCoroutine = StartCoroutine(ExplosionVFX());
+        EndToEnemyCoroutine(this);
     }
 
     private IEnumerator ExplosionVFX()
@@ -165,4 +178,20 @@ public class Enemy : Creature
     }
     #endregion
 
+    #region AttackPattern
+
+    private IEnumerator CoAttack()
+    {
+        PG_Fan fanShot = Main.Object.SpawnProjectileGenerator<PG_Fan>();
+        fanShot.transform.position = this.transform.position;
+        fanShot.transform.SetParent(this.transform);
+        fanShot.Initialize(this, "Bullet_1_KSJ", 10, 6, 3, 250, 40);
+        fanShot.Shot();
+        yield return new WaitUntil(() => fanShot == null);
+        yield return new WaitForSeconds(1);
+        _coAttack = null;
+        yield break;
+    }
+
+    #endregion
 }

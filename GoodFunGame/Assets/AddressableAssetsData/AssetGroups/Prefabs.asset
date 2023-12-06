@@ -179,12 +179,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d32252e20ee62f2489da5cec09b267e3
-    m_Address: UI_Popup_ResolutionPreview.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e1f8d8a22ddffc246b293adfe272927f
     m_Address: UI_Popup_BattleMenu_Single.prefab
     m_ReadOnly: 0
@@ -229,6 +223,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 23359cbd08202d74489cf1e2eb2f701b
     m_Address: TempEnemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bc23bc189044214ca86eefe2fa2779d
+    m_Address: UI_SkillIcon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0486ab379a064374c948dd943e28aeb2
+    m_Address: UI_SkillEquip.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ae74579d9946a147ad1fdfa4a2c4ab3
+    m_Address: Explosion.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

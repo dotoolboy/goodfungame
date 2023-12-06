@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using static StageData;
 
 public class UI_Popup_Talk : UI_Popup
 {
@@ -17,6 +20,7 @@ public class UI_Popup_Talk : UI_Popup
     }
     enum Images
     {
+        Character,
         NameImage,
         LineImage
 
@@ -30,7 +34,18 @@ public class UI_Popup_Talk : UI_Popup
         Character,
         Cursor,
     }
+
+    public enum Dialogue
+    {
+        WAVE,
+        CLEAR,
+        FAIL
+    }
+
     #endregion
+
+
+    #region Field
 
 
     private Animator anim;
@@ -47,15 +62,138 @@ public class UI_Popup_Talk : UI_Popup
     private WaitForSeconds typingSpeed = new WaitForSeconds(0.02f); // 타이핑 속도
 
 
-    [HideInInspector] public Dictionary<int, DialogueSetting> talkData;
+    private Dictionary<int, DialogueSetting> talkData;
 
 
-    void Start()
+    private Dictionary<Dialogue, Dictionary<int, DialogueSetting>> mWJ = new Dictionary<Dialogue, Dictionary<int, DialogueSetting>>();
+    private Dictionary<Dialogue, Dictionary<int, DialogueSetting>> cHH = new Dictionary<Dialogue, Dictionary<int, DialogueSetting>>();
+    private Dictionary<Dialogue, Dictionary<int, DialogueSetting>> lJH = new Dictionary<Dialogue, Dictionary<int, DialogueSetting>>();
+    private Dictionary<Dialogue, Dictionary<int, DialogueSetting>> jEH = new Dictionary<Dialogue, Dictionary<int, DialogueSetting>>();
+    private Dictionary<Dialogue, Dictionary<int, DialogueSetting>> kSJ = new Dictionary<Dialogue, Dictionary<int, DialogueSetting>>();
+
+
+
+    #endregion
+
+
+
+    #region DialogueSpeedSetting
+    void DialogueData()
     {
 
-        Init();
+        // 하드코딩 죄송합니다 ㅠㅠ
+
+        mWJ[Dialogue.WAVE] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("문원정", "안녕안녕 첫줄입니다?") },
+               { 1, new DialogueSetting("문원정", "방가방가 둘째줄입니다!") },
+               { 2, new DialogueSetting("문원정", "마지막 대사입니다!!") }
+            };
+
+        mWJ[Dialogue.CLEAR] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("문원정", "졌다!!") },
+               { 1, new DialogueSetting("문원정", "쥐엔장~!") },
+               { 2, new DialogueSetting("문원정", "재도전하자!") }
+            };
+        mWJ[Dialogue.FAIL] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("문원정", "승리했다!!") },
+               { 1, new DialogueSetting("문원정", "축하합니다!") }
+            };
+
+        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+
+        cHH[Dialogue.WAVE] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("최현호", "안녕안녕 첫줄입니다?") },
+               { 1, new DialogueSetting("최현호", "방가방가 둘째줄입니다!") },
+               { 2, new DialogueSetting("최현호", "마지막 대사입니다!!") }
+            };
+
+        cHH[Dialogue.CLEAR] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("최현호", "졌다!!") },
+               { 1, new DialogueSetting("최현호", "쥐엔장~!") },
+               { 2, new DialogueSetting("최현호", "재도전하자!") }
+            };
+        cHH[Dialogue.FAIL] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("최현호", "승리했다!!") },
+               { 1, new DialogueSetting("최현호", "축하합니다!") }
+            };
+
+        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        lJH[Dialogue.WAVE] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("이정훈", "안녕안녕 첫줄입니다?") },
+               { 1, new DialogueSetting("이정훈", "방가방가 둘째줄입니다!") },
+               { 2, new DialogueSetting("이정훈", "마지막 대사입니다!!") }
+            };
+
+        lJH[Dialogue.CLEAR] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("이정훈", "졌다!!") },
+               { 1, new DialogueSetting("이정훈", "쥐엔장~!") },
+               { 2, new DialogueSetting("이정훈", "재도전하자!") }
+            };
+        lJH[Dialogue.FAIL] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("이정훈", "승리했다!!") },
+               { 1, new DialogueSetting("이정훈", "축하합니다!") }
+            };
+
+        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        jEH[Dialogue.WAVE] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("전은하", "안녕안녕 첫줄입니다?") },
+               { 1, new DialogueSetting("전은하", "방가방가 둘째줄입니다!") },
+               { 2, new DialogueSetting("전은하", "마지막 대사입니다!!") }
+            };
+
+        jEH[Dialogue.CLEAR] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("전은하", "졌다!!") },
+               { 1, new DialogueSetting("전은하", "쥐엔장~!") },
+               { 2, new DialogueSetting("전은하", "재도전하자!") }
+            };
+        jEH[Dialogue.FAIL] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("전은하", "승리했다!!") },
+               { 1, new DialogueSetting("전은하", "축하합니다!") }
+            };
+
+        // ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        kSJ[Dialogue.WAVE] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("김세진", "안녕안녕 첫줄입니다?") },
+               { 1, new DialogueSetting("김세진", "방가방가 둘째줄입니다!") },
+               { 2, new DialogueSetting("김세진", "마지막 대사입니다!!") }
+            };
+
+        kSJ[Dialogue.CLEAR] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("김세진", "졌다!!") },
+               { 1, new DialogueSetting("김세진", "쥐엔장~!") },
+               { 2, new DialogueSetting("김세진", "재도전하자!") }
+            };
+        kSJ[Dialogue.FAIL] = new Dictionary<int, DialogueSetting>
+            {
+               { 0, new DialogueSetting("김세진", "승리했다!!") },
+               { 1, new DialogueSetting("김세진", "축하합니다!") }
+            };
 
     }
+
+    #endregion
+
+    //  대화창 호출방법 :  Main.UI.ShowPopupUI<UI_Popup_Talk>().DialogueOpen(StageCharge.MWJ, UI_Popup_Talk.Dialogue.FAIL);
+
+
 
     public override bool Init()
     {
@@ -66,16 +204,13 @@ public class UI_Popup_Talk : UI_Popup
         BindText(typeof(Texts));
         BindImage(typeof(Images));
 
+        DialogueData();
 
-        talkData = new Dictionary<int, DialogueSetting> // 실험용, 나중에 json파일로 쓸것
-            {
-               { 0, new DialogueSetting("테스ㅁㄴㅇㅁㄴㅇㄴ트", "안녕안녕 첫줄입니다?") },
-               { 1, new DialogueSetting("테스트", "방가방가 둘째줄입니다!") },
-               { 2, new DialogueSetting("테스트", "마지막 대사입니다!!") }
-            };
+        //  대화창 열릴때 스테이지 몇이고 무슨상황인지
+
 
         anim = GetComponent<Animator>();
-        
+
 
         GetButton((int)Buttons.TalkBtn).gameObject.BindEvent(Talk);
 
@@ -83,11 +218,40 @@ public class UI_Popup_Talk : UI_Popup
         cursorAnim = GetObject((int)GameObjects.Cursor).GetComponent<Animator>();
         clickDelay = 0.3f; // 클릭 애니클립 길이 읽고 넣어주기
 
-
-
-        Open(null);
         return true;
     }
+
+
+    public void DialogueOpen(StageCharge name, Dialogue stage)
+    {
+        Init();
+
+
+        switch (name)
+        {
+            case StageCharge.MWJ:
+                talkData = mWJ[stage];
+            //    GetImage((int)Images.Character).sprite = 이 스테이지 보스 이미지;
+
+                break;
+            case StageCharge.CHH:
+                talkData = cHH[stage];
+                break;
+            case StageCharge.LJH:
+                talkData = lJH[stage];
+                break;
+            case StageCharge.JEH:
+                talkData = jEH[stage];
+                break;
+            case StageCharge.KSJ:
+                talkData = kSJ[stage];
+                break;
+        }
+
+        Open(null);
+    }
+
+
 
     public void Talk(PointerEventData data)
     {
@@ -114,7 +278,7 @@ public class UI_Popup_Talk : UI_Popup
 
     }
 
-    
+
 
 
     public void TalkEvent()
@@ -218,5 +382,7 @@ public class UI_Popup_Talk : UI_Popup
     {
         Main.UI.ClosePopupUI(this);
     }
+
+
 
 }

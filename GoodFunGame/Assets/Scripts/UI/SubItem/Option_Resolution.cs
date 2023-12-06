@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class Option_Resolution : UI_Base
 {
@@ -12,15 +13,21 @@ public class Option_Resolution : UI_Base
 
     enum GameObjects
     {
+        Preview,
         Dropdown,
         Toggle,
     }
     enum Buttons
     {
-
+        NoBtn,
+        OkBtn,
         PreviewBtn,
     }
 
+    enum Texts
+    {
+        CountdownText
+    }
 
 
     #endregion
@@ -51,19 +58,25 @@ public class Option_Resolution : UI_Base
     }
 
 
-    public override bool Init() 
+    public override bool Init()
     {
         if (!base.Init()) return false;
         resolutions = new List<Resolution>();
 
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
+        BindText(typeof(Texts));
 
 
+        GetButton((int)Buttons.OkBtn).gameObject.BindEvent(Yes);
+        GetButton((int)Buttons.NoBtn).gameObject.BindEvent(Nope);
 
 
 
         GetButton((int)Buttons.PreviewBtn).gameObject.BindEvent(Preview);
+
+        GetObject((int)GameObjects.Preview).gameObject.SetActive(false);
+
 
         dropdown = GetObject((int)GameObjects.Dropdown).GetComponent<TMP_Dropdown>();
         toggle = GetObject((int)GameObjects.Toggle).GetComponent<Toggle>();
@@ -126,26 +139,65 @@ public class Option_Resolution : UI_Base
     public void Preview(PointerEventData data)
     {
         Screen.SetResolution(resolutions[resolutionNumSet].width, resolutions[resolutionNumSet].height, screenMode);
-        Main.UI.ShowPopupUI<UI_Popup_ResolutionPreview>();
+
+        StartCoroutine(PreviewCountdown());
+        GetObject((int)GameObjects.Preview).gameObject.SetActive(true);
+
+    }
+
+    IEnumerator PreviewCountdown()
+    {
+        float countdown = 10;
+
+        GetText((int)Texts.CountdownText).text = countdown.ToString();
+
+        while (true)
+        {
+            if (countdown <= 0) //0초되면 해상도변경취소
+            {
+                Nope(null); // null 되나?
+                break;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            countdown--;
+
+            GetText((int)Texts.CountdownText).text = countdown.ToString();
+
+
+        }
     }
 
 
 
-    public void Yes() // 해상도 적용할때
+    public void Yes(PointerEventData data) // 해상도 적용할때
     {
-        resolutionNum = resolutionNumSet;
-        dropdown.value = resolutionNum;
-    }
+        StopAllCoroutines();
 
-    public void No() // 해상도 취소할때
-    {
         dropdown.value = resolutionNum;
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
+
+
+        GetObject((int)GameObjects.Preview).gameObject.SetActive(false);
+    }
+
+    public void Nope(PointerEventData data) // 해상도 취소할때
+    {
+        StopAllCoroutines();
+        resolutionNum = resolutionNumSet;
+        dropdown.value = resolutionNum;
+
+    
+
+        GetObject((int)GameObjects.Preview).gameObject.SetActive(false);
     }
 
     public void DefaultSetting()
     {
-     
+
+        // 해상도 저장할땐 resolutionNum 저장
+        // 로드 Screen.SetResolution(resolutions[resolutionNumSet].width, resolutions[resolutionNumSet].height, screenMode);
     }
 
 }

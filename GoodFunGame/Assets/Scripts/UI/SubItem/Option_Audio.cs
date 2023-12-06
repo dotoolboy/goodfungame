@@ -58,7 +58,21 @@ public class Option_Audio : UI_Base
         BindText(typeof(Texts));
         BindObject(typeof(GameObjects));
 
-        GetText((int)Texts.NameText).text = _type.ToString();
+        switch (_type)
+        {
+            case Types.Master:
+                GetText((int)Texts.NameText).text = "모든소리";
+                break;
+            case Types.BGM:
+                GetText((int)Texts.NameText).text = "배경음악";
+                break;
+            case Types.SFX:
+                GetText((int)Texts.NameText).text = "효과음";
+                break;
+            default:
+                break;
+        }
+
 
         _toggle = GetObject((int)GameObjects.MuteToggle).GetComponent<Toggle>();
         _toggle.onValueChanged.AddListener(Mute);
