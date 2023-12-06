@@ -10,7 +10,7 @@ public class ObjectManager
     public List<Enemy> Enemies { get; private set; } = new();
     public List<Projectile> Projectiles { get; private set; } = new();
 
-    public List<GameObject> ExplosionVFX { get; set; } = new();
+    public List<Explosion> ExplosionVFX { get; set; } = new();
 
     public Transform EnemyParent
     {
@@ -65,12 +65,14 @@ public class ObjectManager
             return projectile as T;
         }
 
-        if (type == typeof(Thing))
+        if (type == typeof(Explosion))
         {
             GameObject obj = Main.Resource.InstantiatePrefab("Explosion.prefab", pooling: true);
             obj.transform.position = position;
-            ExplosionVFX.Add(obj);
-            return obj as T;
+
+            Explosion explosion = obj.GetOrAddComponent<Explosion>();
+            ExplosionVFX.Add(explosion);
+            return explosion as T;
         }
         return null;
     }
@@ -91,6 +93,11 @@ public class ObjectManager
         else if (type == typeof(Projectile))
         {
             Projectiles.Remove(obj as Projectile);
+            Main.Resource.Destroy(obj.gameObject);
+        }
+        else if (type == typeof(Explosion))
+        {
+            ExplosionVFX.Remove(obj as Explosion);
             Main.Resource.Destroy(obj.gameObject);
         }
     }
