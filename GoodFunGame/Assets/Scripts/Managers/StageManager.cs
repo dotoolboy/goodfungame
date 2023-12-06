@@ -55,7 +55,6 @@ public class StageManager
         _waveCount = GameManager.StageWaveMaxCount;
         _waveDesign = Main.Game.WaveVolume;
         Main.Object.OnVictory += OnVictory;
-        Main.Object.KillCount = 0;
     }
 
     /// <summary>
@@ -66,7 +65,6 @@ public class StageManager
     /// <returns></returns>
     public IEnumerator CreateStage(int stage, float spawnDelay)
     {
-        Main.Object.KillCount = 0;
         if (stageLevel > 5)
         {
             Debug.Log("최대 스테이지 달성 더이상 게임이 불가능합니다.");
@@ -146,12 +144,8 @@ public class StageManager
         SpawnDesign(waveCount, bossIndex);
     }
 
-    private void OnVictory(int killCount)
+    private void OnVictory()
     {
-        if (killCount != _waveDesign.Sum())
-        {
-            return;
-        }
 
         Debug.Log("Victory");
             
