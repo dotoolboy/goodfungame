@@ -12,6 +12,7 @@ public class UI_SkillCard : UI_Base
         Name,
         Introduce,
         Price,
+        BuyText,
     }
     enum Images
     {
@@ -48,7 +49,8 @@ public class UI_SkillCard : UI_Base
 
         GetButton((int)Buttons.BuyBtn).gameObject.SetActive(true);
         GetButton((int)Buttons.BuyBtn).gameObject.BindEvent(PurchasePopup);
-
+        Main.Game.OnResourcesChanged -= Refresh;
+        Main.Game.OnResourcesChanged += Refresh;
         Refresh();
         return true;
     }
@@ -71,13 +73,14 @@ public class UI_SkillCard : UI_Base
 
         if (Main.Game.PurchasedSkills.Contains(Data.skillStringKey))
         {
-            // 이미 구매했음!
             GetButton((int)Buttons.BuyBtn).gameObject.SetActive(false);
             GetText((int)Texts.Price).text = "";
         }
 
-        GetButton((int)Buttons.BuyBtn).interactable = Data.skillPrice < Main.Game.Gold; // 바인딩클릭막는건 이걸론 안된다
-        GetImage((int)Images.BuyBtn).raycastTarget = Data.skillPrice < Main.Game.Gold; // 레이캐스트 끄니까 가능
+        GetText((int)Texts.BuyText).text = Data.skillPrice > Main.Game.Gold ? "소지금 부족" : "구매하기";
+
+        GetButton((int)Buttons.BuyBtn).interactable = Data.skillPrice <= Main.Game.Gold; // 바인딩클릭막는건 이걸론 안된다
+        GetImage((int)Images.BuyBtn).raycastTarget = Data.skillPrice <= Main.Game.Gold; // 레이캐스트 끄니까 가능
 
     }
     void PurchasePopup(PointerEventData data)

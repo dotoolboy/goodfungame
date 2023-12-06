@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MainScene : BaseScene
 {
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A)) Main.Game.Gold += 10000;
+    }
     protected override bool Initialize()
     {
         if (!base.Initialize()) return false;
@@ -18,4 +23,5 @@ public class MainScene : BaseScene
 
         return true;
     }
+
 }

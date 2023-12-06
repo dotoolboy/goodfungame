@@ -62,16 +62,18 @@ public class Player : Creature
     [SerializeField] private float _speed;
     [SerializeField] private float _invincibilityTime = 3f;  // 무적 시간
     private bool _invincible = false;
-
+    public bool IsPiercingAttack { get; set; } = false;
     // Skills.
     private List<SkillBase> _skills = new();
 
     // Callbacks.
     public Action cbOnPlayerLevelUp;
     public Action cbOnPlayerDataUpdated;
+    public Action OnPlayerPiersingAttack;
+
     public delegate void PlayerHealthChanged();
     public event PlayerHealthChanged OnPlayerHealthChanged;
-
+    
     // Coroutines.
     private Coroutine _coInvincible;
     #endregion
@@ -87,7 +89,7 @@ public class Player : Creature
     {
         _rigidbody.velocity = Direction * MoveSpeed * Time.fixedDeltaTime;
 
-        if (_attackCooldownTimer <= 0)
+        if (_attackCooldownTimer <= 0 && !IsPiercingAttack)
         {
             Attack();
             _attackCooldownTimer = _attackCooldown;
@@ -146,11 +148,34 @@ public class Player : Creature
 
     private void SetSkills()
     {
-        // TODO:: 선택한 스킬을 가져오도록 변경.
-        _skills.Add(this.AddComponent<Skill_ReflectShield>());
-        _skills.Add(this.AddComponent<Skill_GravityField>());
-        _skills.Add(this.AddComponent<Skill_TimeWarp>());
-
+        foreach (string key in Main.Game.EquippedSkills)
+        {
+            Debug.Log(key);
+            switch (key)
+            {
+                case "REFLECTSHIELD":
+                    _skills.Add(this.AddComponent<Skill_ReflectShield>());
+                    break;
+                case "TIMEWARP":
+                    _skills.Add(this.AddComponent<Skill_TimeWarp>());
+                    break;
+                case "ENERGYBURST":
+                    _skills.Add(this.AddComponent<Skill_EnergyBurst>());
+                    break;
+                case "GRAVITYFIELD":
+                    _skills.Add(this.AddComponent<Skill_GravityField>());
+                    break;
+                case "PIERCINGSHOT":
+                    _skills.Add(this.AddComponent<Skill_PiercingShot>());
+                    break;
+                case "AUTOTARGET":
+                    _skills.Add(this.AddComponent<Skill_AutoTarget>());
+                    break;
+                case "HOMINGMISSILE":
+                    // 미구현.
+                    break;
+            }
+        }
         for (int i = 0; i < _skills.Count; i++)
         {
             _skills[i].Initialize();

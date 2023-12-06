@@ -251,6 +251,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70b567a2b034dd14abaebac35996a590
+    m_Address: PiercingProjectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: cedf8085c2bf98c49a1b20eaf2ae0f07, type: 2}
   m_SchemaSet:

@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public class UI_SkillEquip : UI_Base
 {
 
-    public SkillData Data { get; private set; }
+    #region Enums
+
     enum GameObjects
     {
         OutLine
@@ -28,36 +29,38 @@ public class UI_SkillEquip : UI_Base
     enum Texts
     {
         BtnText,
-
-
     }
 
-    private string name;
-    private string description;
+    #endregion
+
+    #region Properties
+
+    public SkillData Data { get; private set; }
+    public bool IsPurchased { get; private set; }
+    public bool IsEquipped { get; private set; }
+
+    #endregion
+
+    #region MonoBehaviours
 
     private void Start()
     {
         Init();
     }
 
+    #endregion
+
+    
     public override bool Init()
     {
         if (!base.Init()) return false;
-
+        
+        // Binding.
         BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
-
-        GetButton((int)Buttons.Btn).gameObject.BindEvent(Equip);
-
-        GetObject((int)GameObjects.OutLine).gameObject.SetActive(false); 
-
-
-
-
-        Main.Game.OnEquipChanged -= Refresh;
-        Main.Game.OnEquipChanged += Refresh;
+        GetButton((int)Buttons.Btn).gameObject.BindEvent(OnBtn);
 
         Refresh();
 
@@ -65,10 +68,11 @@ public class UI_SkillEquip : UI_Base
     }
     public void SetInfo(string key)
     {
-        Data = Main.Data.Skills[key];
         Init();
+        Data = Main.Data.Skills[key];
         Refresh();
     }
+
 
     public void Refresh()
     {
@@ -76,54 +80,28 @@ public class UI_SkillEquip : UI_Base
 
         GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
 
-        name = Data.skill.ToString(); // 툴팁이 읽는용
-        description = Data.skillDesc;
+        IsPurchased = Main.Game.PurchasedSkills.Contains(Data.skillStringKey);
+        IsEquipped = Main.Game.EquippedSkills.Contains(Data.skillStringKey);
 
-        GetButton((int)Buttons.Btn).interactable = Main.Game.PurchasedSkills.Contains(Data.skillStringKey); // 소유한 스킬일때만 버튼 활성화
-        GetImage((int)Images.Btn).raycastTarget = Main.Game.PurchasedSkills.Contains(Data.skillStringKey);
-        GetText((int)Texts.BtnText).text = Main.Game.PurchasedSkills.Contains(Data.skillStringKey) ? "장착하기" : "미획득";
-
+        GetButton((int)Buttons.Btn).interactable = IsPurchased; // 소유한 스킬일때만 버튼 활성화
+        GetImage((int)Images.Btn).raycastTarget = IsPurchased;
+        GetText((int)Texts.BtnText).text = IsPurchased ? (IsEquipped ? "장착중" : "장착하기") : "미획득";
+        GetObject((int)GameObjects.OutLine).gameObject.SetActive(IsEquipped);
 
     }
-    void Equip(PointerEventData data)
+    
+    private void OnBtn(PointerEventData data)
     {
-        if (Main.Game.EquipSkills.Contains(Data.skillStringKey))
+        if (!IsPurchased) return;
+        if (IsEquipped)
         {
-            Debug.Log("이미 장착중입니다!");
-            return;
+            if (!Main.Game.UnequipSkill(Data.skillStringKey)) return;
+            Refresh();
         }
-
-        if (Main.Game.EquipSkills.Count >= 3)
+        else
         {
-            Debug.Log("스킬창이 꽉 찼습니다!!");
-            return;
+            if (!Main.Game.EquipSkill(Data.skillStringKey)) return;
+            Refresh();
         }
-
-        Debug.Log("스킬 장착했습니다!");
-        Main.Game.EquipSkills.Add(Data.skillStringKey);
-        GetButton((int)Buttons.Btn).gameObject.BindEvent(OutEquip);
-        GetText((int)Texts.BtnText).text = "장착중";
-        GetObject((int)GameObjects.OutLine).gameObject.SetActive(true);
-
-
-
     }
-
-    void OutEquip(PointerEventData data)
-    {
-        if (Main.Game.EquipSkills.Contains(Data.skillStringKey))
-        {
-            Debug.Log("벗었습니다!");
-            Main.Game.EquipSkills.Remove(Data.skillStringKey);
-            GetButton((int)Buttons.Btn).gameObject.BindEvent(Equip);
-            GetText((int)Texts.BtnText).text = "장착하기";
-
-            GetObject((int)GameObjects.OutLine).gameObject.SetActive(false);
-
-            return;
-        }
-
-    }
-
-
 }

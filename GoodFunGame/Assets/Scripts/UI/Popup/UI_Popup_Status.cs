@@ -39,7 +39,7 @@ public class UI_Popup_Status : UI_Popup
     {
         Content,
 
-        Panel
+        //Panel
 
 
     }
@@ -64,8 +64,8 @@ public class UI_Popup_Status : UI_Popup
 
         SetSkill();
 
-        Main.Game.OnEquipChanged -= SetSkill;
-        Main.Game.OnEquipChanged += SetSkill;
+        //Main.Game.OnEquipChanged -= SetSkill;
+        //Main.Game.OnEquipChanged += SetSkill;
         Refresh();
 
 
@@ -74,7 +74,7 @@ public class UI_Popup_Status : UI_Popup
     void Refresh()
     {
         GetText((int)Texts.BestText).text = $"최고기록 : 0";
-        GetText((int)Texts.SkillCollectText).text = $"수집율 : {String.Format("{0}", (float)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
+        GetText((int)Texts.SkillCollectText).text = $"수집율 : {Math.Truncate((double)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
         GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
         GetText((int)Texts.NameText).text = $"{Main.Game.UserName}";
 
@@ -84,6 +84,7 @@ public class UI_Popup_Status : UI_Popup
 
     private void SetSkill() // 스킬 목록 만들기
     {
+        GetObject((int)GameObjects.Content).DestroyChilds();
         foreach (string key in Main.Data.Skills.Keys)
         {
             UI_SkillEquip newEquip = Main.Resource.InstantiatePrefab("UI_SkillEquip.prefab", GetObject((int)GameObjects.Content).transform).GetComponent<UI_SkillEquip>();

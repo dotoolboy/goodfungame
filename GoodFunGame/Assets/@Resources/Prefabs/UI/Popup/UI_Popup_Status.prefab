@@ -388,7 +388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -83, y: 262}
+  m_AnchoredPosition: {x: -83, y: 250}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2085024033239628866
@@ -693,7 +693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 285.53104, y: -88.1151}
+  m_AnchoredPosition: {x: 285.53104, y: -100.1151}
   m_SizeDelta: {x: 963.0819, y: 564.3925}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &319194656653203111
@@ -799,7 +799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -83, y: 327}
+  m_AnchoredPosition: {x: -83, y: 315}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6487292924293137046
@@ -1286,7 +1286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -202, y: -275}
+  m_AnchoredPosition: {x: -202, y: -287}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &662769398514788031
@@ -1423,8 +1423,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -496, y: -28}
-  m_SizeDelta: {x: 473.5313, y: 744.23}
+  m_AnchoredPosition: {x: -496, y: -25.8793}
+  m_SizeDelta: {x: 473.5313, y: 772.4713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8948518622461980961
 CanvasRenderer:
@@ -1894,7 +1894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -499, y: -133}
+  m_AnchoredPosition: {x: -499, y: -145}
   m_SizeDelta: {x: -1247.9504, y: -832.7049}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4148174172472042596
@@ -2005,7 +2005,7 @@ PrefabInstance:
     - target: {fileID: 613425163818584606, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 56a70182a4a9c4ac88610b9ee0faacf8, type: 3}
+      objectReference: {fileID: 21300000, guid: 27508050e2a70415d83651e0797c7d48, type: 3}
     - target: {fileID: 5787406380923000207, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_Name
       value: BackspaceBtn
@@ -2040,11 +2040,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 158.715
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 158.71
       objectReference: {fileID: 0}
     - target: {fileID: 8619983490151472879, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_LocalPosition.x
