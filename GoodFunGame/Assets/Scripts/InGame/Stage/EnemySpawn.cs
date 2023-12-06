@@ -25,14 +25,14 @@ public class EnemySpawn
         List<Enemy> spawnList = new();
         if (wave == 1)
         {
-            Enemy bossObject = Main.Object.Spawn<Enemy>(Main.Stage.BossKey[bossIndex], new Vector2(0, 5f));
+            Enemy bossObject = Main.Object.Spawn<Enemy>(Main.Stage.BossKey.Keys.ElementAt(bossIndex), new Vector2(0, 5f));
             bossObject.gameObject.SetActive(false);
             spawnList.Add(bossObject);
         }
         else
         {
-            string bossKey = Main.Stage.BossKey[bossIndex];
-            List<string> soldierKeys = Main.Stage.EnemyGroups[bossKey];
+            string selectedKey = Main.Stage.BossKey.Keys.ElementAt(bossIndex);
+            List<string> soldierKeys = Main.Stage.EnemyGroups[selectedKey];
 
             for (int i = 0; i < wave; i++)
             {
