@@ -17,6 +17,8 @@ public class UI_SkillCard : UI_Base
     {
         IconBackground,
         IconImage,
+        BuyBtn,
+
     }
     enum Buttons
     {
@@ -26,7 +28,7 @@ public class UI_SkillCard : UI_Base
     #endregion
 
     #region Properties
-    
+
     public SkillData Data { get; private set; }
 
     #endregion
@@ -43,6 +45,8 @@ public class UI_SkillCard : UI_Base
         BindText(typeof(Texts));
         BindImage(typeof(Images));
 
+
+        GetButton((int)Buttons.BuyBtn).gameObject.SetActive(true);
         GetButton((int)Buttons.BuyBtn).gameObject.BindEvent(PurchasePopup);
 
         Refresh();
@@ -65,11 +69,16 @@ public class UI_SkillCard : UI_Base
         GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
 
 
+        if (Main.Game.PurchasedSkills.Contains(Data.skillStringKey))
+        {
+            // 이미 구매했음!
+            GetButton((int)Buttons.BuyBtn).gameObject.SetActive(false);
+            GetText((int)Texts.Price).text = "";
+        }
 
-        // 내가가진 돈이 이 스킬 가격보다 적으면 변화 
-        // 현재 재산으로 못사는 스킬을 구매버튼 비활성화
-        // 구매한 스킬은 구매했다고 표시되야함
-        // 해금된 스킬이라면 변화
+        GetButton((int)Buttons.BuyBtn).interactable = Data.skillPrice < Main.Game.Gold; // 바인딩클릭막는건 이걸론 안된다
+        GetImage((int)Images.BuyBtn).raycastTarget = Data.skillPrice < Main.Game.Gold; // 레이캐스트 끄니까 가능
+
     }
     void PurchasePopup(PointerEventData data)
     {

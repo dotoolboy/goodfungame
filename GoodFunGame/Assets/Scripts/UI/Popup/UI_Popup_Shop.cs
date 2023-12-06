@@ -8,7 +8,6 @@ public class UI_Popup_Shop : UI_Popup
     private enum Texts
     {
         GoldText,
-        PercentText
     }
 
     private enum Images
@@ -46,8 +45,7 @@ public class UI_Popup_Shop : UI_Popup
     }
     private void Refresh()
     {
-        GetText((int)Texts.GoldText).text = Main.Game.Gold.ToString();
-        GetText((int)Texts.PercentText).text = "수집율100퍼";  //$"수집율 : { 해금된스킬갯수 / Main.Data.Skills.Keys * 100f).ToString()}%";
+        GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
         SetSkillCard();
 
 
