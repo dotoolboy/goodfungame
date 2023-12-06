@@ -180,7 +180,7 @@ public class Enemy : Creature
         int count = Random.Range(2, 8);
         float time = Random.Range(0, 4);
 
-        int a = Random.Range(0, 4);
+        int a = Random.Range(0, 5);
         switch (a)
         {
             case 1:
@@ -206,6 +206,14 @@ public class Enemy : Creature
                 ringShot.Initialize(this, "Bullet_1_KSJ", 20, time, 3);
                 ringShot.Shot();
                 pg = ringShot;
+                break;
+            case 4:
+                PG_Vertical verticalShot = Main.Object.SpawnProjectileGenerator<PG_Vertical>();
+                verticalShot.transform.position = this.transform.position;
+                verticalShot.transform.SetParent(this.transform);
+                verticalShot.Initialize(this, "Bullet_1_KSJ", count, time, 3);
+                verticalShot.Shot();
+                pg = verticalShot;
                 break;
         }
         yield return new WaitUntil(() => pg == null);
