@@ -39,19 +39,4 @@ public class GameScene : BaseScene
         }
     }
 
-    //void OnPause()
-    //{
-    //    if (Time.timeScale == 0f)
-    //    {
-    //        // 현재 일시 정지된 상태이므로 게임을 재개합니다.
-    //        Time.timeScale = 1f;
-    //        Main.UI.CloseAllPopupUI();
-    //    }
-    //    else
-    //    {
-    //        // 현재 실행 중인 상태이므로 게임을 일시 정지하고 팝업을 표시합니다.
-    //        Time.timeScale = 0f;
-    //        Main.UI.ShowPopupUI<UI_Popup_Pause>();
-    //    }
-    //}
 }
