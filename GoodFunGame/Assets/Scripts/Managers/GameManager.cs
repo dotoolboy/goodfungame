@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager
@@ -71,6 +72,40 @@ public class GameManager
         }
     }
 
+    public Dictionary<SkillData.Skills, bool> EquipSkill
+    {
+        get => _equipSkill;
+        set
+        {
+            _equipSkill = value;
+            if (!EquipSkills.Contains(_equipSkill))
+            {
+                EquipSkills.Add(_equipSkill);
+            }
+            else
+            {
+                Debug.Log("이미 장착된 스킬입니다.");
+            }
+        }
+    }
+
+    public Dictionary<SkillData.Skills, bool> UnEquipSkill
+    {
+        get => _equipSkill;
+        set
+        {
+            _equipSkill = value;
+            if (EquipSkills.Contains(_equipSkill))
+            {
+                EquipSkills.Remove(_equipSkill);
+            }
+            else
+            {
+                Debug.Log("이미 장착 해제된 스킬입니다.");
+            }
+        }
+    }
+
     #endregion
 
     #region Fields
@@ -78,6 +113,8 @@ public class GameManager
     // GameData.
     private GameData _data = new();
     private string _dataPath;
+    public List<Dictionary<SkillData.Skills, bool>> EquipSkills;
+    private Dictionary<SkillData.Skills, bool> _equipSkill;
 
     // Events.
     public event Action OnResourcesChanged; // Gold 등의 재화가 변동될 때 이벤트. ex) 여기에 재화 UI 새로고침과 같은 코드를 넣어두면 좋겠습니다!
