@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 using static StageData;
 
@@ -19,6 +20,7 @@ public class UI_Popup_Talk : UI_Popup
     }
     enum Images
     {
+        Character,
         NameImage,
         LineImage
 
@@ -229,6 +231,8 @@ public class UI_Popup_Talk : UI_Popup
         {
             case StageCharge.MWJ:
                 talkData = mWJ[stage];
+            //    GetImage((int)Images.Character).sprite = 이 스테이지 보스 이미지;
+
                 break;
             case StageCharge.CHH:
                 talkData = cHH[stage];

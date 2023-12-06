@@ -1,4 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Define;
 
@@ -26,6 +28,8 @@ public class UI_Popup_Tooltip : UI_Popup
     private LayoutElement _layoutElement;
 
 
+    private CanvasGroup _canvasGroup;
+
     private Vector2 _position;
     private float _pivotX;
     private float _pivotY;
@@ -35,10 +39,11 @@ public class UI_Popup_Tooltip : UI_Popup
     {
         Init();
     }
-
     private void OnEnable()
     {
-        GetObject((int)GameObjects.Tooltip).gameObject.SetActive(true);
+       
+        _canvasGroup.alpha = 0;
+        _canvasGroup.DOFade(1, 0.2f);
     }
 
 
@@ -54,26 +59,34 @@ public class UI_Popup_Tooltip : UI_Popup
         BindObject(typeof(GameObjects));
         BindText(typeof(Texts));
 
-        GetObject((int)GameObjects.Tooltip).gameObject.SetActive(true);
-
         _rectTransform = GetObject((int)GameObjects.Tooltip).gameObject.GetComponent<RectTransform>();
         _layoutElement = GetObject((int)GameObjects.Tooltip).gameObject.GetComponent<LayoutElement>();
-
-     //   this.gameObject.BindEvent(null, type: UIEvent.PointerEnter);
+        _canvasGroup = GetObject((int)GameObjects.Tooltip).gameObject.GetComponent<CanvasGroup>();
 
         _position = Input.mousePosition;
-        GetObject((int)GameObjects.Tooltip).gameObject.SetActive(false);
 
+
+
+      //  this.gameObject.GetComponent<UI_EventHandler>().OnPointerEnterHandler -= null;
+      //  this.gameObject.GetComponent<UI_EventHandler>().OnPointerEnterHandler += null;
+
+        //    this.gameObject.GetComponent<UI_EventHandler>().OnPointerExitHandler -= Hide();
+        //   this.gameObject.GetComponent<UI_EventHandler>().OnPointerExitHandler += Hide();
+
+       
 
         return true;
     }
+
+
+
 
 
     void MovePosition()
     {
         _position = Input.mousePosition;
 
-        _pivotX = _position.x / Screen.width; //화면을 (0,0) (1,1)이라고 했을때 위치를 집어넣음 
+        _pivotX = _position.x / Screen.width;
         _pivotY = _position.y / Screen.height;
 
         _rectTransform.pivot = new Vector2(_pivotX, _pivotY);
@@ -101,13 +114,12 @@ public class UI_Popup_Tooltip : UI_Popup
 
         _layoutElement.enabled = GetText((int)Texts.Header).preferredWidth > _characterWrapLimit || (GetText((int)Texts.Content)).preferredWidth > _characterWrapLimit;
 
-        GetObject((int)GameObjects.Tooltip).gameObject.SetActive(true);
-
     }
 
     public void Hide()
     {
-        GetObject((int)GameObjects.Tooltip).gameObject.SetActive(false);
+        _canvasGroup.DOFade(0, 0.2f);
+        Main.UI.ClosePopupUI(this);
     }
 
 
