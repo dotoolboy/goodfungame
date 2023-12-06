@@ -9,7 +9,7 @@ public class ObjectManager
 
     public Player Player { get; private set; }
     // get에  event invoke 하면 Remove, Add시 이벤트 송신 가능해짐
-    private List<Enemy> Enemies { get; set; } = new();
+    public List<Enemy> Enemies { get; set; } = new();
     public event Action<int> OnVictory;
     private int _killCount;
     private List<Projectile> Projectiles { get; set; } = new();
@@ -108,6 +108,12 @@ public class ObjectManager
     public void DespawnProjectileGenerator<T>(T obj) where T : ProjectileGenerator
     {
         Main.Resource.Destroy(obj.gameObject);
+    }
+
+    public void DespawnAllProjectile()
+    {
+        foreach(var item in Projectiles)
+            Despawn(item);
     }
 
     public void Clear()

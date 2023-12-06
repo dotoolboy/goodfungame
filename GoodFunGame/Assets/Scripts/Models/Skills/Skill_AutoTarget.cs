@@ -16,6 +16,7 @@ public class Skill_AutoTarget : SkillBase
     public override void Initialize()
     {
         base.Initialize();
+        Cooldown = 13f;
     }
 
     public override bool Activate()
@@ -24,7 +25,6 @@ public class Skill_AutoTarget : SkillBase
 
         StartCoroutine(PeriodicGeneration());
 
-        Cooldown = 13f;
 
         return true;
     }
