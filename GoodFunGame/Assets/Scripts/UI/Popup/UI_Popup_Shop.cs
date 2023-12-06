@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class UI_Popup_Shop : UI_Popup
 {
@@ -52,8 +47,10 @@ public class UI_Popup_Shop : UI_Popup
     private void Refresh()
     {
         GetText((int)Texts.GoldText).text = Main.Game.Gold.ToString();
-        GetText((int)Texts.PercentText).text = "100%"; // 스킬 해금율 퍼센트
+        GetText((int)Texts.PercentText).text = "수집율100퍼";  //$"수집율 : { 해금된스킬갯수 / Main.Data.Skills.Keys * 100f).ToString()}%";
         SetSkillCard();
+
+
     }
 
     private void SetSkillCard()

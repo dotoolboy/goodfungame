@@ -1,4 +1,5 @@
 using UnityEngine;
+using static StageData;
 
 public class UITestScene : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class UITestScene : MonoBehaviour
     {
         // Main.UI.ShowSceneUI<UI_Scene_Intro>();
         // Main.UI.ShowSceneUI<UI_Scene_Select>();
-        Main.UI.ShowPopupUI<UI_Popup_Talk>();
+        Main.UI.ShowPopupUI<UI_Popup_Talk>().DialogueOpen(StageCharge.MWJ, UI_Popup_Talk.Dialogue.FAIL);
         // Main.UI.ShowSceneUI<UI_Scene_Battle>();
 
 
