@@ -104,7 +104,7 @@ public class UIManager
 
     public void RefreshTimeScale()
     {
-        if (SceneManager.GetActiveScene().name != "GameScene")
+        if (Main.Scene.CurrentScene is GameScene)
         {
             Time.timeScale = 1;
             return;

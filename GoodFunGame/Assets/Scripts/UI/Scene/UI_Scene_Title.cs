@@ -32,6 +32,6 @@ public class UI_Scene_Title : UI_Scene
     private void OnButtonStart(PointerEventData data)
     {
         Main.UI.CloseAllPopupUI();
-        SceneManager.LoadScene("MainScene");
+        Main.Scene.LoadScene("MainScene");
     }
 }

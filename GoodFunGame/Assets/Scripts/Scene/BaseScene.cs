@@ -37,6 +37,8 @@ public class BaseScene : MonoBehaviour
     {
         if (_Initialized) return false;
 
+        Main.Scene.CurrentScene = this;
+
         Object obj = GameObject.FindObjectOfType<EventSystem>();
         if (obj == null) Main.Resource.InstantiatePrefab("EventSystem.prefab").name = "@EventSystem";
 
