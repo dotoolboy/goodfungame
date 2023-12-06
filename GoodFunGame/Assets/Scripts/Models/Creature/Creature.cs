@@ -99,13 +99,13 @@ public class Creature : Thing {
         SetStatus();
     }
 
-    protected virtual void SetStatus(bool isFullHp = false) 
+    protected virtual void SetStatus(bool isFullHp = false, int MaxHp = 2) 
     {
         //HpMax = Data.hpMax;
         //Damage = Data.damage;
         //MoveSpeed = Data.moveSpeed;
 
-        HpMax = 100;
+        HpMax = MaxHp;
         Damage = 10;
         MoveSpeed = 5;
 
@@ -123,7 +123,8 @@ public class Creature : Thing {
 
     public virtual void OnHit(GameObject collisionProjectile) {
         Projectile projectile = collisionProjectile.GetComponent<Projectile>();
-        Hp -= projectile.Damage;
+        //Hp -= projectile.Damage;
+        Hp -= 1;
         Main.Resource.Destroy(collisionProjectile);
     }
 }
