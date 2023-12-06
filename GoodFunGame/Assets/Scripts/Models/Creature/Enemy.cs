@@ -105,17 +105,10 @@ public class Enemy : Creature
         Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
         // TODO:: 오브젝트 디스폰
-        MoveCoroutine = StartCoroutine(ExplosionVFX());
-        EndToEnemyCoroutine(this);
-    }
+        var explosionVFX = Main.Object.Spawn<Explosion>("Explosion", this.transform.position);
+        explosionVFX.gameObject.GetComponent<Explosion>().DespawnExplosion();
 
-    private IEnumerator ExplosionVFX()
-    {
-        // 터지는 효과
-        var explosionVFX =Main.Object.Spawn<Thing>("Explosion", this.transform.position);
-        yield return new WaitForSeconds(1f);
-        // 터지는 효과 없애기
-        EndToEnemyCoroutine(explosionVFX);
+        EndToEnemyCoroutine(this);
     }
     #endregion
 
