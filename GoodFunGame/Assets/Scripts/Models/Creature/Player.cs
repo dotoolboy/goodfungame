@@ -93,12 +93,16 @@ public class Player : Creature
     {
         if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
         {
-            OnHit(collision.gameObject);
-
-            if (collision.gameObject.tag == "EnemyProjectile")
+            if (collision.CompareTag("EnemyProjectile"))
             {
                 Projectile projectile = collision.gameObject.GetComponent<Projectile>();
                 Main.Resource.Destroy(collision.gameObject);
+                OnHit(projectile.Owner);
+            }
+            else
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                OnHit(enemy);
             }
 
             // 무적
@@ -110,6 +114,7 @@ public class Player : Creature
 
             // HeartUI
             OnPlayerHealthChanged?.Invoke();
+
         }
     }
 
@@ -124,7 +129,7 @@ public class Player : Creature
         return true;
     }
 
-    protected override void SetStatus(bool isFullHp = false, int MaxHp = 2)
+    protected override void SetStatus(bool isFullHp = false, int MaxHp = 3)
     {
         base.SetStatus(isFullHp, MaxHp);
         _attackCooldown = 0.25f;
@@ -149,7 +154,7 @@ public class Player : Creature
 
         // TODO:: 오브젝트 디스폰
         //Main.Resource.Destroy(gameObject);
-        //Main.Object.Despawn<Player>(this);
+        Main.Object.Despawn<Player>(this);
     }
     #endregion
 
@@ -176,20 +181,6 @@ public class Player : Creature
     #endregion
 
     #region Coroutine
-
-    //IEnumerator BasicShot()
-    //{
-    //    // boss가 죽을 때 까지
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(_basicShotSpawnTime);
-
-    //        Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
-    //        projectile.SetInfo(this, "Bullet_2_KSJ", Damage); // 임시 스프라이트
-    //        projectile.SetVelocity(Vector2.up * _projectileSpeed);
-    //        projectile.gameObject.tag = "PlayerProjectile";
-    //    }
-    //}
 
     IEnumerator EnableColliderAfterInvincibility()
     {
