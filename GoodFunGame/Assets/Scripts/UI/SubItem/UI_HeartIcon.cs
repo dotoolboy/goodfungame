@@ -11,7 +11,7 @@ public class UI_HeartIcon : MonoBehaviour
     void Start()
     {
         player = Main.Object.Player;
-        // player.OnPlayerHealthChanged += UpdateUI;
+        player.OnPlayerHealthChanged += UpdateUI;
     }
 
     void UpdateUI()

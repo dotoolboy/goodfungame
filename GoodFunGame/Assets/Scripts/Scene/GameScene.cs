@@ -12,8 +12,11 @@ public class GameScene : BaseScene
 
         UI = Main.UI.ShowSceneUI<UI_Scene_Game>();
         GameObject stageSprite = Main.Resource.InstantiatePrefab("BackGround.prefab");
-        Main.Object.Spawn<Player>("Player", new(0, -2));
 
+        // 플레이어 생성
+        Player player = Main.Object.Spawn<Player>("Player", new(0, -2));
+        player.ScoreCount = 0;
+        player.GoldCount = 0;
 
 
         // =========================================================================================
