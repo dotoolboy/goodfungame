@@ -17,7 +17,6 @@ public class StageBackGround : MonoBehaviour
     }
 
     [SerializeField] private List<LayerSet> layerSets;
-
     private float CameraHeight { get; set; }
     private Transform CameraTransform { get; set; }
     private float ResetPosition{ get; set; }
@@ -28,7 +27,6 @@ public class StageBackGround : MonoBehaviour
         {
             return;
         }
-
         Camera main = Camera.main;
         CameraHeight = main.orthographicSize * 2;
         CameraTransform = main.transform;
@@ -44,6 +42,8 @@ public class StageBackGround : MonoBehaviour
             Scrolling(layerSet.topLayer, layerSet.TopSpeed);
         }
     }
+
+
 
     private void Scrolling(Transform layer, float speed)
     {
