@@ -1,4 +1,5 @@
 
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ public class Enemy : Creature
 
     public Coroutine MoveCoroutine;
     private Coroutine _coAttack;
-
     #endregion
 
     #region MonoBehaviours
@@ -62,6 +62,7 @@ public class Enemy : Creature
 
     public override void SetInfo(string key) {
         base.SetInfo(key);
+        _paths = GetComponents<DOTweenPath>();
         EnemyData enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
         hp = enemy.hp;
@@ -123,6 +124,7 @@ public class Enemy : Creature
     /// </summary>
     public void Zigzag()
     {
+        CoroutineInit();
         Vector2[] wayPoints = Main.Spawn.CalculateWaypoints(this, 3);
         MoveCoroutine = StartCoroutine(Main.Spawn.MoveZigzag(this, wayPoints));
     }
@@ -131,6 +133,7 @@ public class Enemy : Creature
     /// </summary>
     public void Vertical()
     {
+        CoroutineInit();
         MoveCoroutine = StartCoroutine(Main.Spawn.MoveToVertical(this));
     }
 
@@ -139,17 +142,39 @@ public class Enemy : Creature
     /// </summary>
     public void Boss()
     {
+        CoroutineInit();
         MoveCoroutine = StartCoroutine(Main.Spawn.BossAppear(this));
+    }
+
+    public void BossHorizontal()
+    {
+        CoroutineInit();
+        MoveCoroutine = StartCoroutine(Main.Spawn.BossHorizontalPattern(this));
+    }
+
+    public void BossInfinity()
+    {
+        CoroutineInit();
+        MoveCoroutine = StartCoroutine(Main.Spawn.BossInfinityPattern(this));
+    }
+
+    public void BossInAndOut()
+    {
+        CoroutineInit();
+        MoveCoroutine = StartCoroutine(Main.Spawn.BossInAndOutPattern(this));
     }
 
     public void EndToEnemyCoroutine<T>(T coroutineObject) where T : Thing
     {
-        if (MoveCoroutine != null)
-        {
-            StopCoroutine(MoveCoroutine);
-            MoveCoroutine = null;
-        }
+        CoroutineInit();
         Main.Object.Despawn(coroutineObject);
+    }
+
+    private void CoroutineInit()
+    {
+        if (MoveCoroutine == null) return;
+        StopCoroutine(MoveCoroutine);
+        MoveCoroutine = null;
     }
     #endregion
 
