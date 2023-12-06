@@ -12,77 +12,41 @@ public class EnemySpawn
     // 적이 움직일 수 있는 범위
     // 가로 (-4,4)
     // 세로 (5,-5)
-    private int _enemyVolume;
-    private List<Enemy> _enemySpawnList = new();
     private const float SpeedOffset = 1.5f;
     private const float WayPointWidthValue = 2;
-
-    #region SpawnGroup Controller
-    private readonly string[] _bossKey = {
-        "BOSS_MWJ",
-        "BOSS_CHH",
-        "BOSS_LJH",
-        "BOSS_JEH",
-        "BOSS_KSJ"
-    };
-    private int _bossIndex;
-
-    private readonly Dictionary<string, List<string>> _enemyGroups = new()
-    {
-        {"BOSS_MWJ", new List<string> {"SOLDIER1_MWJ", "SOLDIER2_MWJ", "SOLDIER3_MWJ"}},
-        {"BOSS_CHH", new List<string> {"SOLDIER1_CHH", "SOLDIER2_CHH", "SOLDIER3_CHH"}},
-        {"BOSS_LJS", new List<string> {"SOLDIER1_LJH", "SOLDIER2_LJH", "SOLDIER3_LJH"}},
-        {"BOSS_JEH", new List<string> {"SOLDIER1_JEH", "SOLDIER2_JEH", "SOLDIER3_JEH"}},
-        {"BOSS_KSJ", new List<string> {"SOLDIER1_KSJ", "SOLDIER2_KSJ", "SOLDIER3_KSJ"}}
-    };
-    #endregion
-
     public enum Pattern { VERTICAL, ZIGZAG, BOSS}
 
     private enum BossPattern { Horizontal, Infinity, InAndOut}
 
     #region Get And Set Enemy Pattern
-    public void StageVolume(int stageValue)
-    {
-        _enemySpawnList.Clear();
-        _enemyVolume = stageValue switch
-        {
-            1 => 3,
-            2 => 4,
-            3 => 5,
-            4=> 1,
-            _ => _enemyVolume
-        };
-        EnemyPickList();
-    }
 
-    private void EnemyPickList()
+    public List<Enemy> EnemyPickList(int wave, int bossIndex)
     {
-        if (_enemyVolume == 1)
+        List<Enemy> spawnList = new();
+        if (wave == 1)
         {
-            Enemy bossObject = Main.Object.Spawn<Enemy>(_bossKey[_bossIndex], new Vector2(0, 5f));
+            Enemy bossObject = Main.Object.Spawn<Enemy>(Main.Stage.BossKey[bossIndex], new Vector2(0, 5f));
             bossObject.gameObject.SetActive(false);
-            _enemySpawnList.Add(bossObject);
-            _bossIndex++;
+            spawnList.Add(bossObject);
         }
         else
         {
-            string bossKey = _bossKey[_bossIndex];
-            List<string> soldierKeys = _enemyGroups[bossKey];
+            string bossKey = Main.Stage.BossKey[bossIndex];
+            List<string> soldierKeys = Main.Stage.EnemyGroups[bossKey];
 
-            for (int i = 0; i < _enemyVolume; i++)
+            for (int i = 0; i < wave; i++)
             {
                 string key = soldierKeys[Random.Range(0, soldierKeys.Count)];
                 Vector2 position = RandomKeyPick();
                 Enemy enemyObj = Main.Object.Spawn<Enemy>(key, position);
                 enemyObj.gameObject.SetActive(false);
-                _enemySpawnList.Add(enemyObj);
+                spawnList.Add(enemyObj);
             }
         }
-        EnemyPattern(_enemySpawnList);
+        return spawnList;
     }
 
-    private Vector2 RandomKeyPick()
+    public Vector2 RandomKeyPick()
     {
         Vector2 position = new(Random.Range(-3,3),6);
         return position;
@@ -90,12 +54,11 @@ public class EnemySpawn
     #endregion
 
     #region Assignment Enemy Pattern
-    private void EnemyPattern(List<Enemy> enemiesList)
+    public void AssignmentEnemyPattern(List<Enemy> enemiesList)
     {
         foreach (Enemy enemy in enemiesList)
         {
             enemy.gameObject.SetActive(true);
-            
             switch (enemy.movePattern)
             {
                 case Pattern.VERTICAL:
@@ -113,7 +76,7 @@ public class EnemySpawn
     #endregion
 
     #region ZigZag
-    public Vector2[] CalculateWaypoints(Enemy enemy, int wayPointCount)
+    public static Vector2[] CalculateWaypoints(Enemy enemy, int wayPointCount)
     {
         int direction = Random.Range(0, 2) == 0 ? -1 : 1;
         Vector2[] wayPoints = new Vector2[wayPointCount];
@@ -130,7 +93,7 @@ public class EnemySpawn
         return wayPoints;
     }
 
-    public IEnumerator MoveZigzag(Enemy enemy, Vector2[] wayPoints)
+    public static IEnumerator MoveZigzag(Enemy enemy, Vector2[] wayPoints)
     {
         int currentWaypointIndex = 0;
         while (currentWaypointIndex < wayPoints.Length)
@@ -151,7 +114,7 @@ public class EnemySpawn
     #endregion
 
     #region Vertical
-    public IEnumerator MoveToVertical(Enemy enemy)
+    public static IEnumerator MoveToVertical(Enemy enemy)
     {
         Vector2 endPos = new(enemy.transform.position.x, -5f);
         while (enemy.transform.position.y > -5f)
@@ -189,7 +152,7 @@ public class EnemySpawn
         BossNextPattern(enemy);
     }
 
-    private void BossNextPattern(Enemy enemy)
+    private static void BossNextPattern(Enemy enemy)
     {
         BossPattern[] bossPatterns = Enum.GetValues(typeof(BossPattern)).Cast<BossPattern>().ToArray();
         BossPattern bossPattern = bossPatterns[Random.Range(0, bossPatterns.Length)];
@@ -208,7 +171,7 @@ public class EnemySpawn
         }
     }
 
-    public IEnumerator BossHorizontalPattern(Enemy enemy)
+    public static IEnumerator BossHorizontalPattern(Enemy enemy)
     {
         Vector3[] waypoints =
         {
@@ -237,7 +200,7 @@ public class EnemySpawn
         BossNextPattern(enemy);
     }
 
-    public IEnumerator BossInfinityPattern(Enemy enemy)
+    public static IEnumerator BossInfinityPattern(Enemy enemy)
     {
         Vector3[] waypoints =
         {
@@ -264,7 +227,7 @@ public class EnemySpawn
         BossNextPattern(enemy);
     }
 
-    public IEnumerator BossInAndOutPattern(Enemy enemy)
+    public static IEnumerator BossInAndOutPattern(Enemy enemy)
     {
         Vector3[] waypoints =
         {

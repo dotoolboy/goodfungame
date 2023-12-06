@@ -35,10 +35,9 @@ public class Enemy : Creature
     {
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            //Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-            OnHit(Main.Object.Player);
-
-            Main.Object.Player.ScoreCount++;
+            Projectile projectile = collision.gameObject.GetComponent<Projectile>();
+            OnHit(projectile.Owner);
+            Main.Stage.stageCurrentScore++;
         }
     }
 
@@ -100,7 +99,7 @@ public class Enemy : Creature
         base.OnStateEntered_Dead();
 
         // 적을 죽일때마다 스코어 점수 추가
-        Main.Object.Player.ScoreCount += 50;
+        Main.Stage.stageCurrentScore += 50;
         // 터지는 효과
         Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
@@ -119,8 +118,8 @@ public class Enemy : Creature
     public void Zigzag()
     {
         CoroutineInit();
-        Vector2[] wayPoints = Main.Spawn.CalculateWaypoints(this, 3);
-        MoveCoroutine = StartCoroutine(Main.Spawn.MoveZigzag(this, wayPoints));
+        Vector2[] wayPoints = CalculateWaypoints(this, 3);
+        MoveCoroutine = StartCoroutine(MoveZigzag(this, wayPoints));
     }
     /// <summary>
     ///  일직선 움직임
@@ -128,7 +127,7 @@ public class Enemy : Creature
     public void Vertical()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(Main.Spawn.MoveToVertical(this));
+        MoveCoroutine = StartCoroutine(MoveToVertical(this));
     }
 
     /// <summary>
@@ -143,19 +142,19 @@ public class Enemy : Creature
     public void BossHorizontal()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(Main.Spawn.BossHorizontalPattern(this));
+        MoveCoroutine = StartCoroutine(BossHorizontalPattern(this));
     }
 
     public void BossInfinity()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(Main.Spawn.BossInfinityPattern(this));
+        MoveCoroutine = StartCoroutine(BossInfinityPattern(this));
     }
 
     public void BossInAndOut()
     {
         CoroutineInit();
-        MoveCoroutine = StartCoroutine(Main.Spawn.BossInAndOutPattern(this));
+        MoveCoroutine = StartCoroutine(BossInAndOutPattern(this));
     }
 
     public void EndToEnemyCoroutine<T>(T coroutineObject) where T : Thing
