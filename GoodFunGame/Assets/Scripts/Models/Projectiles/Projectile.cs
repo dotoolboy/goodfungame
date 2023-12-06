@@ -30,6 +30,16 @@ public class Projectile : Thing
         StopAllCoroutines();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag($"Wall"))
+        {
+            if (this.IsValid()) Main.Object.Despawn(this);
+        }
+    }
+
+
+
     #endregion
 
     #region Initialize / Set
