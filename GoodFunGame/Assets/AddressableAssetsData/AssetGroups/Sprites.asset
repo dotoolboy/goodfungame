@@ -18,39 +18,46 @@ MonoBehaviour:
   m_GUID: 3f51aa56f6172a04da37d5088f9554a0
   m_SerializeEntries:
   - m_GUID: 76455fad58700f14c9c51853f65e7dfc
-    m_Address: Enemy_3_MWJ.sprite
+    m_Address: SOLDIER3_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c67e6c525529f9d4bab5b83eea3c94ef
-    m_Address: Enemy_2_MWJ.sprite
+    m_Address: SOLDIER2_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3e8f34537fac3c2428d2108dc40aeeef
-    m_Address: Enemy_1_MWJ.sprite
+    m_Address: SOLDIER1_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 085c0e2f760d226429fc066ee3cc00d5
     m_Address: Bullet_3_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5eb1974fa9cc214fa33b1f2928ad87d
     m_Address: Bullet_2_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 82dfc9ea6375c2a4da136879cf5e8d6f
     m_Address: Bullet_1_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fab5c2982b41bed45ad4eb7c4ca12383
-    m_Address: Boss_1_MWJ.sprite
+    m_Address: BOSS_MWJ.sprite
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b35b0844e386456e8dc5bc2aaf5c141
     m_Address: AUTOTARGET.sprite
@@ -112,8 +119,152 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d5592f9eacb473740807d9878d943ca7
-    m_Address: Bullet_4_KSJ.sprite
+  - m_GUID: ca4b5d7309eb69d4db4fd38fee1a85c2
+    m_Address: BOSS_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9ebcef3b3ea1e7429929eb8400aead9
+    m_Address: Bullet_1_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14d6e330009f338418345ebf3b7d23e0
+    m_Address: Bullet_2_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 139940efb827e0f46b9c8f43b4e3e59c
+    m_Address: Bullet_3_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47829a29dd624c34f8a0e19c691740be
+    m_Address: SOLDIER1_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c00718c4753e9644801973f6e7cd8ac
+    m_Address: SOLDIER2_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 336f1960c7873b641b3e719cbed51a4f
+    m_Address: SOLDIER3_JEH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a945a33e62e68be47bcda7f7303b8367
+    m_Address: BOSS_KSJ.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dc228c23a054644dbfd3f3d9db49c3d
+    m_Address: SOLDIER1_KSJ.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bad570e75f16fc44b93e6132b2d7c29
+    m_Address: SOLDIER2_KSJ.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08dd551145bc2ae4d8416d9dead65a39
+    m_Address: SOLDIER3_KSJ.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb58400714856654d9a5155ac4e64200
+    m_Address: BOSS_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3c8c164ab9f94a71b172ca56c21c1a6
+    m_Address: BOSS_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9bb8c76f5b12643689304ba46b105369
+    m_Address: Bullet_1_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a64c3d4e08a6a48be8a9259903e870b5
+    m_Address: Bullet_2_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a33c03d3aafed4915af84ae88f9f4c31
+    m_Address: Bullet_3_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b90f2be7d4636437f84cb574649cc766
+    m_Address: SOLDIER1_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 686fc10105e08422db02de6e1d005942
+    m_Address: SOLDIER2_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a76e7c322246d4092be84c5e6bfb7ec6
+    m_Address: SOLDIER3_LJH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f178602afd11674595f78520cbbb8b3
+    m_Address: Bullet_1_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 658fc3426c72f074ca1b9186c4579cff
+    m_Address: Bullet_2_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddc0a1b392d685249af9c5992296b321
+    m_Address: Bullet_3_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fe29f35a2abce64ea47ce65f5dfedd9
+    m_Address: SOLDIER1_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6762e1432f8ecd746a35c50dfdcf0abb
+    m_Address: SOLDIER2_CHH.sprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61b7215cb5cf22744aff4cde1e64ecee
+    m_Address: SOLDIER3_CHH.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

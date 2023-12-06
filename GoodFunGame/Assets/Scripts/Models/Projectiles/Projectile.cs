@@ -6,7 +6,6 @@ public class Projectile : Thing
 {
 
     #region Properties
-
     public Creature Owner { get; protected set; }
 
     public float Damage { get; private set; }

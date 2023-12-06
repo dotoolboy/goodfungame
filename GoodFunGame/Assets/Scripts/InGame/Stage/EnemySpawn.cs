@@ -26,6 +26,7 @@ public class EnemySpawn
         if (wave == 1)
         {
             Enemy bossObject = Main.Object.Spawn<Enemy>(Main.Stage.BossKey.Keys.ElementAt(bossIndex), new Vector2(0, 5f));
+            
             bossObject.gameObject.SetActive(false);
             spawnList.Add(bossObject);
         }
