@@ -1996,7 +1996,7 @@ GameObject:
   - component: {fileID: 2419613186853769291}
   - component: {fileID: 7820352612919854291}
   m_Layer: 5
-  m_Name: Score
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2702,7 +2702,7 @@ GameObject:
   - component: {fileID: 7663701483327026726}
   - component: {fileID: 3972090121366137204}
   m_Layer: 5
-  m_Name: Gold
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

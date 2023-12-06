@@ -32,7 +32,10 @@ public class Enemy : Creature
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag($"PlayerProjectile"))
+        {
             OnHit(collision.gameObject);
+            Main.Object.Player.ScoreCount++;
+        }
     }
 
     #endregion
@@ -85,8 +88,8 @@ public class Enemy : Creature
     {
         base.OnStateEntered_Dead();
 
-        // TODO:: Player의 KillCount 증가.
-        // Score += 50;
+        // 적을 죽일때마다 스코어 점수 추가
+        Main.Object.Player.ScoreCount += 50;
         // 터지는 효과
         Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 
