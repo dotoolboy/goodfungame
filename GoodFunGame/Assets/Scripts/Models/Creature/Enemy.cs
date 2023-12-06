@@ -70,6 +70,8 @@ public class Enemy : Creature
         speed = enemy.speed;
         damage = enemy.damage;
         movePattern = AssignmentPattern(key);
+        State = CreatureState.IDLE;
+        _coAttack = null;
     }
 
     /// <summary>
