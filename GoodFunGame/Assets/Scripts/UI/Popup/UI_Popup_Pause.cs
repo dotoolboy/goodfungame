@@ -24,7 +24,7 @@ public class UI_Popup_Pause : UI_Popup
     void Start()
     {
         Init();
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
 
     }
 
@@ -54,7 +54,7 @@ public class UI_Popup_Pause : UI_Popup
     public void Continue(PointerEventData data)
     {
         Main.UI.ClosePopupUI(this);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
     }
 }

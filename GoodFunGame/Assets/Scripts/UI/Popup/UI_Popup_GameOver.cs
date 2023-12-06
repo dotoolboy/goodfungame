@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class UI_Popup_GameOver : UI_Popup
 {
@@ -43,6 +44,7 @@ public class UI_Popup_GameOver : UI_Popup
 
     public void SetInfo()
     {
+        Init();
         GetText((int)Texts.ScoreText).text = $"{Main.Object.Player.ScoreCount}";
         GetText((int)Texts.GoldText).text = $"{Main.Object.Player.GoldCount}";
     }
@@ -50,15 +52,16 @@ public class UI_Popup_GameOver : UI_Popup
 
     void Retry(PointerEventData data)
     {
-        Debug.Log("재도전");
         Main.UI.ClosePopupUI(this);
+        Main.Clear();
+        SceneManager.LoadScene("GameScene");
     }
 
      void Exit(PointerEventData data)
     {
-
-        Debug.Log("나가기");
         Main.UI.ClosePopupUI(this);
+        Main.Clear();
+        SceneManager.LoadScene("TitleScene");
     }
 
 }

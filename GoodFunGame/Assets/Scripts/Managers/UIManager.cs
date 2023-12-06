@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager
 {
@@ -33,6 +34,8 @@ public class UIManager
 
         go.transform.SetParent(Root.transform);
 
+        RefreshTimeScale();
+
         return popup;
     }
 
@@ -59,7 +62,8 @@ public class UIManager
         UI_Popup popup = _popupStack.Pop();
         Main.Resource.Destroy(popup.gameObject);
         popup = null;
-        _order--; 
+        _order--;
+        RefreshTimeScale();
     }
 
     public void CloseAllPopupUI()
@@ -96,6 +100,17 @@ public class UIManager
 
         go.transform.SetParent(Root.transform);
         return sceneUI;
+    }
+
+    public void RefreshTimeScale()
+    {
+        if (SceneManager.GetActiveScene().name != "GameScene")
+        {
+            Time.timeScale = 1;
+            return;
+        }
+        if (_popupStack.Count > 0) Time.timeScale = 0;
+        else Time.timeScale = 1;
     }
 
 
