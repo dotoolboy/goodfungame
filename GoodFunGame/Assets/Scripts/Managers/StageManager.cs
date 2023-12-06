@@ -1,30 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class StageManager
 {
-    private bool _stageInit;
     public int stageLevel;
     public int CurrentStageLevel;
-    public Dictionary<int, EnemyData.EnemyKey> stageDesign = new();
-    public int stageHighScore;
-    public int stageCurrentScore;
+    private int _stageHighScore;
+    private int _stageCurrentScore;
+    public string stageName;
+
+    public int StageCurrentScore
+    {
+        get => _stageCurrentScore; 
+        set
+        {
+            _stageCurrentScore = value;
+            OnScoreChanged?.Invoke();
+        }
+    }
+
+    public event Action OnScoreChanged;
+
     private int _waveCount;
     private int[] _waveDesign;
 
     #region SpawnGroup Controller
 
-    public readonly string[] BossKey = {
-        "BOSS_MWJ",
-        "BOSS_CHH",
-        "BOSS_LJH",
-        "BOSS_JEH",
-        "BOSS_KSJ"
+    public readonly Dictionary<string, string> BossKey = new()
+    {
+        {"BOSS_MWJ", "케로케로폼폼미친원정"}, { "BOSS_CHH", "파인애플피자는맛있현호" },
+        {"BOSS_LJH","고기반찬으로만든훈민정훈"}, { "BOSS_JEH"," 작고귀여은하짱" }, { "BOSS_KSJ" ,"다음엔튜터로보세진"}
     };
-
-    public int BossIndex;
 
     public readonly Dictionary<string, List<string>> EnemyGroups = new()
     {
@@ -38,11 +48,9 @@ public class StageManager
 
     public void InitializeStage()
     {
-        if (_stageInit) return;
-        _stageInit = true;
         stageLevel = Main.Game.Data.stageLevel;
-        stageHighScore = Main.Game.Data.stageHighScore;
-        BossIndex = 0;
+        _stageHighScore = Main.Game.Data.stageHighScore;
+        StageCurrentScore = 0;
         _waveCount = GameManager.StageWaveMaxCount;
         _waveDesign = Main.Game.WaveVolume;
         Main.Object.OnVictory += OnVictory;
@@ -63,7 +71,8 @@ public class StageManager
         }
 
         Main.Resource.InstantiatePrefab("BackGround.prefab");
-        int wave = 0;
+        int wave = 0; 
+        Debug.Log($"Wave : {wave} / WaveDesignCount : {_waveCount}");
         while ( wave <= _waveCount-1)
         {
             int currentWave = _waveDesign[wave];
@@ -96,30 +105,41 @@ public class StageManager
         Main.Spawn.AssignmentEnemyPattern(spawnList);
     }
 
+    private void GetStageName(int bossIndex)
+    {
+        string selectedKey = Main.Stage.BossKey.Keys.ElementAt(bossIndex);
+        stageName = Main.Stage.BossKey[selectedKey];
+    }
+
     private void Stage1(int waveCount)
     { 
-        int bossIndex = 0; 
+        int bossIndex = 0;
+        GetStageName(bossIndex);
         SpawnDesign(waveCount, bossIndex);
     }
 
     private void Stage2(int waveCount)
     { 
         int bossIndex = 1; 
+        GetStageName(bossIndex);
         SpawnDesign(waveCount, bossIndex);
     }
     private void Stage3(int waveCount)
     { 
         int bossIndex = 2; 
+        GetStageName(bossIndex);
         SpawnDesign(waveCount, bossIndex);
     }
     private void Stage4(int waveCount)
     { 
         int bossIndex = 3; 
+        GetStageName(bossIndex);
         SpawnDesign(waveCount, bossIndex);
     }
     private void Stage5(int waveCount)
     { 
         int bossIndex = 4; 
+        GetStageName(bossIndex);
         SpawnDesign(waveCount, bossIndex);
     }
 
@@ -133,15 +153,24 @@ public class StageManager
         Debug.Log("Victory");
             
         // GameScene에서 승리패널 오픈 호출
-        if (stageCurrentScore > stageHighScore)
-        {
-            Main.Game.Data.stageHighScore = stageCurrentScore;
-        }
+        UpdateStage();
+        Main.UI.ShowPopupUI<UI_Popup_GameEnd_Clear>().Open();
+    }
 
+    public void GameOver()
+    {
+           UpdateStage();
+    }
+
+    private void UpdateStage()
+    {
+        if (StageCurrentScore > _stageHighScore)
+        {
+            Main.Game.Data.stageHighScore = StageCurrentScore;
+        }
         if (CurrentStageLevel > stageLevel)
         {
             Main.Game.Data.stageLevel = CurrentStageLevel;
         }
-
     }
 }

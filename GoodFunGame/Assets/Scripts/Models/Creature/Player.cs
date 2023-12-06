@@ -113,13 +113,11 @@ public class Player : Creature
                 OnHit(enemy);
                 Invincible = true;
             }
-
             // 알파값 변경
             StartCoroutine(AlphaModifyAfterCollision());
 
             // HeartUI
             OnPlayerHealthChanged?.Invoke();
-
         }
     }
 
@@ -167,8 +165,9 @@ public class Player : Creature
         base.OnStateEntered_Dead();
 
         // 게임 오버 화면 띄우기
+        Main.Stage.GameOver();
         Main.UI.ShowPopupUI<UI_Popup_GameOver>().SetInfo();
-        //Main.UI.ShowPopupUI<UI_Popup_GameOver>();
+
 
 
         // TODO:: 오브젝트 디스폰
@@ -200,13 +199,6 @@ public class Player : Creature
     #endregion
 
     #region Coroutine
-
-    IEnumerator EnableColliderAfterInvincibility()
-    {
-        yield return new WaitForSeconds(_invincibilityTime);
-        _collider.enabled = true;
-    }
-
     IEnumerator AlphaModifyAfterCollision()
     {
         float targetAlpha = 0.1f;
