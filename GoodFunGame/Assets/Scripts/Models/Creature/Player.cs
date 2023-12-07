@@ -172,7 +172,7 @@ public class Player : Creature
                     _skills.Add(this.AddComponent<Skill_AutoTarget>());
                     break;
                 case "HOMINGMISSILE":
-                    // 미구현.
+                    _skills.Add(this.AddComponent<Skill_HomigMissile>());
                     break;
             }
         }
