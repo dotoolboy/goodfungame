@@ -10,7 +10,7 @@ public class Skill_PiercingShotObject : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        StartCoroutine(DespawnPiercingShotObject());
+        StartCoroutine(DestroyPiercingShotObject());
     }
 
     void FixedUpdate()
@@ -18,8 +18,9 @@ public class Skill_PiercingShotObject : MonoBehaviour
         _rigidbody.velocity = Vector2.up * _speed * Time.fixedDeltaTime;
     }
 
-    IEnumerator DespawnPiercingShotObject()
+    IEnumerator DestroyPiercingShotObject()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
+        Main.Resource.Destroy(gameObject);
     }
 }

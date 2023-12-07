@@ -8,7 +8,7 @@ public class Skill_EnergyBurst : SkillBase
     public override void Initialize()
     {
         base.Initialize();
-        Cooldown = 20f;
+        Cooldown = 8f;
     }
 
     public override bool Activate()

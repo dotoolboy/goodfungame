@@ -16,7 +16,7 @@ public class Skill_AutoTarget : SkillBase
     public override void Initialize()
     {
         base.Initialize();
-        Cooldown = 13f;
+        Cooldown = 8f;
     }
 
     public override bool Activate()
