@@ -38,8 +38,9 @@ public class Enemy : Creature
             if (projectile != null)
                 OnHit(projectile.Owner);
             else
-                OnHit(2);
-            Main.Stage.StageCurrentScore+= 10;
+                OnHit(15);
+            Main.Stage.StageCurrentScore += 10;
+            if (projectile.IsValid()) Main.Object.Despawn(projectile);
         }
     }
 
@@ -68,7 +69,8 @@ public class Enemy : Creature
         EnemyData enemy = Main.Data.Enemies.FirstOrDefault(e => e.Key == key).Value;
         enemyType = (EnemyData.EnemyKey)Enum.Parse(typeof(EnemyData.EnemyKey), enemy.keyName);
         _enemySpriteRenderer.sprite = Main.Resource.Load<Sprite>($"{key}.sprite");
-        hp = enemy.hp;
+        HpMax = enemy.hp;
+        Hp = HpMax;
         currentHp = hp;
         speed = enemy.speed;
         damage = enemy.damage;
