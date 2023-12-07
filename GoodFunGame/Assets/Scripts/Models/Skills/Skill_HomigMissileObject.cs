@@ -8,12 +8,10 @@ public class Skill_HomigMissileObject : MonoBehaviour
     float _speed = 10f;
 
     Rigidbody2D _rigidbody;
-    SpriteRenderer _sprite;
 
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _sprite = GetComponent<SpriteRenderer>();
 
         Vector2 dir = new Vector2(Random.Range(-1f, 1f), 0.5f).normalized;
         _rigidbody.velocity = dir * _speed;

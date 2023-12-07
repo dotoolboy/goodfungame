@@ -12,7 +12,7 @@ public class Skill_HomigMissile : SkillBase
     public override void Initialize()
     {
         base.Initialize();
-        Cooldown = 5f;
+        Cooldown = 8f;
     }
 
     public override bool Activate()
@@ -20,7 +20,6 @@ public class Skill_HomigMissile : SkillBase
         if (!base.Activate()) return false;
 
         StartCoroutine(HomingMissileGeneration());
-
 
         return true;
     }
@@ -32,7 +31,6 @@ public class Skill_HomigMissile : SkillBase
         while (elapsedTime < _totalTime)
         {
             _homingMissile = Main.Resource.InstantiatePrefab("HomingMissile.prefab");
-            _homingMissile.GetComponent<Rigidbody2D>().velocity = Vector2.up * Time.deltaTime;
             _homingMissile.transform.position = transform.position;
 
             yield return new WaitForSeconds(_generateTime);
