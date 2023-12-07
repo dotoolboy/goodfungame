@@ -21,11 +21,6 @@ public class UI_Popup_GameEnd_Clear : UI_Popup
 
     }
 
-    private enum Images
-    {
-        IconImage,
-        Btn
-    }
 
     private enum Texts
     {
@@ -45,7 +40,6 @@ public class UI_Popup_GameEnd_Clear : UI_Popup
     {
         if (!base.Init()) return false;
 
-        BindImage(typeof(Images));
         BindObject(typeof(GameObjects));
         BindButton(typeof(Buttons));
         BindText(typeof(Texts));
