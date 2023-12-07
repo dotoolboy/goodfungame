@@ -33,13 +33,13 @@ public class UI_Popup_SelectEntry : UI_Popup
 
     public void Solo(PointerEventData data)
     {
-        Debug.Log("솔플");
+       // Debug.Log("솔플");
         Main.UI.ClosePopupUI(this);
         Main.UI.ShowPopupUI<UI_Popup_SelectMenu>();
     }
     public void Multi(PointerEventData data)
     {
-        Debug.Log("멀티플");
+      //  Debug.Log("멀티플");
         Main.UI.ClosePopupUI(this);
         Main.UI.ShowPopupUI<UI_Popup_SelectMenu>();
     }

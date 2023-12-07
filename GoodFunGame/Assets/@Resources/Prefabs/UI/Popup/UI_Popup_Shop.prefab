@@ -449,7 +449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -433, y: 102}
+  m_AnchoredPosition: {x: -479, y: 102}
   m_SizeDelta: {x: 571.7559, y: 708.4901}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1418744949001680713
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1131,7 +1131,7 @@ PrefabInstance:
     - target: {fileID: 613425163818584606, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 27508050e2a70415d83651e0797c7d48, type: 3}
+      objectReference: {fileID: 21300000, guid: b570928da823f4d96842cdc283f0b8ae, type: 3}
     - target: {fileID: 5787406380923000207, guid: ac4f134ba4b71814cb671ea4bbc28467, type: 3}
       propertyPath: m_Name
       value: BackspaceBtn
