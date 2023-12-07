@@ -64,13 +64,11 @@ public class UI_Popup_Status : UI_Popup
         BindObject(typeof(GameObjects));
         BindImage(typeof(Images));
 
-
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
-
         SetSkill();
-
         Main.Game.OnEquipChanged -= Refresh;
-        Main.Game.OnEquipChanged += Refresh;
+       Main.Game.OnEquipChanged += Refresh;
+
         Refresh();
 
 
@@ -78,20 +76,25 @@ public class UI_Popup_Status : UI_Popup
     }
     void Refresh()
     {
+
         GetText((int)Texts.BestText).text = $"최고기록 : 0";
         GetText((int)Texts.SkillCollectText).text = $"수집율 : {Math.Truncate((double)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
         GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
         GetText((int)Texts.NameText).text = $"{Main.Game.UserName}";
 
-        GetObject((int)GameObjects.skillSlotImg1).gameObject.SetActive(false);
+
+        if (GetObject((int)GameObjects.skillSlotImg1).gameObject != null) { 
+        GetObject((int)GameObjects.skillSlotImg1).gameObject.SetActive(false); // 장비변경 이벤트에 연결하면 장비창나갔다들어올때 null
         GetObject((int)GameObjects.skillSlotImg2).gameObject.SetActive(false);
         GetObject((int)GameObjects.skillSlotImg3).gameObject.SetActive(false);
-
+       
         for (int i = 0; i < Main.Game.EquippedSkills.Count; i++)
         {
             GetImage(i).sprite = Main.Resource.Load<Sprite>($"{Main.Data.Skills[Main.Game.EquippedSkills[i]].skillStringKey}.sprite");
             GetObject(i).gameObject.SetActive(true);
+            }
         }
+
 
     }
 
