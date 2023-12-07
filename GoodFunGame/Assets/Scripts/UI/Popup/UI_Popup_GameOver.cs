@@ -54,12 +54,14 @@ public class UI_Popup_GameOver : UI_Popup
 
     void Retry(PointerEventData data)
     {
+        Main.Game.Data.stageLevel = 0;
         Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("GameScene");
     }
 
      void Exit(PointerEventData data)
     {
+        Main.Game.Data.stageLevel = 0;
         Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("TitleScene");
     }

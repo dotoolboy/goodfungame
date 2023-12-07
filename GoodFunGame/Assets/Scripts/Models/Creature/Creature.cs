@@ -106,7 +106,7 @@ public class Creature : Thing {
         //MoveSpeed = Data.moveSpeed;
 
         HpMax = MaxHp;
-        Damage = 1;
+        Damage = 8;
         MoveSpeed = 5;
 
         if (isFullHp) Hp = HpMax;

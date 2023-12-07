@@ -246,6 +246,11 @@ public class Player : Creature
 
     #endregion
 
+    public override void OnHit(Creature obj)
+    {
+        Hp -= 1;
+    }
+
     #region Coroutine
     IEnumerator AlphaModifyAfterCollision()
     {

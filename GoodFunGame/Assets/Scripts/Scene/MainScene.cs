@@ -18,6 +18,8 @@ public class MainScene : BaseScene
         // 이 곳에 씬 처리 작업!
         UI = Main.UI.ShowSceneUI<UI_Scene_Main>();
         Main.UI.ShowPopupUI<UI_Popup_SelectEntry>();
+        Main.Game.Data.stageLevel = 0;
+        Main.Game.SaveGame();
 
         // =========================================================================================
 
