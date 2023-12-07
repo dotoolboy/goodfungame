@@ -21,7 +21,6 @@ public class Skill_HomigMissile : SkillBase
 
         StartCoroutine(HomingMissileGeneration());
 
-
         return true;
     }
 
@@ -32,7 +31,6 @@ public class Skill_HomigMissile : SkillBase
         while (elapsedTime < _totalTime)
         {
             _homingMissile = Main.Resource.InstantiatePrefab("HomingMissile.prefab");
-            _homingMissile.GetComponent<Rigidbody2D>().velocity = Vector2.up * Time.deltaTime;
             _homingMissile.transform.position = transform.position;
 
             yield return new WaitForSeconds(_generateTime);
