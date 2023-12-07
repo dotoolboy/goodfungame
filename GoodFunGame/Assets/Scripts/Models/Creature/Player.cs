@@ -216,19 +216,19 @@ public class Player : Creature
         if (!value.isPressed) return;  // 눌렀을때 true 땔때 false 호출
 
         if (Main.Game.EquippedSkills.Count > 0)
-            Debug.Log("Z 스킬 사용");
+            _skills[0].Activate();
     }
     public void OnXSkill(InputValue value)
     {
         if (!value.isPressed) return;
         if (Main.Game.EquippedSkills.Count > 1)
-            Debug.Log("X 스킬 사용");
+            _skills[1].Activate();
     }
     public void OnCSkill(InputValue value)
     {
         if (!value.isPressed) return;
         if (Main.Game.EquippedSkills.Count > 2)
-            Debug.Log("C 스킬 사용");
+            _skills[2].Activate();
     }
 
 
