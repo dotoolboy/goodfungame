@@ -242,6 +242,7 @@ public class Player : Creature
         projectile.SetInfo(this, "PlayerProjectile", Damage, 1);
         projectile.SetVelocity(Vector2.up * _projectileSpeed);
         projectile.gameObject.tag = "PlayerProjectile";
+        AudioController.Instance.SFXPlay(SFX.PlayerAttack);
     }
 
     #endregion

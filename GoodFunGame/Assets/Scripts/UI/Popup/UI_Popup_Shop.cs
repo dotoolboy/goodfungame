@@ -63,6 +63,7 @@ public class UI_Popup_Shop : UI_Popup
     }
     public void Close(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ClosePopupUI(this);
     }
 }

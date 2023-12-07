@@ -94,6 +94,7 @@ public class UI_SkillEquip : UI_Base
     {
         if (!IsPurchased) return;
 
+        AudioController.Instance.SFXPlay(SFX.Button);
         if (IsEquipped)
         {
             if (!Main.Game.UnequipSkill(Data.skillStringKey)) return;

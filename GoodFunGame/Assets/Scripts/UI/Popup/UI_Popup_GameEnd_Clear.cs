@@ -58,7 +58,7 @@ public class UI_Popup_GameEnd_Clear : UI_Popup
     public void Open()
     {
         Init();
-
+        AudioController.Instance.SFXPlay(SFX.StageClear);
         GetText((int)Texts.StageNameText).text = Main.Stage.stageName;
         GetText((int)Texts.CurrentScoreText).text = Main.Stage.StageCurrentScore.ToString();
         GetText((int)Texts.HighScoreText).text = Main.Game.Data.stageHighScore.ToString();

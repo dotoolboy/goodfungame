@@ -61,18 +61,22 @@ public class UI_Popup_SelectMenu : UI_Popup
 
     public void OnBtnShop(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ShowPopupUI<UI_Popup_Shop>();
     }
     public void OnBtnStatus(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ShowPopupUI<UI_Popup_Status>();
     }
     public void OnBtnSettings(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ShowPopupUI<UI_Popup_Option>();
     }
     public void OnBtnPlayGame(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.CloseAllPopupUI();
         Main.Scene.LoadScene("GameScene");
     }

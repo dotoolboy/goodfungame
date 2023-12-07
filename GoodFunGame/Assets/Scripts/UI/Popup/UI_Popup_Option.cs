@@ -48,6 +48,7 @@ public class UI_Popup_Option : UI_Popup
 
     void Close(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ClosePopupUI(this);
     }
 }

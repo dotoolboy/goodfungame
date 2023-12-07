@@ -19,6 +19,7 @@ public class Skill_GravityField : SkillBase
     {
         if (!base.Activate()) return false;
 
+        AudioController.Instance.SFXPlay(SFX.GravityField);
         Main.Object.Player.Invincible = true;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, _fieldRadius);

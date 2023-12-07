@@ -85,6 +85,7 @@ public class UI_SkillCard : UI_Base
     }
     void PurchasePopup(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ShowPopupUI<UI_Popup_Purchase>().SetInfo(this);
     }
 

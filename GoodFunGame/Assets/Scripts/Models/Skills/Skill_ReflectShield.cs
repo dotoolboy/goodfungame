@@ -18,6 +18,7 @@ public class Skill_ReflectShield : SkillBase
     {
         if (!base.Activate()) return false;
 
+        AudioController.Instance.SFXPlay(SFX.ReflectShield);
         _shield = Main.Resource.InstantiatePrefab("ReflectShield.prefab").GetComponent<Skill_ReflectShieldObject>();
         _shield.transform.SetParent(this.transform, true);
         _shield.Initialize(_duration);

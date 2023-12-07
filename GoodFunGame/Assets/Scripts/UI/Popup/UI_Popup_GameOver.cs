@@ -54,6 +54,7 @@ public class UI_Popup_GameOver : UI_Popup
 
     void Retry(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.Game.Data.stageLevel = 0;
         Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("GameScene");
@@ -61,6 +62,7 @@ public class UI_Popup_GameOver : UI_Popup
 
      void Exit(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.Game.Data.stageLevel = 0;
         Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("TitleScene");

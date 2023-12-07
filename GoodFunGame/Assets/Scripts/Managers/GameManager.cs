@@ -147,7 +147,7 @@ public class GameManager
 
         // #3. 골드 차감.
         Gold -= data.skillPrice;
-
+        AudioController.Instance.SFXPlay(SFX.ShopBuy);
         return true;
     }
     public bool EquipSkill(string key)

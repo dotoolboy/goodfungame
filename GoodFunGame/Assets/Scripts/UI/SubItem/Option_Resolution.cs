@@ -174,7 +174,7 @@ public class Option_Resolution : UI_Base
     public void Yes(PointerEventData data) // 해상도 적용할때
     {
         StopAllCoroutines();
-
+        AudioController.Instance.SFXPlay(SFX.Button);
         dropdown.value = resolutionNum;
         Screen.SetResolution(resolutions[resolutionNum].width, resolutions[resolutionNum].height, screenMode);
 
@@ -187,8 +187,8 @@ public class Option_Resolution : UI_Base
         StopAllCoroutines();
         resolutionNum = resolutionNumSet;
         dropdown.value = resolutionNum;
+        AudioController.Instance.SFXPlay(SFX.Button);
 
-    
 
         GetObject((int)GameObjects.Preview).gameObject.SetActive(false);
     }

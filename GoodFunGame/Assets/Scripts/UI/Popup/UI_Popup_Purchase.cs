@@ -52,12 +52,14 @@ public class UI_Popup_Purchase : UI_Popup
 
     void OnBtnOk(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.Game.PurchaseSkill(_card.Data.skillStringKey);
         _card.Refresh();
         Main.UI.ClosePopupUI(this);
     }
     void OnBtnNo(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         _card.Refresh();
         Main.UI.ClosePopupUI(this);
 

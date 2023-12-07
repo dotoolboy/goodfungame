@@ -44,16 +44,19 @@ public class UI_Popup_Pause : UI_Popup
 
     public void BackToMain(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ClosePopupUI(this);
         Main.Scene.LoadScene("TitleScene");
     }
     public void Options(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ShowPopupUI<UI_Popup_Option>();
 
     }
     public void Continue(PointerEventData data)
     {
+        AudioController.Instance.SFXPlay(SFX.Button);
         Main.UI.ClosePopupUI(this);
         //Time.timeScale = 1f;
 
