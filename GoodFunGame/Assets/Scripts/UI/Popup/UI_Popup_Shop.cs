@@ -41,6 +41,7 @@ public class UI_Popup_Shop : UI_Popup
         GetButton((int)Buttons.BackspaceBtn).gameObject.BindEvent(Close);
         SetSkillCard();
 
+        Main.Game.OnResourcesChanged -= Refresh;
         Main.Game.OnResourcesChanged += Refresh;
 
         Refresh();
