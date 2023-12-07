@@ -186,13 +186,13 @@ MonoBehaviour:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb58400714856654d9a5155ac4e64200
-    m_Address: BOSS_CHH.sprite
+    m_Address: Boss_CHH.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d3c8c164ab9f94a71b172ca56c21c1a6
-    m_Address: BOSS_LJH.sprite
+    m_Address: Boss_LJH.sprite
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
