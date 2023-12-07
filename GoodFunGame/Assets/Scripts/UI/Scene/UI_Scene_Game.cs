@@ -17,6 +17,23 @@ public class UI_Scene_Game : UI_Scene
         PauseBtn,
     }
 
+    enum GameObjects
+    {
+        Skill_1_Key,
+        Skill_2_Key,
+        Skill_3_Key,
+        ControllerIcon
+
+    }
+
+    enum Images
+    {
+
+        skillImage1,
+        skillImage2,
+        skillImage3
+    }
+
     #endregion
 
     #region Fields
@@ -35,7 +52,9 @@ public class UI_Scene_Game : UI_Scene
         if (!base.Init()) return false;
 
         BindButton(typeof(Buttons));
-        BindText(typeof(Texts));
+        BindText(typeof(Texts)); 
+        BindObject(typeof(GameObjects));
+        BindImage(typeof(Images));
         GetButton((int)Buttons.PauseBtn).gameObject.BindEvent(OnBtnPause);
         Main.Game.OnResourcesChanged += OnPlayerDataUpdated;
         Main.Stage.OnScoreChanged += OnPlayerDataUpdated;
@@ -48,6 +67,21 @@ public class UI_Scene_Game : UI_Scene
     {
         GetText((int)Texts.GoldText).text = Main.Game.Data.gold.ToString();
         GetText((int)Texts.ScoreText).text = Main.Game.Data.stageHighScore.ToString();
+
+
+        GetObject((int)GameObjects.Skill_1_Key).gameObject.SetActive(false);
+        GetObject((int)GameObjects.Skill_2_Key).gameObject.SetActive(false);
+        GetObject((int)GameObjects.Skill_3_Key).gameObject.SetActive(false);
+        GetObject((int)GameObjects.ControllerIcon).gameObject.SetActive(false);
+
+        for (int i = 0; i < Main.Game.EquippedSkills.Count; i++)
+        {
+            GetObject((int)GameObjects.ControllerIcon).gameObject.SetActive(true);
+            GetImage(i).sprite = Main.Resource.Load<Sprite>($"{Main.Data.Skills[Main.Game.EquippedSkills[i]].skillStringKey}.sprite");
+            GetObject(i).gameObject.SetActive(true);
+        }
+
+
     }
 
     private void OnBtnPause(PointerEventData data)
