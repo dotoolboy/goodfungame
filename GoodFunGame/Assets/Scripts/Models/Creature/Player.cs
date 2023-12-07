@@ -28,7 +28,7 @@ public class Player : Creature
 
     public bool Invincible
     {
-        get => _invincible; 
+        get => _invincible;
         set
         {
             _invincible = value;
@@ -73,7 +73,7 @@ public class Player : Creature
 
     public delegate void PlayerHealthChanged();
     public event PlayerHealthChanged OnPlayerHealthChanged;
-    
+
     // Coroutines.
     private Coroutine _coInvincible;
     #endregion
@@ -214,17 +214,21 @@ public class Player : Creature
     public void OnZSkill(InputValue value)
     {
         if (!value.isPressed) return;  // 눌렀을때 true 땔때 false 호출
-        Debug.Log("Z 스킬 사용");
+
+        if (Main.Game.EquippedSkills.Count > 0)
+            Debug.Log("Z 스킬 사용");
     }
     public void OnXSkill(InputValue value)
     {
-        if (!value.isPressed) return;  
-        Debug.Log("X 스킬 사용");
+        if (!value.isPressed) return;
+        if (Main.Game.EquippedSkills.Count > 1)
+            Debug.Log("X 스킬 사용");
     }
     public void OnCSkill(InputValue value)
     {
-        if (!value.isPressed) return; 
-        Debug.Log("C 스킬 사용");
+        if (!value.isPressed) return;
+        if (Main.Game.EquippedSkills.Count > 2)
+            Debug.Log("C 스킬 사용");
     }
 
 
@@ -258,7 +262,7 @@ public class Player : Creature
 
         _spriter.color = startColor;
     }
-    
+
     IEnumerator FadeColor(Color startColor, Color targetColor, float duration)
     {
         float elapsedTime = 0f;
