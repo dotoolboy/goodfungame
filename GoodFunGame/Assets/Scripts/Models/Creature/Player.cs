@@ -28,7 +28,7 @@ public class Player : Creature
 
     public bool Invincible
     {
-        get => _invincible; 
+        get => _invincible;
         set
         {
             _invincible = value;
@@ -73,7 +73,7 @@ public class Player : Creature
 
     public delegate void PlayerHealthChanged();
     public event PlayerHealthChanged OnPlayerHealthChanged;
-    
+
     // Coroutines.
     private Coroutine _coInvincible;
     #endregion
@@ -209,6 +209,29 @@ public class Player : Creature
         Direction = moveInput;
     }
 
+
+    // (InputValue value) value값을 어떤 키를 눌러서 들어왔는지 구분하는 방법을 못찾아서 임시로 z x c  나눠놨습니다
+    public void OnZSkill(InputValue value)
+    {
+        if (!value.isPressed) return;  // 눌렀을때 true 땔때 false 호출
+
+        if (Main.Game.EquippedSkills.Count > 0)
+            Debug.Log("Z 스킬 사용");
+    }
+    public void OnXSkill(InputValue value)
+    {
+        if (!value.isPressed) return;
+        if (Main.Game.EquippedSkills.Count > 1)
+            Debug.Log("X 스킬 사용");
+    }
+    public void OnCSkill(InputValue value)
+    {
+        if (!value.isPressed) return;
+        if (Main.Game.EquippedSkills.Count > 2)
+            Debug.Log("C 스킬 사용");
+    }
+
+
     #endregion
 
     #region Attack
@@ -239,7 +262,7 @@ public class Player : Creature
 
         _spriter.color = startColor;
     }
-    
+
     IEnumerator FadeColor(Color startColor, Color targetColor, float duration)
     {
         float elapsedTime = 0f;
@@ -260,20 +283,24 @@ public class Player : Creature
     //private GravityFieldSkill gravityFieldSkill;
 
     // 임시 스킬 테스트
+
+    /*
     protected override void Update()
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Z))
         {
-            _skills[0].Activate();
+        //  _skills[0].Activate();
         }
         if (UnityEngine.Input.GetKeyDown(KeyCode.X))
         {
-            _skills[1].Activate();
+          //  _skills[1].Activate();
         }
         if (UnityEngine.Input.GetKeyDown(KeyCode.C))
         {
-            _skills[2].Activate();
+          //  _skills[2].Activate();
         }
 
     }
+    
+     */
 }

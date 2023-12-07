@@ -119,12 +119,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6a3e0bbb0dfc67240bf0dcf29c1a972f
-    m_Address: UI_Popup_BattleMenu_Multiple.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e96f5e919706a341a86a3fb41ffa833
     m_Address: UI_Popup_IntroMenu.prefab
     m_ReadOnly: 0
@@ -175,12 +169,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da2a5c902e40e934f96457229a0fa7b8
     m_Address: UI_Popup_Tooltip.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1f8d8a22ddffc246b293adfe272927f
-    m_Address: UI_Popup_BattleMenu_Single.prefab
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
