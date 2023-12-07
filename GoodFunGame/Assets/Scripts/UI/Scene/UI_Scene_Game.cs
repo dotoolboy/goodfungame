@@ -65,6 +65,7 @@ public class UI_Scene_Game : UI_Scene
 
     private void Refresh()
     {
+        Init();
         GetText((int)Texts.GoldText).text = Main.Game.Data.gold.ToString();
         GetText((int)Texts.ScoreText).text = Main.Game.Data.stageHighScore.ToString();
 
