@@ -93,6 +93,7 @@ public class UI_SkillEquip : UI_Base
     private void OnBtn(PointerEventData data)
     {
         if (!IsPurchased) return;
+
         if (IsEquipped)
         {
             if (!Main.Game.UnequipSkill(Data.skillStringKey)) return;
