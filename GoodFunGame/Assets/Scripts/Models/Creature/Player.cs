@@ -216,7 +216,7 @@ public class Player : Creature
     private void Attack()
     {
         Projectile projectile = Main.Object.Spawn<Projectile>("", this.transform.position);
-        projectile.SetInfo(this, "Bullet_4_KSJ", Damage, 1);
+        projectile.SetInfo(this, "PlayerProjectile", Damage, 1);
         projectile.SetVelocity(Vector2.up * _projectileSpeed);
         projectile.gameObject.tag = "PlayerProjectile";
     }

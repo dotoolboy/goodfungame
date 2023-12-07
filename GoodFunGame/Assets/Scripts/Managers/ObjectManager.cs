@@ -33,8 +33,7 @@ public class ObjectManager
 
     public Player Player { get; private set; }
     public List<Enemy> Enemies { get; set; } = new();
-    public event Action<int> OnVictory;
-    public int KillCount;
+    public event Action OnVictory;
     private List<Projectile> Projectiles { get; set; } = new();
     private List<Explosion> ExplosionVFX { get; set; } = new();
 
@@ -114,7 +113,11 @@ public class ObjectManager
         else if (type == typeof(Enemy))
         {
             Enemies.Remove(obj as Enemy);
-            CheckForVictory();
+            Enemy enemyObject = obj as Enemy;
+            if (enemyObject != null && enemyObject.enemyType.ToString().Contains("BOSS"))
+            {
+                OnVictory?.Invoke();
+            }
             Main.Resource.Destroy(obj.gameObject);
         }
         else if (type == typeof(Projectile))
@@ -145,12 +148,6 @@ public class ObjectManager
         Enemies.Clear();
         Projectiles.Clear();
         ExplosionVFX.Clear();
-    }
-
-    private void CheckForVictory()
-    {
-        KillCount++;
-        if (Enemies.Count == 0) OnVictory?.Invoke(KillCount);
     }
 }
 
