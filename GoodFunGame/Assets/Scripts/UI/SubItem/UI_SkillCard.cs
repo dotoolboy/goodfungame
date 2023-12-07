@@ -71,7 +71,7 @@ public class UI_SkillCard : UI_Base
         GetImage((int)Images.IconImage).sprite = Main.Resource.Load<Sprite>($"{Data.skillStringKey}.sprite");
 
 
-        if (Main.Game.PurchasedSkills.Contains(Data.skillStringKey))
+        if ((GetButton((int)Buttons.BuyBtn) != null) && Main.Game.PurchasedSkills.Contains(Data.skillStringKey))
         {
             GetButton((int)Buttons.BuyBtn).gameObject.SetActive(false);
             GetText((int)Texts.Price).text = "";
