@@ -39,7 +39,7 @@ public class Enemy : Creature
                 OnHit(projectile.Owner);
             else
                 OnHit(2);
-            Main.Stage.StageCurrentScore++;
+            Main.Stage.StageCurrentScore+= 10;
         }
     }
 
@@ -106,8 +106,8 @@ public class Enemy : Creature
         base.OnStateEntered_Dead();
 
         // 적을 죽일때마다 스코어 점수 추가
-        Main.Stage.StageCurrentScore += 50;
-        Main.Game.Gold += 10;
+        Main.Stage.StageCurrentScore += 200;
+        Main.Game.Gold += 300;
         // 터지는 효과
         Main.Resource.InstantiatePrefab("Explosion.prefab", transform);
 

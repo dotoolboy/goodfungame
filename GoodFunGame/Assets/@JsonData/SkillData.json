@@ -8,7 +8,7 @@
       "skillCool": 10.0,
       "skillDuration": 1.0,
       "skillDamage": 0,
-      "skillPrice": 200,
+      "skillPrice": 10000,
       "skillDesc": "적의 발사채를 반사하는 실드를 생성합니다.\n(레벨이 증가하면 지속시간이 0.2초씩 증가합니다.)"
     },
     {
@@ -19,7 +19,7 @@
       "skillCool": 15.0,
       "skillDuration": 1.5,
       "skillDamage": 0,
-      "skillPrice": 200,
+      "skillPrice": 10000,
       "skillDesc": "일시적으로 시간을 느리게 만들어 적의 공격을 회피합니다.\n(레벨이 증가하면 쿨타임이 0.2초씩 감소합니다.)"
     },
     {
@@ -30,7 +30,7 @@
       "skillCool": 12.0,
       "skillDuration": 0.5,
       "skillDamage": 10,
-      "skillPrice": 200,
+      "skillPrice": 10000,
       "skillDesc": "에너지를 폭발시켜 화면의 적 발사채를 제거합니다.\n(레벨이 증가하면 적에게 주는 데미지가 2씩 증가합니다.)"
     },
     {
@@ -41,7 +41,7 @@
       "skillCool": 10.0,
       "skillDuration": 1.0,
       "skillDamage": 0,
-      "skillPrice": 200,
+      "skillPrice": 20000,
       "skillDesc": "플레이어 전방에 중력장을 생성하여 적의 발사채를 끌어당겨 제거 합니다.\n(레벨이 증가하면 크기가 커집니다.)"
     },
     {
@@ -52,7 +52,7 @@
       "skillCool": 2.0,
       "skillDuration": 0.0,
       "skillDamage": 5,
-      "skillPrice": 200,
+      "skillPrice": 30000,
       "skillDesc": "적을 관통하는 공격을 하는 미사일을 발사합니다.\n(레벨이 증가하면 데미지가 2씩 증가합니다.)"
     },
     {
@@ -63,7 +63,7 @@
       "skillCool": 2.0,
       "skillDuration": 0.0,
       "skillDamage": 5,
-      "skillPrice": 200,
+      "skillPrice": 40000,
       "skillDesc": "적을 유도공격하는 미사일을 주기적으로 발사합니다.\n(레벨이 증가시 발사채가 1개씩 증가합니다.)"
     },
     {
@@ -74,7 +74,7 @@
       "skillCool": 3.0,
       "skillDuration": 0.0,
       "skillDamage": 5,
-      "skillPrice": 200,
+      "skillPrice": 50000,
       "skillDesc": "화면전체를 튕기며 적을 공격하는 호밍 미사일을 생성합니다.\n(레벨이 증가하면 미사일이 점차 커집니다.)"
     }
   ]
