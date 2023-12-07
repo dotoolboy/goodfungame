@@ -115,6 +115,7 @@ public class GameManager
 
     public event Action OnEquipChanged; // 장비창 실험용!
 
+
     #endregion
 
     public void Initialize()
