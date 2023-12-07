@@ -69,8 +69,6 @@ public class UI_Popup_Status : UI_Popup
 
         SetSkill();
 
-        Main.Game.OnEquipChanged -= Refresh;
-        Main.Game.OnEquipChanged += Refresh;
         Refresh();
 
 
@@ -78,6 +76,8 @@ public class UI_Popup_Status : UI_Popup
     }
     void Refresh()
     {
+      
+
         GetText((int)Texts.BestText).text = $"최고기록 : 0";
         GetText((int)Texts.SkillCollectText).text = $"수집율 : {Math.Truncate((double)Main.Game.PurchasedSkills.Count / Main.Data.Skills.Count * 100)}%";
         GetText((int)Texts.GoldText).text = $"소지금 : {Main.Game.Gold}";
